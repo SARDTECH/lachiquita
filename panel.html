@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel · La Chiquita</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tierra:#2C1A0E; --vino:#8B2635; --vino-dark:#6E1D29;
+  --mostaza:#D4A847; --crema:#F5EDD8; --crema-dark:#EDE0C4;
+  --gris:#6B6B5A; --blanco:#FDFAF5;
+  --pending-bg:#FEF3E2; --pending-txt:#92400E;
+  --ready-bg:#DCFCE7; --ready-txt:#166534;
+  --done-bg:#E0F2FE; --done-txt:#075985;
+  --font-d:'Playfair Display',serif;
+  --font-b:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:#F0EAD6;min-height:100vh}
+
+/* LOGIN SCREEN */
+#login-screen{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:var(--tierra);
+}
+.login-box{
+  background:var(--blanco);border-radius:16px;padding:40px 36px;
+  width:100%;max-width:360px;text-align:center;
+}
+.login-logo{font-family:var(--font-d);font-size:1.6rem;color:var(--tierra);margin-bottom:4px}
+.login-sub{font-size:13px;color:var(--gris);margin-bottom:32px}
+.login-label{display:block;font-size:12px;font-weight:500;color:var(--gris);text-align:left;margin-bottom:6px}
+.login-input{
+  width:100%;border:1px solid var(--crema-dark);border-radius:8px;
+  padding:11px 14px;font-family:var(--font-b);font-size:15px;
+  color:var(--tierra);background:var(--blanco);outline:none;
+  transition:border-color .15s;letter-spacing:.2em;text-align:center;
+  margin-bottom:20px;
+}
+.login-input:focus{border-color:var(--vino)}
+.login-btn{
+  width:100%;background:var(--vino);color:var(--crema);border:none;
+  font-family:var(--font-b);font-size:15px;font-weight:500;
+  padding:13px;border-radius:8px;cursor:pointer;transition:background .15s;
+}
+.login-btn:hover{background:var(--vino-dark)}
+.login-error{font-size:12px;color:var(--vino);margin-top:12px;display:none}
+
+/* APP */
+#app{display:none;min-height:100vh;flex-direction:column}
+
+/* TOP BAR */
+.topbar{
+  background:var(--tierra);padding:0 24px;height:58px;
+  display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;
+}
+.topbar-logo{font-family:var(--font-d);color:var(--crema);font-size:1.1rem}
+.topbar-title{font-size:13px;color:rgba(245,237,216,.5);margin-left:4px}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.live-badge{
+  background:rgba(212,168,71,.15);color:var(--mostaza);
+  border:1px solid rgba(212,168,71,.3);border-radius:20px;
+  font-size:11px;font-weight:500;padding:4px 10px;
+  display:flex;align-items:center;gap:5px;
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--mostaza);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.logout-btn{
+  background:none;border:1px solid rgba(245,237,216,.2);color:rgba(245,237,216,.7);
+  font-size:12px;padding:5px 12px;border-radius:6px;cursor:pointer;transition:all .15s;
+}
+.logout-btn:hover{border-color:rgba(245,237,216,.5);color:var(--crema)}
+
+/* MAIN */
+.main{padding:24px;flex:1}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.stat-card{
+  background:white;border-radius:10px;border:0.5px solid var(--crema-dark);
+  padding:16px;
+}
+.stat-label{font-size:11px;color:var(--gris);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.stat-val{font-size:28px;font-weight:500;color:var(--tierra);line-height:1}
+.stat-val.vino{color:var(--vino)}
+.stat-val.verde{color:#166534}
+.stat-sub{font-size:11px;color:var(--gris);margin-top:4px}
+
+/* FILTERS */
+.toolbar{
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;
+}
+.filter-btn{
+  background:white;border:0.5px solid var(--crema-dark);color:var(--gris);
+  font-family:var(--font-b);font-size:13px;padding:7px 14px;border-radius:20px;
+  cursor:pointer;transition:all .15s;
+}
+.filter-btn.active{background:var(--tierra);color:var(--crema);border-color:var(--tierra)}
+.search-box{
+  flex:1;min-width:180px;border:0.5px solid var(--crema-dark);border-radius:8px;
+  padding:8px 14px;font-family:var(--font-b);font-size:13px;color:var(--tierra);
+  background:white;outline:none;transition:border-color .15s;
+}
+.search-box:focus{border-color:var(--vino)}
+.add-btn{
+  background:var(--vino);color:var(--crema);border:none;
+  font-family:var(--font-b);font-size:13px;font-weight:500;
+  padding:8px 16px;border-radius:8px;cursor:pointer;
+  display:flex;align-items:center;gap:6px;transition:background .15s;
+  white-space:nowrap;
+}
+.add-btn:hover{background:var(--vino-dark)}
+
+/* PEDIDOS TABLE */
+.table-wrap{background:white;border-radius:12px;border:0.5px solid var(--crema-dark);overflow:hidden}
+.table-head{
+  display:grid;grid-template-columns:2fr 1.4fr 1fr 1fr 1.2fr 1fr;
+  gap:0;background:var(--blanco);border-bottom:0.5px solid var(--crema-dark);
+  padding:10px 16px;font-size:11px;font-weight:500;color:var(--gris);
+  text-transform:uppercase;letter-spacing:.08em;
+}
+.pedido-row{
+  display:grid;grid-template-columns:2fr 1.4fr 1fr 1fr 1.2fr 1fr;
+  gap:0;padding:14px 16px;border-bottom:0.5px solid #F5EDD880;
+  align-items:center;transition:background .15s;cursor:default;
+}
+.pedido-row:last-child{border-bottom:none}
+.pedido-row:hover{background:var(--blanco)}
+.p-nombre{font-size:14px;font-weight:500;color:var(--tierra)}
+.p-time{font-size:12px;color:var(--gris);margin-top:2px}
+.p-corte{font-size:14px;color:var(--tierra)}
+.p-cantidad{font-size:13px;color:var(--gris)}
+.p-hora{font-size:13px;color:var(--tierra);font-weight:500}
+
+.status-pill{
+  font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;
+  display:inline-flex;align-items:center;gap:4px;cursor:pointer;
+  transition:opacity .15s;
+}
+.status-pill:hover{opacity:.8}
+.s-pendiente{background:var(--pending-bg);color:var(--pending-txt)}
+.s-listo{background:var(--ready-bg);color:var(--ready-txt)}
+.s-entregado{background:var(--done-bg);color:var(--done-txt)}
+
+.action-btns{display:flex;gap:6px}
+.act-btn{
+  background:none;border:0.5px solid var(--crema-dark);color:var(--gris);
+  font-size:12px;padding:5px 9px;border-radius:6px;cursor:pointer;transition:all .15s;
+}
+.act-btn:hover{border-color:var(--tierra);color:var(--tierra)}
+.act-btn.del:hover{border-color:var(--vino);color:var(--vino)}
+
+.empty-state{
+  text-align:center;padding:48px 24px;color:var(--gris);
+}
+.empty-state div{font-size:2.5rem;margin-bottom:12px}
+.empty-state p{font-size:14px}
+
+/* MODAL NUEVO PEDIDO */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(44,26,14,.5);z-index:200;
+  display:none;align-items:center;justify-content:center;padding:24px;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:white;border-radius:16px;padding:28px;
+  width:100%;max-width:420px;
+}
+.modal h3{font-family:var(--font-d);font-size:1.3rem;color:var(--tierra);margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-label{display:block;font-size:12px;font-weight:500;color:var(--gris);margin-bottom:5px}
+.form-input,.form-select{
+  width:100%;border:0.5px solid var(--crema-dark);border-radius:8px;
+  padding:10px 12px;font-family:var(--font-b);font-size:14px;
+  color:var(--tierra);background:var(--blanco);outline:none;transition:border-color .15s;
+}
+.form-input:focus,.form-select:focus{border-color:var(--vino)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-btns{display:flex;gap:10px;margin-top:20px}
+.modal-cancel{
+  flex:1;background:none;border:0.5px solid var(--crema-dark);color:var(--gris);
+  font-family:var(--font-b);font-size:14px;padding:11px;border-radius:8px;cursor:pointer;
+  transition:all .15s;
+}
+.modal-cancel:hover{border-color:var(--tierra);color:var(--tierra)}
+.modal-save{
+  flex:2;background:var(--vino);color:var(--crema);border:none;
+  font-family:var(--font-b);font-size:14px;font-weight:500;padding:11px;
+  border-radius:8px;cursor:pointer;transition:background .15s;
+}
+.modal-save:hover{background:var(--vino-dark)}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--tierra);color:var(--crema);
+  padding:11px 20px;border-radius:8px;font-size:13px;
+  transition:transform .3s;z-index:300;white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .table-head,.pedido-row{grid-template-columns:2fr 1.2fr 1fr 1fr}
+  .table-head :nth-child(3),.pedido-row .p-cantidad,
+  .table-head :nth-child(4),.pedido-row .p-hora{display:none}
+  .main{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">La Chiquita</div>
+    <div class="login-sub">Panel del carnicero · Acceso privado</div>
+    <label class="login-label">Contraseña de 4 dígitos</label>
+    <input class="login-input" type="password" id="pin-input" maxlength="4" inputmode="numeric"
+      placeholder="• • • •" onkeydown="if(event.key==='Enter')verificarPin()">
+    <button class="login-btn" onclick="verificarPin()">Entrar al panel →</button>
+    <div class="login-error" id="login-error">PIN incorrecto. Intenta de nuevo.</div>
+  </div>
+</div>
+
+<!-- APP PANEL -->
+<div id="app">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span class="topbar-logo">La Chiquita</span>
+    <span class="topbar-title">· Panel de pedidos</span>
+    <div class="topbar-right">
+      <span class="live-badge"><span class="live-dot"></span>En vivo</span>
+      <button class="logout-btn" onclick="cerrarSesion()">Salir</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Pedidos hoy</div>
+        <div class="stat-val" id="stat-total">0</div>
+        <div class="stat-sub">Total del día</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Pendientes</div>
+        <div class="stat-val vino" id="stat-pending">0</div>
+        <div class="stat-sub">Por preparar</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Listos</div>
+        <div class="stat-val verde" id="stat-ready">0</div>
+        <div class="stat-sub">Para entregar</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Entregados</div>
+        <div class="stat-val" id="stat-done">0</div>
+        <div class="stat-sub">Completados</div>
+      </div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <button class="filter-btn active" onclick="filtrar('todos',this)">Todos</button>
+      <button class="filter-btn" onclick="filtrar('pendiente',this)">Pendientes</button>
+      <button class="filter-btn" onclick="filtrar('listo',this)">Listos</button>
+      <button class="filter-btn" onclick="filtrar('entregado',this)">Entregados</button>
+      <input class="search-box" type="text" placeholder="Buscar cliente o corte…" oninput="buscar(this.value)">
+      <button class="add-btn" onclick="abrirModal()">+ Nuevo pedido</button>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrap">
+      <div class="table-head">
+        <span>Cliente</span>
+        <span>Corte</span>
+        <span>Cantidad</span>
+        <span>Recojo</span>
+        <span>Estado</span>
+        <span>Acción</span>
+      </div>
+      <div id="pedidos-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NUEVO PEDIDO -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h3>Nuevo pedido manual</h3>
+    <div class="form-group">
+      <label class="form-label">Nombre del cliente</label>
+      <input class="form-input" id="f-nombre" type="text" placeholder="Ej: Rosa Martínez">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Corte</label>
+        <select class="form-select" id="f-corte">
+          <option>Bistec</option>
+          <option>Milanesa</option>
+          <option>Arrachera</option>
+          <option>Carne molida</option>
+          <option>Costilla</option>
+          <option>Chorizo</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Cantidad</label>
+        <input class="form-input" id="f-cantidad" type="text" placeholder="Ej: 1 kg">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Hora de recojo</label>
+        <input class="form-input" id="f-hora" type="text" placeholder="Ej: 4:30pm">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Estado</label>
+        <select class="form-select" id="f-estado">
+          <option value="pendiente">Pendiente</option>
+          <option value="listo">Listo</option>
+          <option value="entregado">Entregado</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="cerrarModal()">Cancelar</button>
+      <button class="modal-save" onclick="guardarPedido()">Guardar pedido →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PIN = '1234'; // Cambiar por el PIN real del dueño
+let pedidos = [
+  {id:1,nombre:'Rosa Martínez',corte:'Milanesa',cantidad:'1.5 kg',hora:'5:00pm',estado:'pendiente',created:'10:23am'},
+  {id:2,nombre:'Carlos Ramos',corte:'Bistec',cantidad:'800 g',hora:'4:30pm',estado:'listo',created:'10:45am'},
+  {id:3,nombre:'Patricia Luna',corte:'Carne molida',cantidad:'1 kg',hora:'3:00pm',estado:'entregado',created:'9:15am'},
+  {id:4,nombre:'Jorge Pérez',corte:'Arrachera',cantidad:'2 kg',hora:'5:30pm',estado:'pendiente',created:'11:02am'},
+  {id:5,nombre:'Ana González',corte:'Chorizo',cantidad:'500 g',hora:'12:00pm',estado:'entregado',created:'8:50am'},
+];
+let nextId = 6;
+let filtroActivo = 'todos';
+let busqueda = '';
+
+// LOGIN
+function verificarPin(){
+  const val = document.getElementById('pin-input').value;
+  if(val === PIN){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app').style.display='flex';
+    renderizar();
+  } else {
+    document.getElementById('login-error').style.display='block';
+    document.getElementById('pin-input').value='';
+    document.getElementById('pin-input').focus();
+    setTimeout(()=>document.getElementById('login-error').style.display='none',2500);
+  }
+}
+function cerrarSesion(){
+  document.getElementById('app').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('pin-input').value='';
+}
+document.getElementById('pin-input').addEventListener('input', e=>{
+  if(e.target.value.length===4) verificarPin();
+});
+
+// RENDER
+function renderizar(){
+  let lista = pedidos.filter(p=>{
+    const matchFiltro = filtroActivo==='todos' || p.estado===filtroActivo;
+    const q = busqueda.toLowerCase();
+    const matchBusqueda = !q || p.nombre.toLowerCase().includes(q) || p.corte.toLowerCase().includes(q);
+    return matchFiltro && matchBusqueda;
+  }).sort((a,b)=>{
+    const orden = {pendiente:0,listo:1,entregado:2};
+    return orden[a.estado]-orden[b.estado] || a.id-b.id;
+  });
+
+  // stats
+  document.getElementById('stat-total').textContent = pedidos.length;
+  document.getElementById('stat-pending').textContent = pedidos.filter(p=>p.estado==='pendiente').length;
+  document.getElementById('stat-ready').textContent = pedidos.filter(p=>p.estado==='listo').length;
+  document.getElementById('stat-done').textContent = pedidos.filter(p=>p.estado==='entregado').length;
+
+  const cont = document.getElementById('pedidos-list');
+  if(!lista.length){
+    cont.innerHTML=`<div class="empty-state"><div>🥩</div><p>No hay pedidos con ese filtro</p></div>`;
+    return;
+  }
+  cont.innerHTML = lista.map(p=>`
+    <div class="pedido-row" id="row-${p.id}">
+      <div>
+        <div class="p-nombre">${p.nombre}</div>
+        <div class="p-time">Pedido: ${p.created}</div>
+      </div>
+      <div class="p-corte">${p.corte}</div>
+      <div class="p-cantidad">${p.cantidad}</div>
+      <div class="p-hora">${p.hora}</div>
+      <div>
+        <span class="status-pill s-${p.estado}" onclick="ciclarEstado(${p.id})">
+          ${p.estado==='pendiente'?'⏳ Pendiente':p.estado==='listo'?'✅ Listo':'📦 Entregado'}
+        </span>
+      </div>
+      <div class="action-btns">
+        ${p.estado==='pendiente'?`<button class="act-btn" onclick="avanzarEstado(${p.id},'listo')" title="Marcar listo">✓</button>`:''}
+        ${p.estado==='listo'?`<button class="act-btn" onclick="avanzarEstado(${p.id},'entregado')" title="Marcar entregado">📦</button>`:''}
+        <button class="act-btn del" onclick="eliminarPedido(${p.id})" title="Eliminar">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function ciclarEstado(id){
+  const p = pedidos.find(x=>x.id===id);
+  if(!p) return;
+  const ciclo = {pendiente:'listo',listo:'entregado',entregado:'pendiente'};
+  p.estado = ciclo[p.estado];
+  renderizar();
+  mostrarToast(p.estado==='listo'?`✅ ${p.nombre} → Listo`:p.estado==='entregado'?`📦 ${p.nombre} → Entregado`:`⏳ ${p.nombre} → Pendiente`);
+}
+function avanzarEstado(id,nuevo){
+  const p = pedidos.find(x=>x.id===id);
+  if(!p) return;
+  p.estado = nuevo;
+  renderizar();
+  mostrarToast(nuevo==='listo'?`✅ ${p.nombre} marcado como Listo`:`📦 ${p.nombre} Entregado`);
+}
+function eliminarPedido(id){
+  const p = pedidos.find(x=>x.id===id);
+  if(!p) return;
+  if(confirm(`¿Eliminar pedido de ${p.nombre}?`)){
+    pedidos = pedidos.filter(x=>x.id!==id);
+    renderizar();
+    mostrarToast('Pedido eliminado');
+  }
+}
+
+function filtrar(f, btn){
+  filtroActivo = f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderizar();
+}
+function buscar(q){ busqueda=q; renderizar(); }
+
+// MODAL
+function abrirModal(){
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('f-nombre').focus();
+}
+function cerrarModal(){
+  document.getElementById('modal').classList.remove('open');
+  ['f-nombre','f-cantidad','f-hora'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-corte').selectedIndex=0;
+  document.getElementById('f-estado').selectedIndex=0;
+}
+function guardarPedido(){
+  const nombre = document.getElementById('f-nombre').value.trim();
+  const corte = document.getElementById('f-corte').value;
+  const cantidad = document.getElementById('f-cantidad').value.trim();
+  const hora = document.getElementById('f-hora').value.trim();
+  const estado = document.getElementById('f-estado').value;
+  if(!nombre||!cantidad||!hora){mostrarToast('⚠ Llena todos los campos');return;}
+  const now = new Date();
+  const t = now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  pedidos.push({id:nextId++,nombre,corte,cantidad,hora,estado,created:t});
+  cerrarModal();
+  renderizar();
+  mostrarToast(`✅ Pedido de ${nombre} guardado`);
+}
+
+// TOAST
+function mostrarToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+// cerrar modal con click fuera
+document.getElementById('modal').addEventListener('click',e=>{
+  if(e.target===document.getElementById('modal')) cerrarModal();
+});
+</script>
+</body>
+</html>
