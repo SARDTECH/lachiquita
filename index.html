@@ -608,14 +608,36 @@ footer{
 </div>
 
 <script>
-const PRECIOS={
-  'Bistec':180,'Milanesa':170,'Arrachera':250,
-  'Carne molida':150,'Costilla':160,'Chorizo':140
-};
+const PRECIOS={'Bistec':180,'Milanesa':170,'Arrachera':250,'Carne molida':150,'Costilla':160,'Chorizo':140};
 const CORTES=['Bistec','Milanesa','Arrachera','Carne molida','Costilla','Chorizo'];
+const HORA_CIERRE=18; // 6pm
 let pedido={corte:null,cantidad:null,kgs:0,hora:null,nombre:null,tipo:'recojo',direccion:null,telefono:null,pago:null,total:0,costo_env:0};
 let paso=0;
 let chatAbierto=false;
+let cierreTimer=null;
+
+// Genera slots de tiempo válidos según tipo y hora actual
+function generarHorarios(tipo){
+  const ahora=new Date();
+  const hAhora=ahora.getHours();
+  const mAhora=ahora.getMinutes();
+  const minutosAhora=hAhora*60+mAhora;
+  // Mínimo: recojo=30min, domicilio=60min
+  const minExtra=tipo==='domicilio'?60:30;
+  const minutosMin=minutosAhora+minExtra;
+  // Generar slots cada 30min desde apertura hasta cierre
+  const slots=[];
+  for(let m=8*60;m<HORA_CIERRE*60;m+=30){
+    if(m>=minutosMin){
+      const h=Math.floor(m/60);
+      const min=m%60;
+      const ampm=h>=12?'pm':'am';
+      const h12=h>12?h-12:h===0?12:h;
+      slots.push(h12+(min>0?':'+String(min).padStart(2,'0'):'')+ampm);
+    }
+  }
+  return slots.slice(0,5); // máximo 5 opciones
+}
 
 function parsearKgs(txt){
   txt=txt.toLowerCase();
@@ -628,15 +650,50 @@ function calcularTotal(){
   const precio=PRECIOS[pedido.corte]||0;
   const base=precio*pedido.kgs;
   pedido.costo_env=pedido.tipo==='domicilio'?25:0;
-  pedido.total=base+pedido.costo_env;
-  return pedido.total;
+  pedido.total=Math.round(base+pedido.costo_env);
+}
+
+// Auto-cierre con countdown de 20 segundos
+function iniciarCierre(){
+  if(cierreTimer)clearTimeout(cierreTimer);
+  let secs=20;
+  // Mostrar mensaje de despedida con countdown
+  const msgs=document.getElementById('chat-msgs');
+  const div=document.createElement('div');
+  div.className='msg bot';div.id='cierre-msg';
+  div.innerHTML='<div class="bubble" style="color:var(--gris);font-size:12px">El chat se cerrará en <strong id="countdown">'+secs+'</strong>s. Toca el botón para hacer otro pedido.</div>';
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+  const interval=setInterval(()=>{
+    secs--;
+    const el=document.getElementById('countdown');
+    if(el)el.textContent=secs;
+    if(secs<=0){
+      clearInterval(interval);
+      cerrarChat();
+    }
+  },1000);
+  cierreTimer=interval;
+}
+function cerrarChat(){
+  if(cierreTimer){clearTimeout(cierreTimer);cierreTimer=null;}
+  chatAbierto=false;
+  document.getElementById('chat-panel').classList.remove('open');
+  // Reset completo para nuevo pedido
+  paso=0;
+  pedido={corte:null,cantidad:null,kgs:0,hora:null,nombre:null,tipo:'recojo',direccion:null,telefono:null,pago:null,total:0,costo_env:0};
+  document.getElementById('chat-msgs').innerHTML='';
+  document.getElementById('chat-fab').querySelector('.fab-badge').style.display='flex';
 }
 
 function toggleChat(){
-  const p=document.getElementById('chat-panel');
-  chatAbierto=!chatAbierto;
-  p.classList.toggle('open',chatAbierto);
-  if(chatAbierto&&paso===0)iniciarBot();
+  if(chatAbierto){cerrarChat();}
+  else{
+    chatAbierto=true;
+    document.getElementById('chat-panel').classList.add('open');
+    document.getElementById('chat-fab').querySelector('.fab-badge').style.display='none';
+    if(paso===0)iniciarBot();
+  }
 }
 function abrirChat(){
   chatAbierto=true;
@@ -647,20 +704,23 @@ function abrirChat(){
 function pedirCorte(corte){
   abrirChat();
   setTimeout(()=>{
-    if(paso<=1){
-      pedido.corte=corte;paso=2;
+    if(paso<=2){
+      pedido.tipo='recojo';
+      pedido.corte=corte;
+      paso=2;
       agregarMsgUser(corte);
       setTimeout(()=>preguntarCantidad(),600);
     }
   },400);
 }
+
 function agregarMsg(tipo,html,chips){
   const msgs=document.getElementById('chat-msgs');
   const div=document.createElement('div');
   div.className='msg '+tipo;
   div.innerHTML='<div class="bubble">'+html+'</div>';
   msgs.appendChild(div);
-  if(chips){
+  if(chips&&chips.length){
     const row=document.createElement('div');
     row.className='chips-row';
     chips.forEach(c=>{
@@ -686,20 +746,28 @@ function chipClick(v,row){
   Array.from(row.querySelectorAll('.chip-btn')).forEach(b=>b.disabled=true);
   agregarMsgUser(v);procesarRespuesta(v);
 }
+
 function procesarRespuesta(txt){
   if(paso===1){
-    if(txt.includes('domicilio')||txt.includes('🛵')){pedido.tipo='domicilio';pedido.corte=null;paso=1.5;agregarTyping(preguntarCorte);}
-    else{pedido.corte=txt;paso=2;agregarTyping(preguntarCantidad);}
+    // Paso 1: tipo recojo/domicilio
+    if(txt.includes('domicilio')||txt.includes('🛵')){
+      pedido.tipo='domicilio';paso=1.5;agregarTyping(preguntarCorte);
+    } else {
+      pedido.tipo='recojo';paso=1.5;agregarTyping(preguntarCorte);
+    }
   } else if(paso===1.5){
+    // Paso 1.5: elegir corte
     pedido.corte=txt;paso=2;agregarTyping(preguntarCantidad);
   } else if(paso===2){
-    pedido.cantidad=txt;
-    pedido.kgs=parsearKgs(txt);
+    // Paso 2: cantidad
+    pedido.cantidad=txt;pedido.kgs=parsearKgs(txt);
     paso=3;
     agregarTyping(pedido.tipo==='domicilio'?preguntarDireccion:preguntarHoraNombre);
   } else if(paso===3&&pedido.tipo==='domicilio'){
+    // Paso 3 domicilio: dirección
     pedido.direccion=txt;paso=3.5;agregarTyping(preguntarHoraNombre);
   } else if(paso===3||paso===3.5){
+    // Hora y nombre
     pedido.hora=txt;paso=4;agregarTyping(preguntarTelefono);
   } else if(paso===4){
     pedido.telefono=txt;paso=4.5;agregarTyping(preguntarPago);
@@ -711,10 +779,14 @@ function procesarRespuesta(txt){
       pedido={corte:null,cantidad:null,kgs:0,hora:null,nombre:null,tipo:'recojo',direccion:null,telefono:null,pago:null,total:0,costo_env:0};
       agregarTyping(()=>agregarMsg('bot','¡Claro! ¿Qué más te llevo?',['Recojo en tienda','Pedido a domicilio 🛵']));
     } else {
-      agregarTyping(()=>agregarMsg('bot','¡Perfecto! Ya tenemos todo anotado. ¡Hasta luego! 👋'));
+      agregarTyping(()=>{
+        agregarMsg('bot','¡Perfecto! Nos vemos pronto. 👋');
+        setTimeout(iniciarCierre,1000);
+      });
     }
   }
 }
+
 function iniciarBot(){
   paso=1;
   setTimeout(()=>{
@@ -723,52 +795,53 @@ function iniciarBot(){
   },400);
 }
 function preguntarCorte(){
-  agregarMsg('bot','¿Qué corte quieres hoy?',CORTES);
+  agregarMsg('bot','¿Qué corte quieres hoy? 🥩',CORTES);
 }
 function preguntarCantidad(){
   const precio=PRECIOS[pedido.corte]||0;
-  agregarMsg('bot','¡Perfecto, <strong>'+pedido.corte+'</strong>! 🥩'+(precio?'<br><small style="color:#6B6B5A">$'+precio+' / kg</small>':'')+'<br>¿Cuánto necesitas? (ej: <em>"1 kilo"</em> o <em>"500 gramos"</em>)');
+  agregarMsg('bot','¡Perfecto, <strong>'+pedido.corte+'</strong>!'+(precio?'<br><small style="color:#6B6B5A">$'+precio+' / kg</small>':'')+'<br>¿Cuánto necesitas? (ej: <em>"1 kilo"</em> o <em>"500 gramos"</em>)');
 }
 function preguntarDireccion(){
   agregarMsg('bot','¿A qué dirección te lo llevamos? 🛵<br><em>(Calle y colonia, ej: Magnolias 23, La Preciosa)</em>');
 }
 function preguntarHoraNombre(){
-  const lbl=pedido.tipo==='domicilio'?'¿A qué hora quieres recibirlo?':'¿A qué hora pasas a recoger?';
-  agregarMsg('bot',lbl+' Estamos hasta las <strong>6pm</strong>.<br>Y dime tu <strong>nombre</strong>. (ej: <em>"5pm, me llamo Rosa"</em>)',
-    ['3pm','4pm','5pm','5:30pm']);
+  const slots=generarHorarios(pedido.tipo);
+  const lbl=pedido.tipo==='domicilio'
+    ?'Tu pedido estará listo en aprox <strong>1 hora</strong>. ¿A qué hora lo recibimos?'
+    :'Lo tenemos listo en <strong>30 minutos</strong>. ¿A qué hora pasas?';
+  if(slots.length===0){
+    agregarMsg('bot','Lo sentimos, ya no hay horarios disponibles para hoy. Llámanos: <a href="tel:5558849504" style="color:#7B1D34">55 5884 9504</a>');
+    setTimeout(iniciarCierre,3000);
+    return;
+  }
+  agregarMsg('bot',lbl+'<br>Y dime tu <strong>nombre</strong>. (ej: <em>"'+slots[0]+', me llamo Rosa"</em>)',slots);
 }
 function preguntarTelefono(){
-  agregarMsg('bot','¿A qué número te podemos llamar si hay algún detalle con tu pedido? 📱<br><em>(Solo para comunicarnos contigo)</em>');
+  agregarMsg('bot','¿A qué número te llamamos si hay algún detalle con tu pedido? 📱');
 }
 function preguntarPago(){
   calcularTotal();
   const precio=PRECIOS[pedido.corte]||0;
-  let resumen='💰 <strong>Tu estimado:</strong><br>';
-  resumen+=pedido.corte+' '+pedido.cantidad+' × $'+precio+'/kg';
-  if(pedido.kgs>0) resumen+=' = $'+(precio*pedido.kgs).toFixed(0);
-  if(pedido.costo_env>0) resumen+='<br>🛵 Envío: $'+pedido.costo_env;
-  if(pedido.total>0) resumen+='<br><strong>Total aprox: $'+pedido.total.toFixed(0)+'</strong>';
-  resumen+='<br><br>¿Cómo vas a pagar?';
-  agregarMsg('bot',resumen,['💵 Efectivo','💳 Tarjeta']);
+  let r='💰 <strong>Resumen de tu pedido:</strong><br>';
+  r+=pedido.corte+' — '+pedido.cantidad;
+  if(pedido.kgs>0&&precio>0)r+=' = $'+(precio*pedido.kgs).toFixed(0);
+  if(pedido.costo_env>0)r+='<br>🛵 Envío: $'+pedido.costo_env;
+  if(pedido.total>0)r+='<br><strong>Total: $'+pedido.total+'</strong>';
+  r+='<br><br>¿Cómo vas a pagar?';
+  agregarMsg('bot',r,['💵 Efectivo','💳 Tarjeta']);
 }
 function confirmarPedido(){
-  const entrega=pedido.tipo==='domicilio'
-    ?'🛵 Entrega: '+pedido.direccion
-    :'📍 Recojo: Acamapichtli 66, La Preciosa';
-  const cierre=pedido.tipo==='domicilio'
-    ?'🛵 <strong>¡En breve salimos!</strong> Cualquier duda:'
-    :'¡<strong>Te esperamos</strong> con tu pedido listo! Cualquier duda:';
+  const entrega=pedido.tipo==='domicilio'?'🛵 Entrega: '+pedido.direccion:'📍 Recojo: Acamapichtli 66, La Preciosa';
+  const cierre=pedido.tipo==='domicilio'?'🛵 <strong>¡En breve salimos!</strong> Cualquier duda:':'¡<strong>Te esperamos</strong> con tu pedido listo! Cualquier duda:';
   agregarMsg('bot',
     '✅ <strong>¡Pedido confirmado!</strong><br><br>'+
     '🥩 '+pedido.corte+' — '+pedido.cantidad+'<br>'+
-    '⏰ '+pedido.hora+'<br>'+
-    entrega+'<br>'+
-    '📱 Tel: '+pedido.telefono+'<br>'+
-    '💰 Pago: '+pedido.pago+(pedido.total>0?' · Total: $'+pedido.total.toFixed(0):'')+
-    '<br><br>'+cierre+
-    ' <a href="tel:5558849504" style="color:#7B1D34;font-weight:500">55 5884 9504</a>'
+    '⏰ '+pedido.hora+'<br>'+entrega+'<br>'+
+    '📱 '+pedido.telefono+'<br>'+
+    '💰 '+pedido.pago+(pedido.total>0?' · $'+pedido.total:'')+
+    '<br><br>'+cierre+' <a href="tel:5558849504" style="color:#7B1D34;font-weight:500">55 5884 9504</a>'
   );
-  setTimeout(()=>{agregarMsg('bot','¿Quieres agregar algo más a tu pedido?',['Sí, otro corte','No, gracias']);paso=6;},1400);
+  setTimeout(()=>{agregarMsg('bot','¿Deseas agregar algo más?',['Sí, otro corte','No, gracias']);paso=6;},1400);
 }
 function enviarMensaje(){
   const input=document.getElementById('chat-input');
