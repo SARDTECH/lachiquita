@@ -38,7 +38,7 @@ nav{
   border-bottom:2px solid var(--vino);
 }
 .nav-logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo-img{height:46px;width:46px;object-fit:contain;mix-blend-mode:multiply;background:transparent}
+.nav-logo-img{height:46px;width:46px;object-fit:contain}
 .nav-logo-text{font-family:var(--font-d);font-size:1.05rem;color:var(--crema);letter-spacing:.02em;line-height:1.1}
 .nav-logo-text span{display:block;font-size:10px;font-weight:400;color:var(--dorado);letter-spacing:.12em;text-transform:uppercase;font-family:var(--font-b)}
 .nav-info{display:flex;gap:1.5rem;align-items:center}
@@ -97,12 +97,9 @@ h1.hero-title em{font-style:normal;color:var(--vino)}
   width:100%;max-width:500px;
   display:flex;align-items:center;justify-content:center;
   position:relative;padding:20px 0;
-  background:var(--crema);
-  border-radius:16px;
 }
 .hero-logo-main{
   width:100%;max-width:480px;
-  mix-blend-mode:multiply;
   animation:floatLogo 4s ease-in-out infinite;
 }
 @keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
@@ -191,7 +188,7 @@ footer{
   padding:48px 5% 32px;
   display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;flex-wrap:wrap;
 }
-.footer-logo-img{height:90px;object-fit:contain;mix-blend-mode:multiply;margin-bottom:12px;background:transparent}
+.footer-logo-img{height:90px;object-fit:contain;margin-bottom:12px}
 .footer-tagline{font-size:13px;color:rgba(245,237,216,.5);line-height:1.6;max-width:200px}
 .footer-col h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dorado);margin-bottom:14px}
 .footer-col a{display:block;font-size:13px;color:var(--crema);opacity:.65;text-decoration:none;margin-bottom:7px;transition:opacity .15s}
@@ -214,7 +211,7 @@ footer{
   padding:0;
 }
 #chat-fab:hover{transform:scale(1.08);background:var(--vino-dark)}
-#chat-fab img{width:52px;height:52px;object-fit:contain;border-radius:50%;mix-blend-mode:screen}
+#chat-fab img{width:52px;height:52px;object-fit:contain;border-radius:50%}
 #chat-fab .fab-badge{
   position:absolute;top:-3px;right:-3px;
   background:var(--dorado);color:var(--tierra);
@@ -240,7 +237,7 @@ footer{
   width:38px;height:38px;border-radius:50%;overflow:hidden;
   border:2px solid var(--dorado);flex-shrink:0;
 }
-.chat-avatar img{width:100%;height:100%;object-fit:contain;background:var(--vino);mix-blend-mode:screen}
+.chat-avatar img{width:100%;height:100%;object-fit:contain;background:transparent}
 .chat-head-info h4{color:var(--crema);font-size:14px;font-weight:500;margin-bottom:1px}
 .chat-head-info span{font-size:11px;color:var(--dorado);display:flex;align-items:center;gap:4px}
 .chat-head-info span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--dorado-light);display:block}
