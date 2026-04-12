@@ -7,350 +7,271 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --tierra: #2C1A0E;
-  --vino: #8B2635;
-  --vino-dark: #6E1D29;
-  --mostaza: #D4A847;
-  --crema: #F5EDD8;
-  --crema-dark: #EDE0C4;
-  --gris: #6B6B5A;
-  --blanco-roto: #FDFAF5;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+:root{
+  --tierra:#2C1A0E;
+  --vino:#7B1D34;
+  --vino-dark:#601628;
+  --dorado:#C8922A;
+  --dorado-light:#E8B84B;
+  --crema:#F5EDD8;
+  --crema-dark:#EDE0C4;
+  --gris:#6B6B5A;
+  --blanco:#FDFAF5;
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--blanco-roto);color:var(--tierra);overflow-x:hidden}
+body{font-family:var(--font-b);background:var(--blanco);color:var(--tierra);overflow-x:hidden}
 
-/* TEXTURE HERO */
-.texture-bg {
-  background-color: var(--crema);
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0' stroke='%232C1A0E' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E");
+.texture-bg{
+  background-color:var(--crema);
+  background-image:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0' stroke='%232C1A0E' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E");
 }
 
 /* NAV */
-nav {
-  position: sticky;top:0;z-index:100;
-  background: var(--tierra);
-  display: flex;align-items:center;justify-content:space-between;
-  padding: 0 5%;height:56px;
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--tierra);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:62px;
+  border-bottom:2px solid var(--vino);
 }
-.nav-logo {
-  font-family:var(--font-display);font-size:1.1rem;color:var(--crema);letter-spacing:.02em;
-}
-.nav-info {
-  display:flex;gap:1.5rem;align-items:center;
-}
-.nav-info a {
-  color:var(--crema);font-size:13px;text-decoration:none;opacity:.8;display:flex;align-items:center;gap:5px;
-  transition:opacity .15s;
-}
+.nav-logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-img{height:46px;width:46px;object-fit:contain;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
+.nav-logo-text{font-family:var(--font-d);font-size:1.05rem;color:var(--crema);letter-spacing:.02em;line-height:1.1}
+.nav-logo-text span{display:block;font-size:10px;font-weight:400;color:var(--dorado);letter-spacing:.12em;text-transform:uppercase;font-family:var(--font-b)}
+.nav-info{display:flex;gap:1.5rem;align-items:center}
+.nav-info a{color:var(--crema);font-size:13px;text-decoration:none;opacity:.8;display:flex;align-items:center;gap:5px;transition:opacity .15s}
 .nav-info a:hover{opacity:1}
-.nav-cta {
+.nav-cta{
   background:var(--vino);color:var(--crema);border:none;
-  font-family:var(--font-body);font-size:13px;font-weight:500;
-  padding:8px 18px;border-radius:6px;cursor:pointer;
-  transition:background .15s;white-space:nowrap;
+  font-family:var(--font-b);font-size:13px;font-weight:500;
+  padding:9px 18px;border-radius:6px;cursor:pointer;transition:background .15s;
+  border:1px solid var(--dorado);
 }
 .nav-cta:hover{background:var(--vino-dark)}
 
 /* HERO */
-.hero {
-  min-height: 88vh;
-  display:flex;align-items:center;
-  padding: 80px 5% 64px;
-}
-.hero-inner {
+.hero{min-height:88vh;display:flex;align-items:center;padding:80px 5% 64px}
+.hero-inner{
   max-width:1100px;margin:0 auto;width:100%;
   display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
 }
-.hero-tag {
+.hero-tag{
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--vino);font-weight:500;margin-bottom:1.25rem;
+  color:var(--dorado);font-weight:500;margin-bottom:1.25rem;
   display:flex;align-items:center;gap:8px;
 }
-.hero-tag::before{content:'';display:block;width:24px;height:1px;background:var(--vino)}
-.hero-title {
-  font-family:var(--font-display);
+.hero-tag::before{content:'';display:block;width:24px;height:1px;background:var(--dorado)}
+h1.hero-title{
+  font-family:var(--font-d);
   font-size:clamp(2.4rem,5vw,3.6rem);
-  line-height:1.1;
-  color:var(--tierra);
-  margin-bottom:1.25rem;
+  line-height:1.1;color:var(--tierra);margin-bottom:1.25rem;
 }
-.hero-title em {
-  font-style:normal;color:var(--vino);
-}
-.hero-sub {
-  font-size:clamp(15px,2vw,17px);color:var(--gris);
-  line-height:1.7;margin-bottom:2rem;max-width:440px;
-}
-.hero-actions {
-  display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:2rem;
-}
-.btn-primary {
-  background:var(--vino);color:var(--crema);
-  border:none;font-family:var(--font-body);font-size:16px;font-weight:500;
+h1.hero-title em{font-style:normal;color:var(--vino)}
+.hero-sub{font-size:clamp(15px,2vw,17px);color:var(--gris);line-height:1.7;margin-bottom:2rem;max-width:440px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:2rem}
+.btn-primary{
+  background:var(--vino);color:var(--crema);border:1px solid var(--dorado);
+  font-family:var(--font-b);font-size:16px;font-weight:500;
   padding:14px 28px;border-radius:8px;cursor:pointer;
-  transition:background .15s, transform .1s;
+  transition:background .15s,transform .1s;
   display:inline-flex;align-items:center;gap:8px;
 }
 .btn-primary:hover{background:var(--vino-dark);transform:translateY(-1px)}
-.btn-primary:active{transform:translateY(0)}
-.btn-secondary {
+.btn-secondary{
   color:var(--tierra);border:1px solid var(--crema-dark);
-  background:transparent;font-family:var(--font-body);font-size:15px;
+  background:transparent;font-family:var(--font-b);font-size:15px;
   padding:13px 20px;border-radius:8px;cursor:pointer;
   transition:border-color .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;
 }
 .btn-secondary:hover{border-color:var(--tierra)}
-.social-proof {
-  display:flex;align-items:center;gap:10px;
-  font-size:13px;color:var(--gris);
-}
-.stars{color:var(--mostaza);font-size:15px;letter-spacing:1px}
+.social-proof{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gris);flex-wrap:wrap}
+.stars{color:var(--dorado);font-size:15px;letter-spacing:1px}
 .proof-sep{color:var(--crema-dark)}
 
-/* HERO IMAGE PLACEHOLDER */
-.hero-visual {
-  position:relative;
-}
-.hero-img-frame {
-  width:100%;aspect-ratio:4/3;
-  background:var(--tierra);border-radius:16px;overflow:hidden;
-  position:relative;
-}
-.hero-img-inner {
-  width:100%;height:100%;
-  background: linear-gradient(135deg, #3d2415 0%, #5c2d1a 40%, #8B2635 100%);
+/* HERO VISUAL */
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-logo-frame{
+  width:100%;max-width:440px;
   display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-display);font-size:5rem;color:rgba(255,255,255,.08);
-  letter-spacing:-.05em;
+  position:relative;
 }
-.hero-badge {
-  position:absolute;bottom:-20px;left:-20px;
-  background:var(--mostaza);color:var(--tierra);
-  border-radius:12px;padding:14px 18px;
-  font-family:var(--font-display);
+.hero-logo-main{
+  width:100%;max-width:380px;
+  filter:drop-shadow(0 8px 32px rgba(123,29,52,.25));
+  animation:floatLogo 4s ease-in-out infinite;
 }
-.badge-num{font-size:1.5rem;font-weight:700;display:block;line-height:1}
+@keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-badge{
+  position:absolute;bottom:-16px;right:0;
+  background:var(--dorado);color:var(--tierra);
+  border-radius:12px;padding:12px 16px;
+  font-family:var(--font-d);box-shadow:0 4px 16px rgba(200,146,42,.35);
+}
+.badge-num{font-size:1.4rem;font-weight:700;display:block;line-height:1}
 .badge-txt{font-size:11px;font-weight:400;opacity:.8}
 
-/* HORARIO STRIP */
-.horario-strip {
-  background:var(--tierra);color:var(--crema);
-  padding:14px 5%;display:flex;align-items:center;justify-content:center;gap:32px;
-  font-size:13px;flex-wrap:wrap;gap:16px 32px;
+/* GOLD DIVIDER */
+.gold-strip{
+  background:var(--vino);padding:14px 5%;
+  display:flex;align-items:center;justify-content:center;
+  gap:32px;flex-wrap:wrap;gap:16px 32px;
+  border-top:2px solid var(--dorado);border-bottom:2px solid var(--dorado);
 }
-.horario-strip span{display:flex;align-items:center;gap:6px;opacity:.85}
-.horario-strip strong{opacity:1;color:var(--mostaza)}
+.gold-strip span{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--crema);opacity:.85}
+.gold-strip strong{opacity:1;color:var(--dorado)}
 
-/* CORTES SECTION */
-.section {
-  padding: 80px 5%;
-  max-width:1200px;margin:0 auto;
-}
-.section-label {
+/* CORTES */
+.section{padding:80px 5%;max-width:1200px;margin:0 auto}
+.section-label{
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--vino);font-weight:500;margin-bottom:.75rem;
+  color:var(--dorado);font-weight:500;margin-bottom:.75rem;
   display:flex;align-items:center;gap:8px;
 }
-.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--vino)}
-.section-title {
-  font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);
-  color:var(--tierra);margin-bottom:.75rem;
-}
+.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--dorado)}
+.section-title{font-family:var(--font-d);font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--tierra);margin-bottom:.75rem}
 .section-sub{font-size:15px;color:var(--gris);margin-bottom:3rem;max-width:520px;line-height:1.6}
-
-.cortes-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
-  gap:24px;
-}
-.corte-card {
+.cortes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+.corte-card{
   background:white;border:0.5px solid var(--crema-dark);
   border-radius:12px;overflow:hidden;cursor:pointer;
-  transition:transform .18s, border-color .18s;
+  transition:transform .18s,border-color .18s,box-shadow .18s;
 }
-.corte-card:hover{transform:translateY(-4px);border-color:var(--vino)}
-.corte-img {
-  width:100%;height:180px;
-  background:var(--crema);
-  display:flex;align-items:center;justify-content:center;
-  font-size:3rem;object-fit:cover;
-}
+.corte-card:hover{transform:translateY(-4px);border-color:var(--dorado);box-shadow:0 4px 20px rgba(200,146,42,.15)}
+.corte-img{width:100%;height:180px;background:var(--crema);display:flex;align-items:center;justify-content:center;font-size:3rem}
 .corte-body{padding:16px}
 .corte-nombre{font-size:16px;font-weight:500;color:var(--tierra);margin-bottom:4px}
 .corte-desc{font-size:13px;color:var(--gris);line-height:1.5;margin-bottom:12px}
 .corte-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .corte-precio{font-size:20px;font-weight:500;color:var(--vino)}
 .corte-precio span{font-size:12px;color:var(--gris);font-weight:400}
-.btn-pedir {
+.btn-pedir{
   background:transparent;border:1px solid var(--vino);color:var(--vino);
-  font-family:var(--font-body);font-size:12px;font-weight:500;
-  padding:6px 12px;border-radius:6px;cursor:pointer;
-  transition:all .15s;white-space:nowrap;
+  font-family:var(--font-b);font-size:12px;font-weight:500;
+  padding:6px 12px;border-radius:6px;cursor:pointer;transition:all .15s;
 }
 .btn-pedir:hover{background:var(--vino);color:var(--crema)}
 
 /* COMO FUNCIONA */
-.como-section {
-  background:var(--tierra);padding:80px 5%;
-}
+.como-section{background:var(--tierra);padding:80px 5%}
 .como-inner{max-width:1100px;margin:0 auto}
-.como-section .section-label{color:var(--mostaza)}
-.como-section .section-label::before{background:var(--mostaza)}
+.como-section .section-label{color:var(--dorado)}
+.como-section .section-label::before{background:var(--dorado)}
 .como-section .section-title{color:var(--crema)}
-.como-section .section-sub{color:rgba(245,237,216,.6)}
-.pasos-grid {
-  display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:2px;
-  background:rgba(255,255,255,.06);border-radius:12px;overflow:hidden;
-}
-.paso {
-  padding:32px 24px;background:rgba(255,255,255,.03);
-  transition:background .2s;
-}
+.como-section .section-sub{color:rgba(245,237,216,.55)}
+.pasos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:rgba(255,255,255,.06);border-radius:12px;overflow:hidden}
+.paso{padding:32px 24px;background:rgba(255,255,255,.03);transition:background .2s}
 .paso:hover{background:rgba(255,255,255,.07)}
-.paso-num{
-  font-family:var(--font-display);font-size:2.5rem;color:var(--vino);
-  line-height:1;margin-bottom:12px;
-}
+.paso-num{font-family:var(--font-d);font-size:2.5rem;color:var(--dorado);line-height:1;margin-bottom:12px}
 .paso-title{font-size:15px;font-weight:500;color:var(--crema);margin-bottom:8px}
 .paso-desc{font-size:13px;color:rgba(245,237,216,.55);line-height:1.6}
 
 /* RESEÑAS */
-.resenas-section{
-  padding:80px 5%;background:var(--crema);
-}
+.resenas-section{padding:80px 5%;background:var(--crema)}
 .resenas-inner{max-width:1100px;margin:0 auto}
 .resenas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:2rem}
-.resena-card{
-  background:white;border-radius:10px;padding:20px;
-  border:0.5px solid var(--crema-dark);
-}
-.resena-stars{color:var(--mostaza);font-size:14px;margin-bottom:8px}
+.resena-card{background:white;border-radius:10px;padding:20px;border:0.5px solid var(--crema-dark)}
+.resena-stars{color:var(--dorado);font-size:14px;margin-bottom:8px}
 .resena-text{font-size:14px;color:var(--gris);line-height:1.6;margin-bottom:12px;font-style:italic}
 .resena-autor{font-size:13px;font-weight:500;color:var(--tierra)}
 
 /* CTA FINAL */
-.cta-section{
-  padding:80px 5%;text-align:center;
-}
+.cta-section{padding:80px 5%;text-align:center}
 .cta-inner{max-width:540px;margin:0 auto}
-.cta-section .section-title{margin-bottom:.75rem}
 .cta-section .section-sub{margin:0 auto 2rem;text-align:center}
 
 /* FOOTER */
 footer{
-  background:var(--tierra);color:var(--crema);
-  padding:40px 5%;display:flex;
-  align-items:flex-start;justify-content:space-between;
-  gap:32px;flex-wrap:wrap;
+  background:var(--tierra);
+  border-top:3px solid var(--dorado);
+  padding:48px 5% 32px;
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;flex-wrap:wrap;
 }
-.footer-brand .nav-logo{font-size:1.3rem;display:block;margin-bottom:8px}
-.footer-brand p{font-size:13px;opacity:.55;line-height:1.6;max-width:220px}
-.footer-links h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mostaza);margin-bottom:12px}
-.footer-links a{display:block;font-size:13px;color:var(--crema);opacity:.7;text-decoration:none;margin-bottom:6px;transition:opacity .15s}
-.footer-links a:hover{opacity:1}
+.footer-logo-img{height:90px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));margin-bottom:12px}
+.footer-tagline{font-size:13px;color:rgba(245,237,216,.5);line-height:1.6;max-width:200px}
+.footer-col h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dorado);margin-bottom:14px}
+.footer-col a{display:block;font-size:13px;color:var(--crema);opacity:.65;text-decoration:none;margin-bottom:7px;transition:opacity .15s}
+.footer-col a:hover{opacity:1}
 .footer-bottom{
-  background:#1e0f07;color:rgba(245,237,216,.4);
-  text-align:center;padding:12px;font-size:12px;
+  background:#1e0f07;color:rgba(245,237,216,.35);
+  text-align:center;padding:14px;font-size:12px;
+  border-top:1px solid rgba(200,146,42,.2);
 }
 
-/* ===== CHATBOT ===== */
-#chat-fab {
+/* CHATBOT */
+#chat-fab{
   position:fixed;bottom:24px;right:24px;z-index:999;
-  width:60px;height:60px;border-radius:50%;
+  width:64px;height:64px;border-radius:50%;
   background:var(--vino);color:var(--crema);
-  border:none;cursor:pointer;font-size:24px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(139,38,53,.4);
-  transition:transform .2s, background .15s;
+  border:2px solid var(--dorado);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  box-shadow:0 4px 20px rgba(123,29,52,.5);
+  transition:transform .2s,background .15s;
+  padding:0;
 }
 #chat-fab:hover{transform:scale(1.08);background:var(--vino-dark)}
+#chat-fab img{width:52px;height:52px;object-fit:contain;border-radius:50%}
 #chat-fab .fab-badge{
-  position:absolute;top:-4px;right:-4px;
-  background:var(--mostaza);color:var(--tierra);
+  position:absolute;top:-3px;right:-3px;
+  background:var(--dorado);color:var(--tierra);
   width:20px;height:20px;border-radius:50%;
   font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--tierra);
 }
-
-#chat-panel {
-  position:fixed;bottom:96px;right:24px;z-index:998;
-  width:340px;max-height:520px;
+#chat-panel{
+  position:fixed;bottom:100px;right:24px;z-index:998;
+  width:340px;max-height:530px;
   background:white;border-radius:16px;
   border:0.5px solid var(--crema-dark);
   box-shadow:0 8px 40px rgba(44,26,14,.18);
   display:none;flex-direction:column;overflow:hidden;
-  font-size:14px;
 }
 #chat-panel.open{display:flex}
-
-.chat-head {
+.chat-head{
   background:var(--tierra);padding:14px 16px;
   display:flex;align-items:center;gap:10px;
+  border-bottom:2px solid var(--dorado);
 }
 .chat-avatar{
-  width:36px;height:36px;border-radius:50%;
-  background:var(--vino);display:flex;align-items:center;justify-content:center;
-  font-size:16px;flex-shrink:0;
+  width:38px;height:38px;border-radius:50%;overflow:hidden;
+  border:2px solid var(--dorado);flex-shrink:0;
 }
+.chat-avatar img{width:100%;height:100%;object-fit:contain;background:var(--vino)}
 .chat-head-info h4{color:var(--crema);font-size:14px;font-weight:500;margin-bottom:1px}
-.chat-head-info span{font-size:11px;color:var(--mostaza);display:flex;align-items:center;gap:4px}
-.chat-head-info span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--mostaza);display:block}
+.chat-head-info span{font-size:11px;color:var(--dorado);display:flex;align-items:center;gap:4px}
+.chat-head-info span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--dorado-light);display:block}
 .chat-close{margin-left:auto;background:none;border:none;color:rgba(245,237,216,.5);font-size:20px;cursor:pointer;line-height:1;padding:0}
 .chat-close:hover{color:var(--crema)}
-
 .chat-msgs{
   flex:1;overflow-y:auto;padding:16px;
   display:flex;flex-direction:column;gap:10px;
-  background:var(--blanco-roto);
+  background:var(--blanco);
 }
 .msg{display:flex;gap:8px;align-items:flex-end;max-width:100%}
 .msg.user{flex-direction:row-reverse}
-.bubble{
-  padding:9px 13px;border-radius:14px;
-  font-size:13px;line-height:1.5;max-width:80%;
-}
-.msg.bot .bubble{
-  background:white;border:0.5px solid var(--crema-dark);
-  color:var(--tierra);border-bottom-left-radius:4px;
-}
-.msg.user .bubble{
-  background:var(--vino);color:var(--crema);
-  border-bottom-right-radius:4px;
-}
-
-.chips-row{
-  display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;padding-left:0;
-}
+.bubble{padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.5;max-width:82%}
+.msg.bot .bubble{background:white;border:0.5px solid var(--crema-dark);color:var(--tierra);border-bottom-left-radius:4px}
+.msg.user .bubble{background:var(--vino);color:var(--crema);border-bottom-right-radius:4px}
+.chips-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
 .chip-btn{
-  background:white;border:1px solid var(--vino);color:var(--vino);
-  font-family:var(--font-body);font-size:12px;
-  padding:5px 11px;border-radius:20px;cursor:pointer;
-  transition:all .15s;white-space:nowrap;
+  background:white;border:1px solid var(--dorado);color:var(--vino);
+  font-family:var(--font-b);font-size:12px;
+  padding:5px 11px;border-radius:20px;cursor:pointer;transition:all .15s;
 }
-.chip-btn:hover{background:var(--vino);color:var(--crema)}
+.chip-btn:hover{background:var(--vino);color:var(--crema);border-color:var(--vino)}
 .chip-btn:disabled{opacity:.4;cursor:default}
-
 .typing-dots{display:flex;gap:4px;padding:10px 14px}
-.typing-dots span{
-  width:7px;height:7px;border-radius:50%;background:var(--crema-dark);
-  animation:bounce .9s ease-in-out infinite;
-}
+.typing-dots span{width:7px;height:7px;border-radius:50%;background:var(--crema-dark);animation:bounce .9s ease-in-out infinite}
 .typing-dots span:nth-child(2){animation-delay:.15s}
 .typing-dots span:nth-child(3){animation-delay:.3s}
 @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
-
-.chat-input-row{
-  display:flex;gap:8px;padding:12px;
-  border-top:0.5px solid var(--crema-dark);background:white;
-}
+.chat-input-row{display:flex;gap:8px;padding:12px;border-top:0.5px solid var(--crema-dark);background:white}
 #chat-input{
   flex:1;border:0.5px solid var(--crema-dark);border-radius:8px;
-  padding:8px 12px;font-family:var(--font-body);font-size:13px;
-  color:var(--tierra);background:var(--blanco-roto);outline:none;
-  transition:border-color .15s;
+  padding:8px 12px;font-family:var(--font-b);font-size:13px;
+  color:var(--tierra);background:var(--blanco);outline:none;transition:border-color .15s;
 }
 #chat-input:focus{border-color:var(--vino)}
 #chat-send{
@@ -361,36 +282,38 @@ footer{
 }
 #chat-send:hover{background:var(--vino-dark)}
 
-/* ANIMACIONES ENTRADA */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{animation:fadeUp .6s ease both}
 .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}
 .delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
 
-/* RESPONSIVE */
 @media(max-width:768px){
-  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .hero-inner{grid-template-columns:1fr;gap:32px}
   .hero-visual{order:-1}
-  .hero-badge{bottom:-12px;left:12px}
+  .hero-logo-main{max-width:260px}
   nav .nav-info{display:none}
-  .section{padding:60px 5%}
-  #chat-panel{width:calc(100vw - 32px);right:16px;bottom:88px}
+  footer{grid-template-columns:1fr}
+  #chat-panel{width:calc(100vw - 32px);right:16px;bottom:92px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <span class="nav-logo">La Chiquita</span>
+  <a href="#" class="nav-logo-wrap">
+    <img src="logo.png" alt="La Chiquita" class="nav-logo-img">
+    <div class="nav-logo-text">
+      La Chiquita
+      <span>Carnicería · Azcapotzalco</span>
+    </div>
+  </a>
   <div class="nav-info">
     <a href="tel:5558849504">📞 55 5884 9504</a>
-    <a href="#">📍 Azcapotzalco</a>
+    <a href="#">📍 La Preciosa</a>
   </div>
   <button class="nav-cta" onclick="abrirChat()">Hacer pedido →</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero texture-bg">
   <div class="hero-inner">
     <div>
@@ -405,32 +328,30 @@ footer{
         <span class="stars">★★★★★</span>
         <strong>4.3</strong>
         <span class="proof-sep">·</span>
-        <span>13 reseñas en Google</span>
+        <span>13 reseñas Google</span>
         <span class="proof-sep">·</span>
         <span>Abierto hasta las 6pm</span>
       </div>
     </div>
     <div class="hero-visual fade-up delay-2">
-      <div class="hero-img-frame">
-        <div class="hero-img-inner">🥩</div>
-      </div>
-      <div class="hero-badge">
-        <span class="badge-num">+15</span>
-        <span class="badge-txt">años en el barrio</span>
+      <div class="hero-logo-frame">
+        <img src="logo.png" alt="Carnicería La Chiquita" class="hero-logo-main">
+        <div class="hero-badge">
+          <span class="badge-num">+15</span>
+          <span class="badge-txt">años en el barrio</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HORARIO STRIP -->
-<div class="horario-strip">
+<div class="gold-strip">
   <span>📍 Acamapichtli 66, La Preciosa, Azcapotzalco</span>
-  <span>⏰ Lun–Sáb <strong>8am–6pm</strong></span>
+  <span>⏰ Lun–Sáb <strong>8am – 6pm</strong></span>
   <span>📞 <strong>55 5884 9504</strong></span>
 </div>
 
-<!-- CORTES -->
-<div style="background:var(--blanco-roto)">
+<div style="background:var(--blanco)">
 <div class="section">
   <div class="section-label">Nuestros cortes</div>
   <h2 class="section-title">Elige lo que quieres</h2>
@@ -506,7 +427,6 @@ footer{
 </div>
 </div>
 
-<!-- CÓMO FUNCIONA -->
 <div class="como-section">
   <div class="como-inner">
     <div class="section-label">¿Cómo funciona?</div>
@@ -532,7 +452,6 @@ footer{
   </div>
 </div>
 
-<!-- RESEÑAS -->
 <div class="resenas-section">
   <div class="resenas-inner">
     <div class="section-label">Lo que dice la colonia</div>
@@ -540,45 +459,43 @@ footer{
     <div class="resenas-grid">
       <div class="resena-card">
         <div class="resena-stars">★★★★★</div>
-        <p class="resena-text">"La mejor carne del barrio. Siempre fresca y el trato es excelente. Ya no compro en otro lado."</p>
+        <p class="resena-text">"La mejor carne del barrio. Siempre fresca y el trato es excelente."</p>
         <div class="resena-autor">María G. · La Preciosa</div>
       </div>
       <div class="resena-card">
         <div class="resena-stars">★★★★★</div>
-        <p class="resena-text">"La milanesa está increíble, bien delgadita como a mí me gusta. Recomendadísima."</p>
+        <p class="resena-text">"La milanesa está increíble, bien delgadita como a mí me gusta."</p>
         <div class="resena-autor">Carlos R. · Azcapotzalco</div>
       </div>
       <div class="resena-card">
         <div class="resena-stars">★★★★☆</div>
-        <p class="resena-text">"Buenos precios y carnicero muy amable. El chorizo está de lujo para el desayuno."</p>
+        <p class="resena-text">"Buenos precios y carnicero muy amable. El chorizo está de lujo."</p>
         <div class="resena-autor">Patricia L. · Santo Domingo</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CTA FINAL -->
 <div class="cta-section">
   <div class="cta-inner">
     <h2 class="section-title">¿Ya sabes qué quieres?</h2>
-    <p class="section-sub">Manda tu pedido ahorita y lo tenemos listo cuando llegues. Sin esperar.</p>
+    <p class="section-sub">Manda tu pedido ahorita y lo tenemos listo cuando llegues.</p>
     <button class="btn-primary" style="font-size:17px;padding:16px 36px" onclick="abrirChat()">🥩 Hacer mi pedido ahora</button>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">
-    <span class="nav-logo">La Chiquita</span>
-    <p>Carnicería familiar en el corazón de La Preciosa, Azcapotzalco desde hace más de 15 años.</p>
+  <div>
+    <img src="logo.png" alt="Carnicería La Chiquita" class="footer-logo-img">
+    <p class="footer-tagline">Carnicería familiar en el corazón de La Preciosa, Azcapotzalco.</p>
   </div>
-  <div class="footer-links">
+  <div class="footer-col">
     <h4>Ubicación</h4>
     <a href="#">Acamapichtli 66</a>
     <a href="#">La Preciosa, Azcapotzalco</a>
-    <a href="#">CDMX, 02460</a>
+    <a href="#">CDMX 02460</a>
   </div>
-  <div class="footer-links">
+  <div class="footer-col">
     <h4>Horario</h4>
     <a href="#">Lunes – Sábado</a>
     <a href="#">8:00am – 6:00pm</a>
@@ -587,16 +504,15 @@ footer{
 </footer>
 <div class="footer-bottom">© 2025 Carnicería La Chiquita · Azcapotzalco, CDMX</div>
 
-<!-- CHAT FAB -->
+<!-- CHAT FAB con logo -->
 <button id="chat-fab" onclick="toggleChat()">
-  🥩
+  <img src="logo.png" alt="Chatbot La Chiquita">
   <span class="fab-badge">!</span>
 </button>
 
-<!-- CHAT PANEL -->
 <div id="chat-panel">
   <div class="chat-head">
-    <div class="chat-avatar">🥩</div>
+    <div class="chat-avatar"><img src="logo.png" alt="La Chiquita"></div>
     <div class="chat-head-info">
       <h4>Asistente La Chiquita</h4>
       <span>En línea · Responde al instante</span>
@@ -605,159 +521,122 @@ footer{
   </div>
   <div class="chat-msgs" id="chat-msgs"></div>
   <div class="chat-input-row">
-    <input type="text" id="chat-input" placeholder="Escribe aquí..." onkeydown="if(event.key==='Enter')enviarMensaje()">
+    <input type="text" id="chat-input" placeholder="Escribe aquí…" onkeydown="if(event.key==='Enter')enviarMensaje()">
     <button id="chat-send" onclick="enviarMensaje()">➤</button>
   </div>
 </div>
 
 <script>
-// ===== ESTADO DEL BOT =====
-const CORTES = ['Bistec','Milanesa','Arrachera','Carne molida','Costilla','Chorizo','Otro corte'];
-let pedido = {corte:null, cantidad:null, hora:null, nombre:null};
-let paso = 0; // 0=inicio,1=corte,2=cantidad,3=hora_nombre,4=listo
-let chatAbierto = false;
+const CORTES=['Bistec','Milanesa','Arrachera','Carne molida','Costilla','Chorizo','A domicilio 🛵'];
+let pedido={corte:null,cantidad:null,hora:null,nombre:null,tipo:'recojo',direccion:null};
+let paso=0;
+let chatAbierto=false;
 
 function toggleChat(){
-  const panel = document.getElementById('chat-panel');
-  chatAbierto = !chatAbierto;
-  panel.classList.toggle('open', chatAbierto);
-  if(chatAbierto && paso === 0) iniciarBot();
+  const p=document.getElementById('chat-panel');
+  chatAbierto=!chatAbierto;
+  p.classList.toggle('open',chatAbierto);
+  if(chatAbierto&&paso===0)iniciarBot();
 }
 function abrirChat(){
-  const panel = document.getElementById('chat-panel');
-  chatAbierto = true;
-  panel.classList.add('open');
+  chatAbierto=true;
+  document.getElementById('chat-panel').classList.add('open');
   document.getElementById('chat-fab').querySelector('.fab-badge').style.display='none';
-  if(paso === 0) iniciarBot();
+  if(paso===0)iniciarBot();
 }
 function pedirCorte(corte){
   abrirChat();
   setTimeout(()=>{
     if(paso<=1){
-      pedido.corte = corte;
-      paso = 2;
+      pedido.corte=corte;paso=2;
       agregarMsgUser(corte);
-      setTimeout(()=>preguntarCantidad(), 600);
+      setTimeout(()=>preguntarCantidad(),600);
     }
-  }, 400);
+  },400);
 }
-
-function agregarMsg(tipo, html, chips){
-  const msgs = document.getElementById('chat-msgs');
-  const div = document.createElement('div');
-  div.className = 'msg ' + tipo;
-  div.innerHTML = `<div class="bubble">${html}</div>`;
+function agregarMsg(tipo,html,chips){
+  const msgs=document.getElementById('chat-msgs');
+  const div=document.createElement('div');
+  div.className='msg '+tipo;
+  div.innerHTML=`<div class="bubble">${html}</div>`;
   msgs.appendChild(div);
   if(chips){
-    const row = document.createElement('div');
-    row.className = 'chips-row';
+    const row=document.createElement('div');
+    row.className='chips-row';
     chips.forEach(c=>{
-      const btn = document.createElement('button');
-      btn.className = 'chip-btn';
-      btn.textContent = c;
-      btn.onclick = ()=>{ chipClick(c, row); };
+      const btn=document.createElement('button');
+      btn.className='chip-btn';btn.textContent=c;
+      btn.onclick=()=>chipClick(c,row);
       row.appendChild(btn);
     });
     msgs.appendChild(row);
   }
-  msgs.scrollTop = msgs.scrollHeight;
+  msgs.scrollTop=msgs.scrollHeight;
 }
-function agregarMsgUser(texto){
-  agregarMsg('user', texto);
-}
+function agregarMsgUser(t){agregarMsg('user',t)}
 function agregarTyping(cb){
-  const msgs = document.getElementById('chat-msgs');
-  const div = document.createElement('div');
-  div.className = 'msg bot';
-  div.id = 'typing';
-  div.innerHTML = '<div class="bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-  setTimeout(()=>{
-    const t = document.getElementById('typing');
-    if(t) t.remove();
-    cb();
-  }, 900);
+  const msgs=document.getElementById('chat-msgs');
+  const div=document.createElement('div');
+  div.className='msg bot';div.id='typing';
+  div.innerHTML='<div class="bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{const t=document.getElementById('typing');if(t)t.remove();cb();},900);
 }
-
-function chipClick(valor, row){
+function chipClick(v,row){
   Array.from(row.querySelectorAll('.chip-btn')).forEach(b=>b.disabled=true);
-  agregarMsgUser(valor);
-  procesarRespuesta(valor);
+  agregarMsgUser(v);procesarRespuesta(v);
 }
-
-function procesarRespuesta(texto){
+function procesarRespuesta(txt){
   if(paso===1){
-    pedido.corte = texto;
-    paso=2;
-    agregarTyping(preguntarCantidad);
-  } else if(paso===2){
-    pedido.cantidad = texto;
-    paso=3;
-    agregarTyping(preguntarHoraNombre);
-  } else if(paso===3){
-    // parsear hora y nombre del texto libre
-    pedido.hora = texto;
-    paso=4;
-    agregarTyping(confirmarPedido);
+    if(txt.includes('domicilio')||txt.includes('🛵')){pedido.tipo='domicilio';pedido.corte=null;paso=1.5;agregarTyping(preguntarCorte);}
+    else{pedido.corte=txt;paso=2;agregarTyping(preguntarCantidad);}
+  } else if(paso===1.5){pedido.corte=txt;paso=2;agregarTyping(preguntarCantidad);}
+  else if(paso===2){pedido.cantidad=txt;paso=3;agregarTyping(pedido.tipo==='domicilio'?preguntarDireccion:preguntarHoraNombre);}
+  else if(paso===3&&pedido.tipo==='domicilio'){pedido.direccion=txt;paso=3.5;agregarTyping(preguntarHoraNombre);}
+  else if(paso===3||paso===3.5){pedido.hora=txt;paso=4;agregarTyping(confirmarPedido);}
+  else if(paso===5){
+    if(/s[ií]/i.test(txt)||/otro/i.test(txt)){paso=1;pedido={corte:null,cantidad:null,hora:null,nombre:null,tipo:'recojo',direccion:null};agregarTyping(()=>agregarMsg('bot','¡Claro! ¿Qué más te llevo?',CORTES));}
+    else{agregarTyping(()=>agregarMsg('bot','¡Perfecto! Ya tenemos todo anotado. ¡Hasta luego! 👋'));}
   }
 }
-
 function iniciarBot(){
   paso=1;
   setTimeout(()=>{
-    agregarMsg('bot',
-      '¡Hola! 👋 Soy el asistente de <strong>La Chiquita</strong>.<br>Te hago el pedido para que lo recojas listo. ¿Qué corte quieres hoy?',
-      CORTES
-    );
-  }, 400);
+    agregarMsg('bot','¡Hola! 👋 Soy el asistente de <strong>La Chiquita</strong>.<br>¿Vas a pasar a recoger o quieres pedido a domicilio? 🛵',
+      ['Recojo en tienda','Pedido a domicilio 🛵']);
+  },400);
 }
-
+function preguntarCorte(){
+  agregarMsg('bot','¿Qué corte quieres?',['Bistec','Milanesa','Arrachera','Carne molida','Costilla','Chorizo']);
+}
 function preguntarCantidad(){
-  agregarMsg('bot',
-    `¡Perfecto, <strong>${pedido.corte}</strong>! 🥩<br>¿Cuánto necesitas? (dime en kilos o gramos, ej: <em>"1 kilo"</em> o <em>"500 gramos"</em>)`
-  );
+  agregarMsg('bot',`¡Perfecto, <strong>${pedido.corte}</strong>! 🥩<br>¿Cuánto necesitas? (ej: <em>"1 kilo"</em> o <em>"500 gramos"</em>)`);
 }
-
+function preguntarDireccion(){
+  agregarMsg('bot','¿A qué dirección te lo llevamos? 🛵<br><em>(Colonia y calle, ej: Magnolias 23, La Preciosa)</em>');
+}
 function preguntarHoraNombre(){
-  agregarMsg('bot',
-    '¿A qué hora pasas a recoger? Estamos abiertos hasta las <strong>6pm</strong>.<br>Y dime tu <strong>nombre</strong> para tenerlo listo. (ej: <em>"5pm, me llamo Rosa"</em>)',
-    ['3pm','4pm','5pm','5:30pm']
-  );
+  const horaLabel=pedido.tipo==='domicilio'?'¿A qué hora quieres que llegue tu pedido?':'¿A qué hora pasas a recoger?';
+  agregarMsg('bot',`${horaLabel} Estamos disponibles hasta las <strong>6pm</strong>.<br>Y dime tu <strong>nombre</strong>. (ej: <em>"5pm, me llamo Rosa"</em>)`,
+    ['3pm','4pm','5pm','5:30pm']);
 }
-
 function confirmarPedido(){
+  const entrega=pedido.tipo==='domicilio'
+    ?`🛵 Entrega a: ${pedido.direccion}`
+    :`📍 Recojo en: Acamapichtli 66, La Preciosa`;
   agregarMsg('bot',
     `✅ <strong>¡Pedido registrado!</strong><br><br>
      🥩 <strong>${pedido.corte}</strong> — ${pedido.cantidad}<br>
-     ⏰ Recojo: ${pedido.hora}<br>
-     📍 Acamapichtli 66, La Preciosa<br><br>
-     ¡Te esperamos! Si necesitas cambiar algo llámanos: <a href="tel:5558849504" style="color:var(--vino);font-weight:500">55 5884 9504</a>`
+     ⏰ ${pedido.hora}<br>
+     ${entrega}<br><br>
+     ¡Te esperamos! Cualquier duda llámanos: <a href="tel:5558849504" style="color:var(--vino);font-weight:500">55 5884 9504</a>`
   );
-  // Reset para nuevo pedido
-  setTimeout(()=>{
-    agregarMsg('bot','¿Quieres agregar otro corte a tu pedido?', ['Sí, otro corte','No, está bien así']);
-    paso = 5;
-  }, 1200);
+  setTimeout(()=>{agregarMsg('bot','¿Quieres agregar algo más?',['Sí, otro corte','No, gracias']);paso=5;},1200);
 }
-
-document.getElementById('chat-input').addEventListener('keyup', ()=>{});
 function enviarMensaje(){
-  const input = document.getElementById('chat-input');
-  const txt = input.value.trim();
-  if(!txt) return;
-  input.value = '';
-  agregarMsgUser(txt);
-  if(paso===5){
-    if(txt.toLowerCase().includes('sí') || txt.toLowerCase().includes('si') || txt.toLowerCase().includes('otro')){
-      paso=1; pedido={corte:null,cantidad:null,hora:null,nombre:null};
-      agregarTyping(()=>agregarMsg('bot','¡Claro! ¿Qué más te llevo?', CORTES));
-    } else {
-      agregarTyping(()=>agregarMsg('bot','¡Perfecto! Ya tenemos todo anotado. ¡Hasta luego! 👋'));
-    }
-  } else {
-    procesarRespuesta(txt);
-  }
+  const input=document.getElementById('chat-input');
+  const txt=input.value.trim();if(!txt)return;
+  input.value='';agregarMsgUser(txt);procesarRespuesta(txt);
 }
 </script>
 </body>
