@@ -361,7 +361,15 @@
     .nosotros-badge strong { display: block; font-family: var(--ff-titulo); font-size: 1.8rem; }
     .puntos-lista { display: flex; flex-direction: column; gap: var(--u3); margin-top: var(--u4); }
     .punto { display: flex; gap: var(--u3); align-items: flex-start; }
-    .punto-icono { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--crema-osc); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .punto-icono {
+      flex-shrink: 0;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--rojo);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-titulo); font-size: 1rem;
+      font-weight: 700; color: var(--blanco);
+      letter-spacing: -.02em;
+    }
     /* WATHAN #4: Peso 700 en h4, color suave en p — jerarquía sin cambiar tamaño */
     .punto h4 { font-weight: 700; margin-bottom: 4px; font-size: .95rem; }
     .punto p  { font-size: .85rem; color: var(--gris-suave); line-height: 1.6; }
@@ -643,10 +651,10 @@
     <h2 class="sec-titulo">El sabor que<br />conoces desde siempre</h2>
     <p class="sec-sub">Carnicería La Chiquita nació con una promesa simple: llevar carne fresca, bien cortada y a buen precio a cada familia de la colonia.</p>
     <ul class="puntos-lista">
-      <li class="punto"><div class="punto-icono">🔪</div><div><h4>Corte a tu gusto</h4><p>Cortamos al momento según cómo necesites la carne. Sin tiempos de espera.</p></div></li>
-      <li class="punto"><div class="punto-icono">❄️</div><div><h4>Cadena de frío garantizada</h4><p>Recibimos producto fresco cada día para que siempre lleves lo mejor.</p></div></li>
-      <li class="punto"><div class="punto-icono">🤝</div><div><h4>Trato de confianza</h4><p>Más de 20 años construyendo relación con nuestros clientes y proveedores.</p></div></li>
-      <li class="punto"><div class="punto-icono">📦</div><div><h4>Pedidos por WhatsApp</h4><p>Pide con anticipación y ten tu carne lista para cuando llegues.</p></div></li>
+      <li class="punto"><div class="punto-icono">01</div><div><h4>Corte a tu gusto</h4><p>Cortamos al momento según cómo necesites la carne. Sin tiempos de espera.</p></div></li>
+      <li class="punto"><div class="punto-icono">02</div><div><h4>Cadena de frío garantizada</h4><p>Recibimos producto fresco cada día para que siempre lleves lo mejor.</p></div></li>
+      <li class="punto"><div class="punto-icono">03</div><div><h4>Trato de confianza</h4><p>Más de 20 años construyendo relación con nuestros clientes y proveedores.</p></div></li>
+      <li class="punto"><div class="punto-icono">04</div><div><h4>Pedidos por WhatsApp</h4><p>Pide con anticipación y ten tu carne lista para cuando llegues.</p></div></li>
     </ul>
   </div>
 </section>
