@@ -83,12 +83,13 @@ h1.hero-title em{font-style:normal;color:var(--vino)}
 }
 .btn-primary:hover{background:var(--vino-dark);transform:translateY(-1px)}
 .btn-secondary{
-  color:var(--tierra);border:1px solid var(--crema-dark);
+  color:var(--tierra);border:1.5px solid var(--dorado);
   background:transparent;font-family:var(--font-b);font-size:15px;
   padding:13px 20px;border-radius:8px;cursor:pointer;
-  transition:border-color .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;
+  transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;
+  font-weight:500;
 }
-.btn-secondary:hover{border-color:var(--tierra)}
+.btn-secondary:hover{border-color:var(--tierra);background:rgba(44,26,14,.06)}
 .social-proof{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gris);flex-wrap:wrap}
 .stars{color:var(--dorado);font-size:15px;letter-spacing:1px}
 .proof-sep{color:var(--crema-dark)}
@@ -297,6 +298,14 @@ footer{
   nav .nav-info{display:none}
   footer{grid-template-columns:1fr}
   #chat-panel{width:calc(100vw - 32px);right:16px;bottom:92px}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-secondary{
+    width:100%;justify-content:center;font-size:17px;padding:16px;
+  }
+  .btn-secondary{
+    border-color:var(--vino);color:var(--vino);font-weight:500;
+    background:rgba(123,29,52,.06);
+  }
 }
 </style>
 </head>
@@ -351,7 +360,7 @@ footer{
 <div class="gold-strip">
   <span>📍 Acamapichtli 66, La Preciosa, Azcapotzalco</span>
   <span>⏰ Lun–Sáb <strong>8am – 6pm</strong></span>
-  <span>📞 <strong>55 5884 9504</strong></span>
+  <a href="tel:5558849504" style="color:var(--dorado);text-decoration:none;display:flex;align-items:center;gap:6px;font-size:13px;opacity:.9">📞 <strong style="color:var(--dorado)">55 5884 9504</strong></a>
 </div>
 
 <div style="background:var(--blanco)">
@@ -465,6 +474,25 @@ footer{
       <p style="font-size:15px;color:var(--gris);line-height:1.7;margin-bottom:1.75rem;max-width:420px">
         Pide tu corte favorito y lo llevamos directo a tu puerta. Sin salir, sin fila, sin esperar.
         Solo cuéntale al asistente que quieres envío a domicilio.
+      </p>
+      <div style="background:white;border-radius:10px;border:0.5px solid var(--crema-dark);padding:14px 16px;margin-bottom:1.5rem;font-size:13px">
+        <div style="font-weight:500;color:var(--tierra);margin-bottom:10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase">Zonas de entrega</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="color:var(--gris)">📍 La Preciosa y colonias cercanas</span>
+            <span style="background:#F0FDF4;color:#166534;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">GRATIS</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="color:var(--gris)">🗺️ Resto de Azcapotzalco</span>
+            <span style="background:var(--crema);color:var(--dorado);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;border:1px solid var(--dorado)">+ $25</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="color:var(--gris)">🚫 Fuera de Azcapotzalco</span>
+            <span style="background:#FFF1F2;color:#9F1239;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">No disponible</span>
+          </div>
+        </div>
+      </div>
+      <p style="display:none">
       </p>
       <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:2rem">
         <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--tierra)">
