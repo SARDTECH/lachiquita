@@ -198,6 +198,12 @@
       pointer-events: none;
     }
     /* WATHAN #4: Jerarquía por contraste+peso, no solo tamaño */
+    .hero-logo {
+      width: 110px; height: 110px;
+      object-fit: contain;
+      margin-bottom: var(--u3);
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,.4));
+    }
     .hero-eyebrow {
       font-size: .75rem; font-weight: 700; letter-spacing: .18em;
       text-transform: uppercase; color: var(--oro);
@@ -295,14 +301,20 @@
     .tabs-header { display: flex; gap: var(--u); flex-wrap: wrap; margin-bottom: var(--u5); }
     .tab-btn {
       display: flex; align-items: center; gap: var(--u);
-      padding: var(--u2) var(--u3); border-radius: var(--r-pill);
-      border: 2px solid transparent; background: var(--blanco);
+      padding: var(--u) var(--u3);
+      border-radius: var(--r-pill);
+      border: 2px solid rgba(155,28,28,.25);
+      background: transparent;
       font-family: var(--ff-cuerpo); font-size: .9rem; font-weight: 600;
-      cursor: pointer; transition: all var(--t); box-shadow: var(--s-sm);
+      color: var(--gris);
+      cursor: pointer; transition: all var(--t);
     }
     .tab-btn .tab-emoji { font-size: 1.1rem; }
-    .tab-btn:hover { border-color: var(--rojo); color: var(--rojo); }
-    .tab-btn.activo { background: var(--rojo); color: var(--blanco); border-color: var(--rojo); box-shadow: var(--s-md); }
+    .tab-btn:hover { border-color: var(--rojo); color: var(--rojo); background: rgba(155,28,28,.06); }
+    .tab-btn.activo {
+      background: var(--rojo); color: var(--blanco);
+      border-color: var(--rojo); box-shadow: var(--s-md);
+    }
     .tab-panel { display: none; }
     .tab-panel.activo { display: block; }
 
@@ -470,6 +482,7 @@
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-texto">
+    <img src="Logo.png" alt="Carnicería La Chiquita" class="hero-logo" />
     <p class="hero-eyebrow">🥩 Carnicería La Chiquita · CDMX</p>
     <h1 class="hero-titulo">Carne <em>fresca</em><br />con el sabor<br />de siempre</h1>
     <p class="hero-sub">Cortes seleccionados a mano, atención personalizada y la confianza de años cuidando la mesa de tu familia.</p>
@@ -499,10 +512,10 @@
 
   <div class="tabs-header fade-in">
     <button class="tab-btn activo" onclick="cambiarTab('res',this)"><span class="tab-emoji">🐄</span> Res</button>
-    <button class="tab-btn" onclick="cambiarTab('pollo',this)"><span class="tab-emoji">🐔</span> Pollo</button>
     <button class="tab-btn" onclick="cambiarTab('cerdo',this)"><span class="tab-emoji">🐷</span> Cerdo</button>
-    <button class="tab-btn" onclick="cambiarTab('especialidades',this)"><span class="tab-emoji">⭐</span> Especialidades</button>
+    <button class="tab-btn" onclick="cambiarTab('pollo',this)"><span class="tab-emoji">🐔</span> Pollo</button>
     <button class="tab-btn" onclick="cambiarTab('pescado',this)"><span class="tab-emoji">🐟</span> Pescado</button>
+    <button class="tab-btn" onclick="cambiarTab('especialidades',this)"><span class="tab-emoji">⭐</span> Especialidades</button>
   </div>
 
   <!-- RES — MERODIO #6: onclick trackWA con medio específico -->
