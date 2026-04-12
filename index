@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carnicería La Chiquita · La Preciosa, Azcapotzalco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tierra:#2C1A0E;
+  --vino:#7B1D34;
+  --vino-dark:#601628;
+  --dorado:#C8922A;
+  --dorado-light:#E8B84B;
+  --crema:#F5EDD8;
+  --crema-dark:#EDE0C4;
+  --gris:#6B6B5A;
+  --blanco:#FDFAF5;
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--blanco);color:var(--tierra);overflow-x:hidden}
+
+.texture-bg{
+  background-color:var(--crema);
+  background-image:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0' stroke='%232C1A0E' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--tierra);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:62px;
+  border-bottom:2px solid var(--vino);
+}
+.nav-logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-img{height:46px;width:46px;object-fit:contain;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
+.nav-logo-text{font-family:var(--font-d);font-size:1.05rem;color:var(--crema);letter-spacing:.02em;line-height:1.1}
+.nav-logo-text span{display:block;font-size:10px;font-weight:400;color:var(--dorado);letter-spacing:.12em;text-transform:uppercase;font-family:var(--font-b)}
+.nav-info{display:flex;gap:1.5rem;align-items:center}
+.nav-info a{color:var(--crema);font-size:13px;text-decoration:none;opacity:.8;display:flex;align-items:center;gap:5px;transition:opacity .15s}
+.nav-info a:hover{opacity:1}
+.nav-cta{
+  background:var(--vino);color:var(--crema);border:none;
+  font-family:var(--font-b);font-size:13px;font-weight:500;
+  padding:9px 18px;border-radius:6px;cursor:pointer;transition:background .15s;
+  border:1px solid var(--dorado);
+}
+.nav-cta:hover{background:var(--vino-dark)}
+
+/* HERO */
+.hero{min-height:88vh;display:flex;align-items:center;padding:80px 5% 64px}
+.hero-inner{
+  max-width:1100px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+}
+.hero-tag{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dorado);font-weight:500;margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-tag::before{content:'';display:block;width:24px;height:1px;background:var(--dorado)}
+h1.hero-title{
+  font-family:var(--font-d);
+  font-size:clamp(2.4rem,5vw,3.6rem);
+  line-height:1.1;color:var(--tierra);margin-bottom:1.25rem;
+}
+h1.hero-title em{font-style:normal;color:var(--vino)}
+.hero-sub{font-size:clamp(15px,2vw,17px);color:var(--gris);line-height:1.7;margin-bottom:2rem;max-width:440px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:2rem}
+.btn-primary{
+  background:var(--vino);color:var(--crema);border:1px solid var(--dorado);
+  font-family:var(--font-b);font-size:16px;font-weight:500;
+  padding:14px 28px;border-radius:8px;cursor:pointer;
+  transition:background .15s,transform .1s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--vino-dark);transform:translateY(-1px)}
+.btn-secondary{
+  color:var(--tierra);border:1px solid var(--crema-dark);
+  background:transparent;font-family:var(--font-b);font-size:15px;
+  padding:13px 20px;border-radius:8px;cursor:pointer;
+  transition:border-color .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;
+}
+.btn-secondary:hover{border-color:var(--tierra)}
+.social-proof{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gris);flex-wrap:wrap}
+.stars{color:var(--dorado);font-size:15px;letter-spacing:1px}
+.proof-sep{color:var(--crema-dark)}
+
+/* HERO VISUAL */
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-logo-frame{
+  width:100%;max-width:440px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.hero-logo-main{
+  width:100%;max-width:380px;
+  filter:drop-shadow(0 8px 32px rgba(123,29,52,.25));
+  animation:floatLogo 4s ease-in-out infinite;
+}
+@keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-badge{
+  position:absolute;bottom:-16px;right:0;
+  background:var(--dorado);color:var(--tierra);
+  border-radius:12px;padding:12px 16px;
+  font-family:var(--font-d);box-shadow:0 4px 16px rgba(200,146,42,.35);
+}
+.badge-num{font-size:1.4rem;font-weight:700;display:block;line-height:1}
+.badge-txt{font-size:11px;font-weight:400;opacity:.8}
+
+/* GOLD DIVIDER */
+.gold-strip{
+  background:var(--vino);padding:14px 5%;
+  display:flex;align-items:center;justify-content:center;
+  gap:32px;flex-wrap:wrap;gap:16px 32px;
+  border-top:2px solid var(--dorado);border-bottom:2px solid var(--dorado);
+}
+.gold-strip span{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--crema);opacity:.85}
+.gold-strip strong{opacity:1;color:var(--dorado)}
+
+/* CORTES */
+.section{padding:80px 5%;max-width:1200px;margin:0 auto}
+.section-label{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dorado);font-weight:500;margin-bottom:.75rem;
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--dorado)}
+.section-title{font-family:var(--font-d);font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--tierra);margin-bottom:.75rem}
+.section-sub{font-size:15px;color:var(--gris);margin-bottom:3rem;max-width:520px;line-height:1.6}
+.cortes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+.corte-card{
+  background:white;border:0.5px solid var(--crema-dark);
+  border-radius:12px;overflow:hidden;cursor:pointer;
+  transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+.corte-card:hover{transform:translateY(-4px);border-color:var(--dorado);box-shadow:0 4px 20px rgba(200,146,42,.15)}
+.corte-img{width:100%;height:180px;background:var(--crema);display:flex;align-items:center;justify-content:center;font-size:3rem}
+.corte-body{padding:16px}
+.corte-nombre{font-size:16px;font-weight:500;color:var(--tierra);margin-bottom:4px}
+.corte-desc{font-size:13px;color:var(--gris);line-height:1.5;margin-bottom:12px}
+.corte-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.corte-precio{font-size:20px;font-weight:500;color:var(--vino)}
+.corte-precio span{font-size:12px;color:var(--gris);font-weight:400}
+.btn-pedir{
+  background:transparent;border:1px solid var(--vino);color:var(--vino);
+  font-family:var(--font-b);font-size:12px;font-weight:500;
+  padding:6px 12px;border-radius:6px;cursor:pointer;transition:all .15s;
+}
+.btn-pedir:hover{background:var(--vino);color:var(--crema)}
+
+/* COMO FUNCIONA */
+.como-section{background:var(--tierra);padding:80px 5%}
+.como-inner{max-width:1100px;margin:0 auto}
+.como-section .section-label{color:var(--dorado)}
+.como-section .section-label::before{background:var(--dorado)}
+.como-section .section-title{color:var(--crema)}
+.como-section .section-sub{color:rgba(245,237,216,.55)}
+.pasos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:rgba(255,255,255,.06);border-radius:12px;overflow:hidden}
+.paso{padding:32px 24px;background:rgba(255,255,255,.03);transition:background .2s}
+.paso:hover{background:rgba(255,255,255,.07)}
+.paso-num{font-family:var(--font-d);font-size:2.5rem;color:var(--dorado);line-height:1;margin-bottom:12px}
+.paso-title{font-size:15px;font-weight:500;color:var(--crema);margin-bottom:8px}
+.paso-desc{font-size:13px;color:rgba(245,237,216,.55);line-height:1.6}
+
+/* RESEÑAS */
+.resenas-section{padding:80px 5%;background:var(--crema)}
+.resenas-inner{max-width:1100px;margin:0 auto}
+.resenas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:2rem}
+.resena-card{background:white;border-radius:10px;padding:20px;border:0.5px solid var(--crema-dark)}
+.resena-stars{color:var(--dorado);font-size:14px;margin-bottom:8px}
+.resena-text{font-size:14px;color:var(--gris);line-height:1.6;margin-bottom:12px;font-style:italic}
+.resena-autor{font-size:13px;font-weight:500;color:var(--tierra)}
+
+/* CTA FINAL */
+.cta-section{padding:80px 5%;text-align:center}
+.cta-inner{max-width:540px;margin:0 auto}
+.cta-section .section-sub{margin:0 auto 2rem;text-align:center}
+
+/* FOOTER */
+footer{
+  background:var(--tierra);
+  border-top:3px solid var(--dorado);
+  padding:48px 5% 32px;
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;flex-wrap:wrap;
+}
+.footer-logo-img{height:90px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));margin-bottom:12px}
+.footer-tagline{font-size:13px;color:rgba(245,237,216,.5);line-height:1.6;max-width:200px}
+.footer-col h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dorado);margin-bottom:14px}
+.footer-col a{display:block;font-size:13px;color:var(--crema);opacity:.65;text-decoration:none;margin-bottom:7px;transition:opacity .15s}
+.footer-col a:hover{opacity:1}
+.footer-bottom{
+  background:#1e0f07;color:rgba(245,237,216,.35);
+  text-align:center;padding:14px;font-size:12px;
+  border-top:1px solid rgba(200,146,42,.2);
+}
+
+/* CHATBOT */
+#chat-fab{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  width:64px;height:64px;border-radius:50%;
+  background:var(--vino);color:var(--crema);
+  border:2px solid var(--dorado);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  box-shadow:0 4px 20px rgba(123,29,52,.5);
+  transition:transform .2s,background .15s;
+  padding:0;
+}
+#chat-fab:hover{transform:scale(1.08);background:var(--vino-dark)}
+#chat-fab img{width:52px;height:52px;object-fit:contain;border-radius:50%}
+#chat-fab .fab-badge{
+  position:absolute;top:-3px;right:-3px;
+  background:var(--dorado);color:var(--tierra);
+  width:20px;height:20px;border-radius:50%;
+  font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--tierra);
+}
+#chat-panel{
+  position:fixed;bottom:100px;right:24px;z-index:998;
+  width:340px;max-height:530px;
+  background:white;border-radius:16px;
+  border:0.5px solid var(--crema-dark);
+  box-shadow:0 8px 40px rgba(44,26,14,.18);
+  display:none;flex-direction:column;overflow:hidden;
+}
+#chat-panel.open{display:flex}
+.chat-head{
+  background:var(--tierra);padding:14px 16px;
+  display:flex;align-items:center;gap:10px;
+  border-bottom:2px solid var(--dorado);
+}
+.chat-avatar{
+  width:38px;height:38px;border-radius:50%;overflow:hidden;
+  border:2px solid var(--dorado);flex-shrink:0;
+}
+.chat-avatar img{width:100%;height:100%;object-fit:contain;background:var(--vino)}
+.chat-head-info h4{color:var(--crema);font-size:14px;font-weight:500;margin-bottom:1px}
+.chat-head-info span{font-size:11px;color:var(--dorado);display:flex;align-items:center;gap:4px}
+.chat-head-info span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--dorado-light);display:block}
+.chat-close{margin-left:auto;background:none;border:none;color:rgba(245,237,216,.5);font-size:20px;cursor:pointer;line-height:1;padding:0}
+.chat-close:hover{color:var(--crema)}
+.chat-msgs{
+  flex:1;overflow-y:auto;padding:16px;
+  display:flex;flex-direction:column;gap:10px;
+  background:var(--blanco);
+}
+.msg{display:flex;gap:8px;align-items:flex-end;max-width:100%}
+.msg.user{flex-direction:row-reverse}
+.bubble{padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.5;max-width:82%}
+.msg.bot .bubble{background:white;border:0.5px solid var(--crema-dark);color:var(--tierra);border-bottom-left-radius:4px}
+.msg.user .bubble{background:var(--vino);color:var(--crema);border-bottom-right-radius:4px}
+.chips-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.chip-btn{
+  background:white;border:1px solid var(--dorado);color:var(--vino);
+  font-family:var(--font-b);font-size:12px;
+  padding:5px 11px;border-radius:20px;cursor:pointer;transition:all .15s;
+}
+.chip-btn:hover{background:var(--vino);color:var(--crema);border-color:var(--vino)}
+.chip-btn:disabled{opacity:.4;cursor:default}
+.typing-dots{display:flex;gap:4px;padding:10px 14px}
+.typing-dots span{width:7px;height:7px;border-radius:50%;background:var(--crema-dark);animation:bounce .9s ease-in-out infinite}
+.typing-dots span:nth-child(2){animation-delay:.15s}
+.typing-dots span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.chat-input-row{display:flex;gap:8px;padding:12px;border-top:0.5px solid var(--crema-dark);background:white}
+#chat-input{
+  flex:1;border:0.5px solid var(--crema-dark);border-radius:8px;
+  padding:8px 12px;font-family:var(--font-b);font-size:13px;
+  color:var(--tierra);background:var(--blanco);outline:none;transition:border-color .15s;
+}
+#chat-input:focus{border-color:var(--vino)}
+#chat-send{
+  background:var(--vino);border:none;border-radius:8px;
+  width:36px;height:36px;cursor:pointer;color:var(--crema);
+  font-size:16px;flex-shrink:0;transition:background .15s;
+  display:flex;align-items:center;justify-content:center;
+}
+#chat-send:hover{background:var(--vino-dark)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .6s ease both}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}
+.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
+
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;gap:32px}
+  .hero-visual{order:-1}
+  .hero-logo-main{max-width:260px}
+  nav .nav-info{display:none}
+  footer{grid-template-columns:1fr}
+  #chat-panel{width:calc(100vw - 32px);right:16px;bottom:92px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo-wrap">
+    <img src="logo.png" alt="La Chiquita" class="nav-logo-img">
+    <div class="nav-logo-text">
+      La Chiquita
+      <span>Carnicería · Azcapotzalco</span>
+    </div>
+  </a>
+  <div class="nav-info">
+    <a href="tel:5558849504">📞 55 5884 9504</a>
+    <a href="#">📍 La Preciosa</a>
+  </div>
+  <button class="nav-cta" onclick="abrirChat()">Hacer pedido →</button>
+</nav>
+
+<section class="hero texture-bg">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag fade-up">Carnicería de barrio · Desde La Preciosa</div>
+      <h1 class="hero-title fade-up delay-1">Tu carne lista,<br><em>sin hacer fila</em></h1>
+      <p class="hero-sub fade-up delay-2">Pide tu corte favorito por aquí y lo tenemos listo cuando llegues. Sin esperar, sin complicaciones.</p>
+      <div class="hero-actions fade-up delay-3">
+        <button class="btn-primary" onclick="abrirChat()">🥩 Hacer mi pedido</button>
+        <a href="tel:5558849504" class="btn-secondary">📞 Llamar</a>
+      </div>
+      <div class="social-proof fade-up delay-4">
+        <span class="stars">★★★★★</span>
+        <strong>4.3</strong>
+        <span class="proof-sep">·</span>
+        <span>13 reseñas Google</span>
+        <span class="proof-sep">·</span>
+        <span>Abierto hasta las 6pm</span>
+      </div>
+    </div>
+    <div class="hero-visual fade-up delay-2">
+      <div class="hero-logo-frame">
+        <img src="logo.png" alt="Carnicería La Chiquita" class="hero-logo-main">
+        <div class="hero-badge">
+          <span class="badge-num">+15</span>
+          <span class="badge-txt">años en el barrio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-strip">
+  <span>📍 Acamapichtli 66, La Preciosa, Azcapotzalco</span>
+  <span>⏰ Lun–Sáb <strong>8am – 6pm</strong></span>
+  <span>📞 <strong>55 5884 9504</strong></span>
+</div>
+
+<div style="background:var(--blanco)">
+<div class="section">
+  <div class="section-label">Nuestros cortes</div>
+  <h2 class="section-title">Elige lo que quieres</h2>
+  <p class="section-sub">Carne fresca todos los días. Pide y recoge en tienda sin esperar.</p>
+  <div class="cortes-grid">
+    <div class="corte-card" onclick="pedirCorte('Bistec')">
+      <div class="corte-img">🥩</div>
+      <div class="corte-body">
+        <div class="corte-nombre">Bistec</div>
+        <div class="corte-desc">Corte fino, ideal para asar o en caldillo. El más pedido del barrio.</div>
+        <div class="corte-footer">
+          <div class="corte-precio">$180 <span>/ kg</span></div>
+          <button class="btn-pedir">Pedir →</button>
+        </div>
+      </div>
+    </div>
+    <div class="corte-card" onclick="pedirCorte('Milanesa')">
+      <div class="corte-img">🍖</div>
+      <div class="corte-body">
+        <div class="corte-nombre">Milanesa</div>
+        <div class="corte-desc">Perfectamente martajada. Para empanizar o a la plancha.</div>
+        <div class="corte-footer">
+          <div class="corte-precio">$170 <span>/ kg</span></div>
+          <button class="btn-pedir">Pedir →</button>
+        </div>
+      </div>
+    </div>
+    <div class="corte-card" onclick="pedirCorte('Arrachera')">
+      <div class="corte-img">🔥</div>
+      <div class="corte-body">
+        <div class="corte-nombre">Arrachera</div>
+        <div class="corte-desc">Corte de res marinado. Perfecto para el asador del fin de semana.</div>
+        <div class="corte-footer">
+          <div class="corte-precio">$250 <span>/ kg</span></div>
+          <button class="btn-pedir">Pedir →</button>
+        </div>
+      </div>
+    </div>
+    <div class="corte-card" onclick="pedirCorte('Carne molida')">
+      <div class="corte-img">🫙</div>
+      <div class="corte-body">
+        <div class="corte-nombre">Carne molida</div>
+        <div class="corte-desc">Molida al momento. Para albóndigas, picadillo o hamburguesas caseras.</div>
+        <div class="corte-footer">
+          <div class="corte-precio">$150 <span>/ kg</span></div>
+          <button class="btn-pedir">Pedir →</button>
+        </div>
+      </div>
+    </div>
+    <div class="corte-card" onclick="pedirCorte('Costilla')">
+      <div class="corte-img">🦴</div>
+      <div class="corte-body">
+        <div class="corte-nombre">Costilla</div>
+        <div class="corte-desc">Res o cerdo. Para caldos, barbacoa o asado a las brasas.</div>
+        <div class="corte-footer">
+          <div class="corte-precio">$160 <span>/ kg</span></div>
+          <button class="btn-pedir">Pedir →</button>
+        </div>
+      </div>
+    </div>
+    <div class="corte-card" onclick="pedirCorte('Chorizo')">
+      <div class="corte-img">🌭</div>
+      <div class="corte-body">
+        <div class="corte-nombre">Chorizo</div>
+        <div class="corte-desc">Hecho en casa con especias de la región. El favorito de los desayunos.</div>
+        <div class="corte-footer">
+          <div class="corte-precio">$140 <span>/ kg</span></div>
+          <button class="btn-pedir">Pedir →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="como-section">
+  <div class="como-inner">
+    <div class="section-label">¿Cómo funciona?</div>
+    <h2 class="section-title" style="color:var(--crema)">Pide en 3 pasos</h2>
+    <p class="section-sub">Sin apps, sin registro. Solo dinos qué quieres.</p>
+    <div class="pasos-grid">
+      <div class="paso">
+        <div class="paso-num">01</div>
+        <div class="paso-title">Elige tu corte</div>
+        <div class="paso-desc">Dile al asistente qué corte quieres y cuántos kilos o gramos necesitas.</div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">02</div>
+        <div class="paso-title">Dinos a qué hora</div>
+        <div class="paso-desc">Selecciona la hora en que vas a pasar. Estamos abiertos de 8am a 6pm.</div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">03</div>
+        <div class="paso-title">Recoge sin fila</div>
+        <div class="paso-desc">Tu pedido te está esperando listo. Solo llegas, lo recoges y listo.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="resenas-section">
+  <div class="resenas-inner">
+    <div class="section-label">Lo que dice la colonia</div>
+    <h2 class="section-title">4.3 estrellas en Google</h2>
+    <div class="resenas-grid">
+      <div class="resena-card">
+        <div class="resena-stars">★★★★★</div>
+        <p class="resena-text">"La mejor carne del barrio. Siempre fresca y el trato es excelente."</p>
+        <div class="resena-autor">María G. · La Preciosa</div>
+      </div>
+      <div class="resena-card">
+        <div class="resena-stars">★★★★★</div>
+        <p class="resena-text">"La milanesa está increíble, bien delgadita como a mí me gusta."</p>
+        <div class="resena-autor">Carlos R. · Azcapotzalco</div>
+      </div>
+      <div class="resena-card">
+        <div class="resena-stars">★★★★☆</div>
+        <p class="resena-text">"Buenos precios y carnicero muy amable. El chorizo está de lujo."</p>
+        <div class="resena-autor">Patricia L. · Santo Domingo</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2 class="section-title">¿Ya sabes qué quieres?</h2>
+    <p class="section-sub">Manda tu pedido ahorita y lo tenemos listo cuando llegues.</p>
+    <button class="btn-primary" style="font-size:17px;padding:16px 36px" onclick="abrirChat()">🥩 Hacer mi pedido ahora</button>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <img src="logo.png" alt="Carnicería La Chiquita" class="footer-logo-img">
+    <p class="footer-tagline">Carnicería familiar en el corazón de La Preciosa, Azcapotzalco.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Ubicación</h4>
+    <a href="#">Acamapichtli 66</a>
+    <a href="#">La Preciosa, Azcapotzalco</a>
+    <a href="#">CDMX 02460</a>
+  </div>
+  <div class="footer-col">
+    <h4>Horario</h4>
+    <a href="#">Lunes – Sábado</a>
+    <a href="#">8:00am – 6:00pm</a>
+    <a href="tel:5558849504">55 5884 9504</a>
+  </div>
+</footer>
+<div class="footer-bottom">© 2025 Carnicería La Chiquita · Azcapotzalco, CDMX</div>
+
+<!-- CHAT FAB con logo -->
+<button id="chat-fab" onclick="toggleChat()">
+  <img src="logo.png" alt="Chatbot La Chiquita">
+  <span class="fab-badge">!</span>
+</button>
+
+<div id="chat-panel">
+  <div class="chat-head">
+    <div class="chat-avatar"><img src="logo.png" alt="La Chiquita"></div>
+    <div class="chat-head-info">
+      <h4>Asistente La Chiquita</h4>
+      <span>En línea · Responde al instante</span>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs"></div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Escribe aquí…" onkeydown="if(event.key==='Enter')enviarMensaje()">
+    <button id="chat-send" onclick="enviarMensaje()">➤</button>
+  </div>
+</div>
+
+<script>
+const CORTES=['Bistec','Milanesa','Arrachera','Carne molida','Costilla','Chorizo','A domicilio 🛵'];
+let pedido={corte:null,cantidad:null,hora:null,nombre:null,tipo:'recojo',direccion:null};
+let paso=0;
+let chatAbierto=false;
+
+function toggleChat(){
+  const p=document.getElementById('chat-panel');
+  chatAbierto=!chatAbierto;
+  p.classList.toggle('open',chatAbierto);
+  if(chatAbierto&&paso===0)iniciarBot();
+}
+function abrirChat(){
+  chatAbierto=true;
+  document.getElementById('chat-panel').classList.add('open');
+  document.getElementById('chat-fab').querySelector('.fab-badge').style.display='none';
+  if(paso===0)iniciarBot();
+}
+function pedirCorte(corte){
+  abrirChat();
+  setTimeout(()=>{
+    if(paso<=1){
+      pedido.corte=corte;paso=2;
+      agregarMsgUser(corte);
+      setTimeout(()=>preguntarCantidad(),600);
+    }
+  },400);
+}
+function agregarMsg(tipo,html,chips){
+  const msgs=document.getElementById('chat-msgs');
+  const div=document.createElement('div');
+  div.className='msg '+tipo;
+  div.innerHTML=`<div class="bubble">${html}</div>`;
+  msgs.appendChild(div);
+  if(chips){
+    const row=document.createElement('div');
+    row.className='chips-row';
+    chips.forEach(c=>{
+      const btn=document.createElement('button');
+      btn.className='chip-btn';btn.textContent=c;
+      btn.onclick=()=>chipClick(c,row);
+      row.appendChild(btn);
+    });
+    msgs.appendChild(row);
+  }
+  msgs.scrollTop=msgs.scrollHeight;
+}
+function agregarMsgUser(t){agregarMsg('user',t)}
+function agregarTyping(cb){
+  const msgs=document.getElementById('chat-msgs');
+  const div=document.createElement('div');
+  div.className='msg bot';div.id='typing';
+  div.innerHTML='<div class="bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{const t=document.getElementById('typing');if(t)t.remove();cb();},900);
+}
+function chipClick(v,row){
+  Array.from(row.querySelectorAll('.chip-btn')).forEach(b=>b.disabled=true);
+  agregarMsgUser(v);procesarRespuesta(v);
+}
+function procesarRespuesta(txt){
+  if(paso===1){
+    if(txt.includes('domicilio')||txt.includes('🛵')){pedido.tipo='domicilio';pedido.corte=null;paso=1.5;agregarTyping(preguntarCorte);}
+    else{pedido.corte=txt;paso=2;agregarTyping(preguntarCantidad);}
+  } else if(paso===1.5){pedido.corte=txt;paso=2;agregarTyping(preguntarCantidad);}
+  else if(paso===2){pedido.cantidad=txt;paso=3;agregarTyping(pedido.tipo==='domicilio'?preguntarDireccion:preguntarHoraNombre);}
+  else if(paso===3&&pedido.tipo==='domicilio'){pedido.direccion=txt;paso=3.5;agregarTyping(preguntarHoraNombre);}
+  else if(paso===3||paso===3.5){pedido.hora=txt;paso=4;agregarTyping(confirmarPedido);}
+  else if(paso===5){
+    if(/s[ií]/i.test(txt)||/otro/i.test(txt)){paso=1;pedido={corte:null,cantidad:null,hora:null,nombre:null,tipo:'recojo',direccion:null};agregarTyping(()=>agregarMsg('bot','¡Claro! ¿Qué más te llevo?',CORTES));}
+    else{agregarTyping(()=>agregarMsg('bot','¡Perfecto! Ya tenemos todo anotado. ¡Hasta luego! 👋'));}
+  }
+}
+function iniciarBot(){
+  paso=1;
+  setTimeout(()=>{
+    agregarMsg('bot','¡Hola! 👋 Soy el asistente de <strong>La Chiquita</strong>.<br>¿Vas a pasar a recoger o quieres pedido a domicilio? 🛵',
+      ['Recojo en tienda','Pedido a domicilio 🛵']);
+  },400);
+}
+function preguntarCorte(){
+  agregarMsg('bot','¿Qué corte quieres?',['Bistec','Milanesa','Arrachera','Carne molida','Costilla','Chorizo']);
+}
+function preguntarCantidad(){
+  agregarMsg('bot',`¡Perfecto, <strong>${pedido.corte}</strong>! 🥩<br>¿Cuánto necesitas? (ej: <em>"1 kilo"</em> o <em>"500 gramos"</em>)`);
+}
+function preguntarDireccion(){
+  agregarMsg('bot','¿A qué dirección te lo llevamos? 🛵<br><em>(Colonia y calle, ej: Magnolias 23, La Preciosa)</em>');
+}
+function preguntarHoraNombre(){
+  const horaLabel=pedido.tipo==='domicilio'?'¿A qué hora quieres que llegue tu pedido?':'¿A qué hora pasas a recoger?';
+  agregarMsg('bot',`${horaLabel} Estamos disponibles hasta las <strong>6pm</strong>.<br>Y dime tu <strong>nombre</strong>. (ej: <em>"5pm, me llamo Rosa"</em>)`,
+    ['3pm','4pm','5pm','5:30pm']);
+}
+function confirmarPedido(){
+  const entrega=pedido.tipo==='domicilio'
+    ?`🛵 Entrega a: ${pedido.direccion}`
+    :`📍 Recojo en: Acamapichtli 66, La Preciosa`;
+  agregarMsg('bot',
+    `✅ <strong>¡Pedido registrado!</strong><br><br>
+     🥩 <strong>${pedido.corte}</strong> — ${pedido.cantidad}<br>
+     ⏰ ${pedido.hora}<br>
+     ${entrega}<br><br>
+     ¡Te esperamos! Cualquier duda llámanos: <a href="tel:5558849504" style="color:var(--vino);font-weight:500">55 5884 9504</a>`
+  );
+  setTimeout(()=>{agregarMsg('bot','¿Quieres agregar algo más?',['Sí, otro corte','No, gracias']);paso=5;},1200);
+}
+function enviarMensaje(){
+  const input=document.getElementById('chat-input');
+  const txt=input.value.trim();if(!txt)return;
+  input.value='';agregarMsgUser(txt);procesarRespuesta(txt);
+}
+</script>
+</body>
+</html>
