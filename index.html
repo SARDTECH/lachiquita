@@ -641,17 +641,28 @@ function generarHorarios(tipo){
 }
 
 function parsearKgs(txt){
-  txt=txt.toLowerCase();
+  txt=txt.toLowerCase().trim();
   let n=parseFloat(txt.replace(/[^0-9.]/g,''));
-  if(isNaN(n))return 0;
-  if(txt.includes('gramo')||txt.includes('grs')||txt.includes(' g'))n=n/1000;
-  return n;
+  if(isNaN(n)||n===0)return 0;
+  // Si menciona kilo o kg explícitamente
+  if(txt.includes('kilo')||txt.includes(' kg')||txt.match(/^\d+(\.\d+)?\s*kg/))return n;
+  // Si menciona gramo explícitamente
+  if(txt.includes('gramo')||txt.includes('grs')||txt.includes(' g')||txt.match(/\d+\s*gr/))return n/1000;
+  // Sin unidad: si n <= 10 asumimos kilos (ej: "2", "1.5"), si n > 10 asumimos gramos (ej: "750", "500")
+  return n>10 ? n/1000 : n;
 }
 function calcularTotal(){
   const precio=PRECIOS[pedido.corte]||0;
   const base=precio*pedido.kgs;
   pedido.costo_env=pedido.tipo==='domicilio'?25:0;
   pedido.total=Math.round(base+pedido.costo_env);
+}
+function formatPeso(n){
+  return '$'+n.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function formatKgs(k){
+  if(k>=1)return k%1===0?k+' kg':(k.toFixed(3).replace(/\.?0+$/,''))+' kg';
+  return Math.round(k*1000)+' g';
 }
 
 // Auto-cierre con countdown de 20 segundos
@@ -800,7 +811,7 @@ function preguntarCorte(){
 }
 function preguntarCantidad(){
   const precio=PRECIOS[pedido.corte]||0;
-  agregarMsg('bot','¡Perfecto, <strong>'+pedido.corte+'</strong>!'+(precio?'<br><small style="color:#6B6B5A">$'+precio+' / kg</small>':'')+'<br>¿Cuánto necesitas? (ej: <em>"1 kilo"</em> o <em>"500 gramos"</em>)');
+  agregarMsg('bot','¡Perfecto, <strong>'+pedido.corte+'</strong>!'+(precio?'<br><small style="color:#6B6B5A">'+formatPeso(precio)+' / kg</small>':'')+'<br>¿Cuánto necesitas? (ej: <em>"1 kilo"</em>, <em>"750 gramos"</em> o <em>"500 g"</em>)');
 }
 function preguntarDireccion(){
   agregarMsg('bot','¿A qué dirección te lo llevamos? 🛵<br><em>(Calle y colonia, ej: Magnolias 23, La Preciosa)</em>');
@@ -824,10 +835,10 @@ function preguntarPago(){
   calcularTotal();
   const precio=PRECIOS[pedido.corte]||0;
   let r='💰 <strong>Resumen de tu pedido:</strong><br>';
-  r+=pedido.corte+' — '+pedido.cantidad;
-  if(pedido.kgs>0&&precio>0)r+=' = $'+(precio*pedido.kgs).toFixed(0);
-  if(pedido.costo_env>0)r+='<br>🛵 Envío: $'+pedido.costo_env;
-  if(pedido.total>0)r+='<br><strong>Total: $'+pedido.total+'</strong>';
+  r+=pedido.corte+' — '+formatKgs(pedido.kgs);
+  if(pedido.kgs>0&&precio>0)r+=' × '+formatPeso(precio)+'/kg = <strong>'+formatPeso(precio*pedido.kgs)+'</strong>';
+  if(pedido.costo_env>0)r+='<br>🛵 Envío: '+formatPeso(pedido.costo_env);
+  if(pedido.total>0)r+='<br>─────────────<br><strong>Total: '+formatPeso(pedido.total)+'</strong>';
   r+='<br><br>¿Cómo vas a pagar?';
   agregarMsg('bot',r,['💵 Efectivo','💳 Tarjeta']);
 }
@@ -839,7 +850,7 @@ function confirmarPedido(){
     '🥩 '+pedido.corte+' — '+pedido.cantidad+'<br>'+
     '⏰ '+pedido.hora+'<br>'+entrega+'<br>'+
     '📱 '+pedido.telefono+'<br>'+
-    '💰 '+pedido.pago+(pedido.total>0?' · $'+pedido.total:'')+
+    '💰 '+pedido.pago+(pedido.total>0?' · '+formatPeso(pedido.total):'')+
     '<br><br>'+cierre+' <a href="tel:5558849504" style="color:#7B1D34;font-weight:500">55 5884 9504</a>'
   );
   setTimeout(()=>{agregarMsg('bot','¿Deseas agregar algo más?',['Sí, otro corte','No, gracias']);paso=6;},1400);
