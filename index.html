@@ -38,7 +38,7 @@ nav{
   border-bottom:2px solid var(--vino);
 }
 .nav-logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo-img{height:46px;width:46px;object-fit:contain}
+.nav-logo-img{height:46px;width:46px;object-fit:contain;background:var(--tierra);border-radius:4px}
 .nav-logo-text{font-family:var(--font-d);font-size:1.05rem;color:var(--crema);letter-spacing:.02em;line-height:1.1}
 .nav-logo-text span{display:block;font-size:10px;font-weight:400;color:var(--dorado);letter-spacing:.12em;text-transform:uppercase;font-family:var(--font-b)}
 .nav-info{display:flex;gap:1.5rem;align-items:center}
@@ -97,6 +97,8 @@ h1.hero-title em{font-style:normal;color:var(--vino)}
   width:100%;max-width:500px;
   display:flex;align-items:center;justify-content:center;
   position:relative;padding:20px 0;
+  background:var(--crema);
+  border-radius:50%;
 }
 .hero-logo-main{
   width:100%;max-width:480px;
@@ -188,7 +190,7 @@ footer{
   padding:48px 5% 32px;
   display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;flex-wrap:wrap;
 }
-.footer-logo-img{height:90px;object-fit:contain;margin-bottom:12px}
+.footer-logo-img{height:90px;object-fit:contain;margin-bottom:12px;background:var(--tierra);border-radius:8px;padding:6px}
 .footer-tagline{font-size:13px;color:rgba(245,237,216,.5);line-height:1.6;max-width:200px}
 .footer-col h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dorado);margin-bottom:14px}
 .footer-col a{display:block;font-size:13px;color:var(--crema);opacity:.65;text-decoration:none;margin-bottom:7px;transition:opacity .15s}
@@ -333,7 +335,7 @@ footer{
       </div>
     </div>
     <div class="hero-visual fade-up delay-2">
-      <div class="hero-logo-frame">
+      <div class="hero-logo-frame" style="background:var(--crema);border-radius:50%;padding:10px">
         <img src="Logo.png" alt="Carnicería La Chiquita" class="hero-logo-main">
         <div class="hero-badge">
           <span class="badge-num">+15</span>
@@ -531,7 +533,7 @@ footer{
 
 <footer>
   <div>
-    <img src="Logo.png" alt="Carnicería La Chiquita" class="footer-logo-img">
+    <img src="Logo.png" alt="Carnicería La Chiquita" class="footer-logo-img" style="background:var(--tierra);border-radius:8px;padding:4px">
     <p class="footer-tagline">Carnicería familiar en el corazón de La Preciosa, Azcapotzalco.</p>
   </div>
   <div class="footer-col">
@@ -551,13 +553,13 @@ footer{
 
 <!-- CHAT FAB con logo -->
 <button id="chat-fab" onclick="toggleChat()">
-  <img src="Logo.png" alt="Chatbot La Chiquita">
+  <img src="Logo.png" alt="Chatbot La Chiquita" style="background:var(--vino);border-radius:50%">
   <span class="fab-badge">!</span>
 </button>
 
 <div id="chat-panel">
   <div class="chat-head">
-    <div class="chat-avatar"><img src="Logo.png" alt="La Chiquita"></div>
+    <div class="chat-avatar"><img src="Logo.png" alt="La Chiquita" style="background:var(--tierra)"></div>
     <div class="chat-head-info">
       <h4>Asistente La Chiquita</h4>
       <span>En línea · Responde al instante</span>
