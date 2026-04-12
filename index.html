@@ -94,12 +94,12 @@ h1.hero-title em{font-style:normal;color:var(--vino)}
 /* HERO VISUAL */
 .hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
 .hero-logo-frame{
-  width:100%;max-width:440px;
+  width:100%;max-width:500px;
   display:flex;align-items:center;justify-content:center;
-  position:relative;
+  position:relative;padding:20px 0;
 }
 .hero-logo-main{
-  width:100%;max-width:380px;
+  width:100%;max-width:480px;
   filter:drop-shadow(0 8px 32px rgba(123,29,52,.25));
   animation:floatLogo 4s ease-in-out infinite;
 }
@@ -140,7 +140,7 @@ h1.hero-title em{font-style:normal;color:var(--vino)}
   transition:transform .18s,border-color .18s,box-shadow .18s;
 }
 .corte-card:hover{transform:translateY(-4px);border-color:var(--dorado);box-shadow:0 4px 20px rgba(200,146,42,.15)}
-.corte-img{width:100%;height:180px;background:var(--crema);display:flex;align-items:center;justify-content:center;font-size:3rem}
+.corte-img{width:100%;height:180px;background:var(--crema);overflow:hidden}.corte-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}.corte-card:hover .corte-img img{transform:scale(1.06)}
 .corte-body{padding:16px}
 .corte-nombre{font-size:16px;font-weight:500;color:var(--tierra);margin-bottom:4px}
 .corte-desc{font-size:13px;color:var(--gris);line-height:1.5;margin-bottom:12px}
@@ -301,7 +301,7 @@ footer{
 
 <nav>
   <a href="#" class="nav-logo-wrap">
-    <img src="logo.png" alt="La Chiquita" class="nav-logo-img">
+    <img src="logo.png" alt="La Chiquita" class="nav-logo-img" style="height:50px">
     <div class="nav-logo-text">
       La Chiquita
       <span>Carnicería · Azcapotzalco</span>
@@ -358,7 +358,7 @@ footer{
   <p class="section-sub">Carne fresca todos los días. Pide y recoge en tienda sin esperar.</p>
   <div class="cortes-grid">
     <div class="corte-card" onclick="pedirCorte('Bistec')">
-      <div class="corte-img">🥩</div>
+      <div class="corte-img"><img src="bistec.png" alt="Bistec" loading="lazy"></div>
       <div class="corte-body">
         <div class="corte-nombre">Bistec</div>
         <div class="corte-desc">Corte fino, ideal para asar o en caldillo. El más pedido del barrio.</div>
@@ -369,7 +369,7 @@ footer{
       </div>
     </div>
     <div class="corte-card" onclick="pedirCorte('Milanesa')">
-      <div class="corte-img">🍖</div>
+      <div class="corte-img"><img src="milanesa.png" alt="Milanesa" loading="lazy"></div>
       <div class="corte-body">
         <div class="corte-nombre">Milanesa</div>
         <div class="corte-desc">Perfectamente martajada. Para empanizar o a la plancha.</div>
@@ -380,7 +380,7 @@ footer{
       </div>
     </div>
     <div class="corte-card" onclick="pedirCorte('Arrachera')">
-      <div class="corte-img">🔥</div>
+      <div class="corte-img"><img src="arrachera.png" alt="Arrachera" loading="lazy"></div>
       <div class="corte-body">
         <div class="corte-nombre">Arrachera</div>
         <div class="corte-desc">Corte de res marinado. Perfecto para el asador del fin de semana.</div>
@@ -391,7 +391,7 @@ footer{
       </div>
     </div>
     <div class="corte-card" onclick="pedirCorte('Carne molida')">
-      <div class="corte-img">🫙</div>
+      <div class="corte-img"><img src="molida.png" alt="Carne molida" loading="lazy"></div>
       <div class="corte-body">
         <div class="corte-nombre">Carne molida</div>
         <div class="corte-desc">Molida al momento. Para albóndigas, picadillo o hamburguesas caseras.</div>
@@ -402,7 +402,7 @@ footer{
       </div>
     </div>
     <div class="corte-card" onclick="pedirCorte('Costilla')">
-      <div class="corte-img">🦴</div>
+      <div class="corte-img"><img src="costilla.png" alt="Costilla" loading="lazy"></div>
       <div class="corte-body">
         <div class="corte-nombre">Costilla</div>
         <div class="corte-desc">Res o cerdo. Para caldos, barbacoa o asado a las brasas.</div>
@@ -413,7 +413,7 @@ footer{
       </div>
     </div>
     <div class="corte-card" onclick="pedirCorte('Chorizo')">
-      <div class="corte-img">🌭</div>
+      <div class="corte-img"><img src="chorizo.png" alt="Chorizo" loading="lazy"></div>
       <div class="corte-body">
         <div class="corte-nombre">Chorizo</div>
         <div class="corte-desc">Hecho en casa con especias de la región. El favorito de los desayunos.</div>
@@ -451,6 +451,52 @@ footer{
     </div>
   </div>
 </div>
+
+
+<!-- DOMICILIO SECTION -->
+<div style="background:var(--crema);padding:72px 5%;border-top:2px solid var(--dorado);border-bottom:2px solid var(--dorado)">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+    <div>
+      <div class="section-label">¿No puedes salir?</div>
+      <h2 class="section-title">También llevamos<br>a domicilio <span style="color:var(--dorado)">🛵</span></h2>
+      <p style="font-size:15px;color:var(--gris);line-height:1.7;margin-bottom:1.75rem;max-width:420px">
+        Pide tu corte favorito y lo llevamos directo a tu puerta. Sin salir, sin fila, sin esperar.
+        Solo cuéntale al asistente que quieres envío a domicilio.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:2rem">
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--tierra)">
+          <span style="width:32px;height:32px;background:var(--vino);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;color:var(--crema)">✓</span>
+          Entregamos en La Preciosa y colonias cercanas
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--tierra)">
+          <span style="width:32px;height:32px;background:var(--vino);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;color:var(--crema)">✓</span>
+          Carne fresca empacada, lista para cocinar
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--tierra)">
+          <span style="width:32px;height:32px;background:var(--vino);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;color:var(--crema)">✓</span>
+          Te avisamos cuando salimos con tu pedido
+        </div>
+      </div>
+      <button class="btn-primary" onclick="abrirChat()">🛵 Pedir a domicilio</button>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center">
+      <div style="background:var(--tierra);border-radius:20px;padding:32px;text-align:center;border:2px solid var(--dorado);max-width:300px;width:100%">
+        <div style="font-size:4rem;margin-bottom:16px">🛵</div>
+        <div style="font-family:var(--font-d);font-size:1.4rem;color:var(--crema);margin-bottom:8px">Envío a domicilio</div>
+        <div style="font-size:13px;color:rgba(245,237,216,.6);line-height:1.6;margin-bottom:20px">
+          Disponible de Lunes a Sábado<br>8:00am – 5:00pm<br>Colonias La Preciosa y alrededores
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center;font-size:14px" onclick="abrirChat()">Pedir ahora →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+@media(max-width:768px){
+  div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
+}
+</style>
 
 <div class="resenas-section">
   <div class="resenas-inner">
@@ -621,15 +667,18 @@ function preguntarHoraNombre(){
     ['3pm','4pm','5pm','5:30pm']);
 }
 function confirmarPedido(){
-  const entrega=pedido.tipo==='domicilio'
-    ?`🛵 Entrega a: ${pedido.direccion}`
-    :`📍 Recojo en: Acamapichtli 66, La Preciosa`;
+  const entrega = pedido.tipo==='domicilio'
+    ? '🛵 Entrega a: ' + pedido.direccion
+    : '📍 Recojo en: Acamapichtli 66, La Preciosa';
+  const cierre = pedido.tipo==='domicilio'
+    ? '🛵 <strong>¡En breve salimos con tu pedido!</strong> Cualquier duda llámanos:'
+    : '¡<strong>Te esperamos</strong> con tu pedido listo! Cualquier duda:';
   agregarMsg('bot',
-    `✅ <strong>¡Pedido registrado!</strong><br><br>
-     🥩 <strong>${pedido.corte}</strong> — ${pedido.cantidad}<br>
-     ⏰ ${pedido.hora}<br>
-     ${entrega}<br><br>
-     ¡Te esperamos! Cualquier duda llámanos: <a href="tel:5558849504" style="color:var(--vino);font-weight:500">55 5884 9504</a>`
+    '✅ <strong>¡Pedido registrado!</strong><br><br>' +
+    '🥩 <strong>' + pedido.corte + '</strong> — ' + pedido.cantidad + '<br>' +
+    '⏰ ' + pedido.hora + '<br>' +
+    entrega + '<br><br>' +
+    cierre + ' <a href="tel:5558849504" style="color:var(--vino);font-weight:500">55 5884 9504</a>'
   );
   setTimeout(()=>{agregarMsg('bot','¿Quieres agregar algo más?',['Sí, otro corte','No, gracias']);paso=5;},1200);
 }
