@@ -625,9 +625,10 @@ function generarHorarios(tipo){
   // Mínimo: recojo=30min, domicilio=60min
   const minExtra=tipo==='domicilio'?60:30;
   const minutosMin=minutosAhora+minExtra;
-  // Generar slots cada 30min desde apertura hasta cierre
+  // Cierre real: domicilio hasta 5pm (para llegar antes 6pm), recojo hasta 5:30pm
+  const cierreReal=tipo==='domicilio'?17*60:17*60+30;
   const slots=[];
-  for(let m=8*60;m<HORA_CIERRE*60;m+=30){
+  for(let m=8*60;m<=cierreReal;m+=30){
     if(m>=minutosMin){
       const h=Math.floor(m/60);
       const min=m%60;
@@ -636,7 +637,7 @@ function generarHorarios(tipo){
       slots.push(h12+(min>0?':'+String(min).padStart(2,'0'):'')+ampm);
     }
   }
-  return slots.slice(0,5); // máximo 5 opciones
+  return slots; // todos los slots válidos hasta cierre
 }
 
 function parsearKgs(txt){
@@ -661,7 +662,7 @@ function iniciarCierre(){
   const msgs=document.getElementById('chat-msgs');
   const div=document.createElement('div');
   div.className='msg bot';div.id='cierre-msg';
-  div.innerHTML='<div class="bubble" style="color:var(--gris);font-size:12px">El chat se cerrará en <strong id="countdown">'+secs+'</strong>s. Toca el botón para hacer otro pedido.</div>';
+  div.innerHTML='<div class="bubble" style="color:var(--gris);font-size:12px">El chat se cerrará en <strong id="countdown">'+secs+'</strong>s. Si deseas hacer otro pedido, toca el ícono 🥩 en la esquina inferior derecha.</div>';
   msgs.appendChild(div);
   msgs.scrollTop=msgs.scrollHeight;
   const interval=setInterval(()=>{
