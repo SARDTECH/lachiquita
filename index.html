@@ -87,8 +87,20 @@
       display: block;
       transition: transform .25s;
       flex-shrink: 0;
+      /* Bringhurst/Krug: texto negro baked-in → forzar lectura con hue+brightness
+         Mantiene el dorado del medallón pero sube el contraste del texto oscuro */
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.5));
     }
     .nav-badge:hover { transform: scale(1.08) rotate(-3deg); }
+
+    /* ── Frost/Duckett: modifier semántico — caption ancha para slides de proceso ── */
+    .slide-caption--wide {
+      max-width: 400px;
+      padding: var(--u3) var(--u4);
+    }
+    .slide-caption--wide .slide-tag { font-size: .75rem; margin-bottom: var(--u); }
+    .slide-caption--wide p { font-size: 1.05rem; line-height: 1.6; }
+    .slide-caption--wide p strong { font-size: 1.25rem; margin-bottom: 4px; }
     .nav-links { display: flex; gap: var(--u4); align-items: center; }
     .nav-links a {
       font-size: .85rem; font-weight: 600; letter-spacing: .08em;
@@ -498,10 +510,10 @@
       </div>
     </div>
 
-    <!-- Slide 2: Corte de res — Artesanía y proceso (Krug: muestra, no expliques) -->
+    <!-- Slide 2: Maciza de res — Krug: impacto visual directo, Wathan: caption amplia -->
     <div class="slide">
-      <img src="slide-corte-res.jpeg" alt="Corte de res al momento" loading="lazy" />
-      <div class="slide-caption">
+      <img src="slide-maciza-res.jpeg" alt="Maciza de res premium – La Chiquita" loading="lazy" />
+      <div class="slide-caption slide-caption--wide">
         <span class="slide-tag">// Tu pedido</span>
         <p><strong>Cortamos al momento.<br/>Sin esperas.</strong></p>
       </div>
