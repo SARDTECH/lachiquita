@@ -213,7 +213,7 @@
       transition: opacity .6s ease;
     }
     .hero-badge-anos strong { display: block; font-size: 1.4rem; font-family: var(--ff-titulo); }
- 
+
     /* ── BADGE 100% CONFIABLE ── */
     .badge-confiable {
       position: absolute;
@@ -231,7 +231,7 @@
       to   { opacity:1; transform: scale(1) rotate(0deg); }
     }
     @media (max-width: 900px) { .badge-confiable { display: none; } }
- 
+
     @media (max-width: 900px) { .hero-badge-anos { display: none; } }
     section { padding: var(--u10) 5vw; }
     .sec-label {
@@ -308,7 +308,7 @@
     .contacto-btns { display: flex; gap: var(--u2); justify-content: center; flex-wrap: wrap; }
     footer { background: var(--carbon); color: rgba(255,255,255,.5); text-align: center; padding: var(--u4) 5vw; font-size: .8rem; border-top: 1px solid rgba(255,255,255,.08); }
     footer strong { color: var(--oro); }
- 
+
     /* ── CHIKI FLOTANTE BANNER ── */
     #chiki-banner {
       position: fixed; bottom: 24px; right: 20px; z-index: 9000;
@@ -334,7 +334,7 @@
     .chiki-card:hover { transform: translateY(-3px); }
     .chiki-card img { width: 100%; display: block; }
     @media (max-width: 768px) { .chiki-card { width: clamp(220px, 78vw, 300px); } }
- 
+
     /* ── HERO SLIDER ── */
     .hero-imagen { position: relative; overflow: hidden; }
     .slide {
@@ -358,7 +358,8 @@
       letter-spacing: .18em; text-transform: uppercase;
       color: var(--oro); margin-bottom: 4px;
     }
-    .slide-caption p { font-size: .85rem; color: rgba(255,255,255,.9); line-height: 1.5; margin: 0; }
+    .slide-caption p { font-size: .9rem; color: rgba(255,255,255,.95); line-height: 1.5; margin: 0; }
+    .slide-caption p strong { display: block; font-size: 1rem; color: #fff; font-weight: 700; }
     .slide-prev, .slide-next {
       position: absolute; top: 50%; transform: translateY(-50%);
       z-index: 4; background: rgba(26,10,0,.5); color: var(--blanco);
@@ -380,7 +381,7 @@
       border: none; transition: background .3s, transform .3s;
     }
     .dot.active { background: var(--oro); transform: scale(1.3); }
- 
+
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .hero-imagen { min-height: 320px; }
@@ -429,14 +430,14 @@
   </style>
 </head>
 <body>
- 
+
 <div id="tel-bar">
   📞&nbsp;
   <a href="tel:+525512345678" onclick="trackWA('tel_bar_mobile','llamada')">
     55 1234 5678 &nbsp;·&nbsp; Llámanos
   </a>
 </div>
- 
+
 <nav>
   <div class="nav-izq">
     <a href="#inicio">
@@ -465,7 +466,7 @@
     </li>
   </ul>
 </nav>
- 
+
 <section class="hero" id="inicio">
   <div class="hero-texto">
     <p class="hero-eyebrow">Carnicería La Chiquita · CDMX</p>
@@ -482,46 +483,48 @@
     </div>
   </div>
   <div class="hero-imagen" id="heroSlider">
-    <!-- Slide 1: Raúl -->
+
+    <!-- Slide 0: Raúl — solo badge, sin caption (Krug: un mensaje, cero ruido) -->
     <div class="slide active">
       <img src="Heroe_3.jpeg" alt="Raúl Ayala Jr. – Carnicería La Chiquita" loading="eager" />
-      <div class="slide-caption">
-        <span class="slide-tag">// El Carnicero</span>
-        <p>Raúl Ayala Jr.<br/>20+ años de trayectoria</p>
-      </div>
     </div>
-    <!-- Slide 2: Vitrina -->
+
+    <!-- Slide 1: Provolone — Exclusividad como diferenciador (Wathan: color + peso) -->
     <div class="slide">
-      <img src="vitrina.jpg" alt="Vitrina Carnicería La Chiquita" loading="lazy" />
+      <img src="Especialidades_2_Queso_Provolone.jpeg" alt="Queso Provolone Ahumado" loading="lazy" />
       <div class="slide-caption">
-        <span class="slide-tag">// Nuestro Local</span>
-        <p>Cortes frescos<br/>cada día</p>
+        <span class="slide-tag">// Solo en La Chiquita</span>
+        <p><strong>Lo que nadie<br/>más tiene.</strong></p>
       </div>
     </div>
-    <!-- Slide 3: Arrachera -->
+
+    <!-- Slide 2: Corte de res — Artesanía y proceso (Krug: muestra, no expliques) -->
     <div class="slide">
-      <img src="Arrachera.jpg" alt="Cortes de res" loading="lazy" />
+      <img src="slide-corte-res.jpeg" alt="Corte de res al momento" loading="lazy" />
       <div class="slide-caption">
-        <span class="slide-tag">// Carne de Res</span>
-        <p>Caña de filete, bistec,<br/>costilla y más</p>
+        <span class="slide-tag">// Tu pedido</span>
+        <p><strong>Cortamos al momento.<br/>Sin esperas.</strong></p>
       </div>
     </div>
-    <!-- Slide 4: Pechuga -->
+
+    <!-- Slide 3: Lomo de cerdo — Frescura como prueba social (Marketing: beneficio directo) -->
     <div class="slide">
-      <img src="Pechuga.jpg" alt="Pollo fresco" loading="lazy" />
+      <img src="slide-cerdo-lomo.jpeg" alt="Lomo de cerdo premium" loading="lazy" />
       <div class="slide-caption">
-        <span class="slide-tag">// Pollo Fresco</span>
-        <p>7 presentaciones<br/>seleccionadas</p>
+        <span class="slide-tag">// Cerdo premium</span>
+        <p><strong>Fresco cada mañana.<br/>Selección diaria.</strong></p>
       </div>
     </div>
-    <!-- Slide 5: Especialidades -->
+
+    <!-- Slide 4: Variedad cerdo — Abundancia y variedad (Wathan: número concreto = confianza) -->
     <div class="slide">
-      <img src="Especialidades_4_Chimichurri.jpeg" alt="Especialidades" loading="lazy" />
+      <img src="slide-cerdo-variedad.jpeg" alt="Variedad cortes cerdo" loading="lazy" />
       <div class="slide-caption">
-        <span class="slide-tag">// Especialidades</span>
-        <p>Chimichurri artesanal<br/>y productos únicos</p>
+        <span class="slide-tag">// Variedad completa</span>
+        <p><strong>10 cortes de cerdo.<br/>Uno para cada ocasión.</strong></p>
       </div>
     </div>
+
     <!-- Controles -->
     <button class="slide-prev" onclick="moverSlide(-1)" aria-label="Anterior">&#8249;</button>
     <button class="slide-next" onclick="moverSlide(1)" aria-label="Siguiente">&#8250;</button>
@@ -529,7 +532,7 @@
     <div class="hero-badge-anos"><strong>20+</strong> años sirviendo<br />a tu familia</div>
   </div>
 </section>
- 
+
 <section id="productos">
   <p class="sec-label fade-in">// Nuestros Cortes</p>
   <h2 class="sec-titulo fade-in">Calidad en cada<br />categoría</h2>
@@ -641,7 +644,7 @@
     </div>
   </div>
 </section>
- 
+
 <section id="nosotros">
   <div class="nosotros-img-wrap fade-in">
     <img src="Proceso.jpg" alt="Proceso de corte en Carnicería La Chiquita" loading="lazy" style="object-position:center;" />
@@ -659,7 +662,7 @@
     </ul>
   </div>
 </section>
- 
+
 <section id="galeria">
   <p class="sec-label fade-in">// Nuestro Local</p>
   <h2 class="sec-titulo fade-in">La vitrina que<br />lo dice todo</h2>
@@ -668,7 +671,7 @@
     <img src="vitrina.jpg" alt="Vitrina de Carnicería La Chiquita" loading="lazy" />
   </div>
 </section>
- 
+
 <section id="contacto">
   <p class="sec-label" style="color:rgba(255,255,255,.7);">Contáctanos</p>
   <h2 class="sec-titulo">¿Listo para tu pedido?</h2>
@@ -703,7 +706,7 @@
     <a href="tel:+525512345678" class="btn-llamar" onclick="trackWA('cta_llamar','llamada_directa')">📞 Llamar</a>
   </div>
 </section>
- 
+
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
@@ -728,7 +731,7 @@
     <span>Sitio desarrollado por <strong>SARD TECH</strong></span>
   </div>
 </footer>
- 
+
 <!-- CHIKI BANNER FLOTANTE -->
 <div id="chiki-banner">
   <button class="chiki-cerrar" onclick="cerrarChiki()" aria-label="Cerrar">✕</button>
@@ -739,7 +742,7 @@
     <img src="chiki-whatsapp.png" alt="Chiki – ¿Necesitas ayuda?" />
   </a>
 </div>
- 
+
 <script>
   function toggleNav() { document.getElementById('navLinks').classList.toggle('abierto'); }
   document.querySelectorAll('#navLinks a').forEach(a =>
@@ -751,7 +754,7 @@
     document.getElementById('tab-' + id).classList.add('activo');
     btn.classList.add('activo');
   }
- 
+
   /* ── HERO SLIDER ── */
   const slides = document.querySelectorAll('.slide');
   const dotsWrap = document.getElementById('slideDots');
@@ -775,7 +778,7 @@
   function moverSlide(dir) { clearInterval(autoPlay); irASlide(current + dir); iniciarAuto(); }
   function iniciarAuto() { autoPlay = setInterval(() => irASlide(current + 1), 4500); }
   iniciarAuto();
- 
+
   function cerrarChiki() {
     document.getElementById('chiki-banner').classList.add('oculto');
     sessionStorage.setItem('chiki_cerrado', '1');
