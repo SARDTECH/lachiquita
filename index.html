@@ -76,14 +76,14 @@
       backdrop-filter: blur(10px);
       border-bottom: 2px solid var(--oro);
     }
-    .nav-logo { height: 52px; width: auto; filter: brightness(1.1); }
-    .nav-izq { display: flex; align-items: center; gap: var(--u2); }
+    .nav-logo { height: 85px; width: auto; filter: brightness(1.1); }
+    .nav-izq { display: flex; align-items: center; gap: var(--u3); }
     .nav-badge-wrap {
       display: flex;
       align-items: center;
     }
     .nav-badge {
-      height: 46px; width: auto;
+      height: 75px; width: auto;
       display: block;
       transition: transform .25s;
       flex-shrink: 0;
@@ -209,6 +209,8 @@
       background: var(--rojo); color: var(--blanco);
       padding: var(--u2) var(--u3); border-radius: var(--r-sm);
       font-size: .82rem; font-weight: 600; line-height: 1.4; box-shadow: var(--s-md);
+      opacity: 1;
+      transition: opacity .6s ease;
     }
     .hero-badge-anos strong { display: block; font-size: 1.4rem; font-family: var(--ff-titulo); }
  
@@ -325,12 +327,11 @@
     .chiki-card {
       display: block; text-decoration: none;
       width: clamp(260px, 28vw, 380px);
-      border-radius: 60px; overflow: hidden;
-      background: #fff;
-      box-shadow: 0 8px 32px rgba(0,0,0,.2);
-      transition: transform .25s, box-shadow .25s;
+      background-color: transparent;
+      box-shadow: none;
+      transition: transform .25s;
     }
-    .chiki-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(37,211,102,.3); }
+    .chiki-card:hover { transform: translateY(-3px); }
     .chiki-card img { width: 100%; display: block; }
     @media (max-width: 768px) { .chiki-card { width: clamp(220px, 78vw, 300px); } }
  
@@ -738,14 +739,6 @@
     <img src="chiki-whatsapp.png" alt="Chiki – ¿Necesitas ayuda?" />
   </a>
 </div>
-      <div class="chiki-pill-btn">Chiki está aquí<br>para ayudarte</div>
-    </div>
-    <!-- Chiki derecha -->
-    <div class="chiki-mascota-wrap">
-      <img src="chiki-solo.png" alt="Chiki" />
-    </div>
-  </a>
-</div>
  
 <script>
   function toggleNav() { document.getElementById('navLinks').classList.toggle('abierto'); }
@@ -775,6 +768,9 @@
     current = (n + slides.length) % slides.length;
     slides[current].classList.add('active');
     document.querySelectorAll('.dot')[current].classList.add('active');
+    // Badge "20+ años" solo visible en slide 0 (Raúl)
+    const badge = document.querySelector('.hero-badge-anos');
+    if (badge) badge.style.opacity = current === 0 ? '1' : '0';
   }
   function moverSlide(dir) { clearInterval(autoPlay); irASlide(current + dir); iniciarAuto(); }
   function iniciarAuto() { autoPlay = setInterval(() => irASlide(current + 1), 4500); }
