@@ -77,6 +77,18 @@
       border-bottom: 2px solid var(--oro);
     }
     .nav-logo { height: 52px; width: auto; filter: brightness(1.1); }
+    .nav-izq { display: flex; align-items: center; gap: var(--u2); }
+    .nav-badge-wrap {
+      display: flex;
+      align-items: center;
+    }
+    .nav-badge {
+      height: 46px; width: auto;
+      display: block;
+      transition: transform .25s;
+      flex-shrink: 0;
+    }
+    .nav-badge:hover { transform: scale(1.08) rotate(-3deg); }
     .nav-links { display: flex; gap: var(--u4); align-items: center; }
     .nav-links a {
       font-size: .85rem; font-weight: 600; letter-spacing: .08em;
@@ -199,7 +211,7 @@
       font-size: .82rem; font-weight: 600; line-height: 1.4; box-shadow: var(--s-md);
     }
     .hero-badge-anos strong { display: block; font-size: 1.4rem; font-family: var(--ff-titulo); }
-
+ 
     /* ── BADGE 100% CONFIABLE ── */
     .badge-confiable {
       position: absolute;
@@ -217,7 +229,7 @@
       to   { opacity:1; transform: scale(1) rotate(0deg); }
     }
     @media (max-width: 900px) { .badge-confiable { display: none; } }
-
+ 
     @media (max-width: 900px) { .hero-badge-anos { display: none; } }
     section { padding: var(--u10) 5vw; }
     .sec-label {
@@ -294,56 +306,86 @@
     .contacto-btns { display: flex; gap: var(--u2); justify-content: center; flex-wrap: wrap; }
     footer { background: var(--carbon); color: rgba(255,255,255,.5); text-align: center; padding: var(--u4) 5vw; font-size: .8rem; border-top: 1px solid rgba(255,255,255,.08); }
     footer strong { color: var(--oro); }
-
-    /* ── CHIKI FLOTANTE ── */
-    #wa-flotante {
-      position: fixed;
-      bottom: var(--u3);
-      right: var(--u3);
-      z-index: 9000;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      text-decoration: none;
+ 
+    /* ── CHIKI FLOTANTE BANNER ── */
+    #chiki-banner {
+      position: fixed; bottom: 24px; right: 20px; z-index: 9000;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+      transition: opacity .3s, transform .3s;
     }
-    .chiki-burbuja {
-      background: #25D366;
-      color: #fff;
-      font-family: var(--ff-cuerpo);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 7px 14px;
-      border-radius: 20px 20px 4px 20px;
-      white-space: nowrap;
-      box-shadow: 0 3px 12px rgba(37,211,102,.4);
-      animation: flotaBurbuja 2.5s ease-in-out infinite;
+    #chiki-banner.oculto { opacity: 0; pointer-events: none; transform: translateY(20px); }
+    .chiki-cerrar {
+      width: 30px; height: 30px; background: #222; color: #fff; border: none;
+      border-radius: 50%; font-size: 13px; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s; align-self: flex-end;
+      box-shadow: 0 2px 8px rgba(0,0,0,.3);
     }
-    #wa-flotante:hover .chiki-burbuja { animation: none; }
-    @keyframes flotaBurbuja {
-      0%,100%{ transform: translateY(0); }
-      50%    { transform: translateY(-5px); }
+    .chiki-cerrar:hover { background: var(--rojo); }
+    .chiki-card {
+      display: block; text-decoration: none;
+      width: clamp(260px, 28vw, 380px);
+      border-radius: 60px; overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,.2);
+      transition: transform .25s, box-shadow .25s;
     }
-    .chiki-img {
-      width: clamp(72px, 9vw, 100px);
-      filter: drop-shadow(0 4px 14px rgba(0,0,0,.3));
-      transition: transform .25s;
-      display: block;
+    .chiki-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(37,211,102,.3); }
+    .chiki-card img { width: 100%; display: block; }
+    @media (max-width: 768px) { .chiki-card { width: clamp(220px, 78vw, 300px); } }
+ 
+    /* ── HERO SLIDER ── */
+    .hero-imagen { position: relative; overflow: hidden; }
+    .slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity .8s ease;
+      pointer-events: none;
     }
-    #wa-flotante:hover .chiki-img { transform: scale(1.1) translateY(-4px); }
-
-    @keyframes wa-pulso {
-      0%   { box-shadow: 0 0 0 0 rgba(37,211,102,.55), var(--s-lg); }
-      70%  { box-shadow: 0 0 0 16px rgba(37,211,102,0), var(--s-lg); }
-      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0), var(--s-lg); }
+    .slide.active { opacity: 1; position: relative; pointer-events: auto; }
+    .slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top; display: block;
     }
+    .slide-caption {
+      position: absolute; bottom: 80px; left: var(--u3); z-index: 3;
+      background: rgba(26,10,0,.65); backdrop-filter: blur(6px);
+      padding: var(--u2) var(--u3); border-radius: var(--r-sm);
+      border-left: 3px solid var(--oro); max-width: 220px;
+    }
+    .slide-tag {
+      display: block; font-size: .68rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--oro); margin-bottom: 4px;
+    }
+    .slide-caption p { font-size: .85rem; color: rgba(255,255,255,.9); line-height: 1.5; margin: 0; }
+    .slide-prev, .slide-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 4; background: rgba(26,10,0,.5); color: var(--blanco);
+      border: none; width: 40px; height: 40px; border-radius: 50%;
+      font-size: 22px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s; backdrop-filter: blur(4px);
+    }
+    .slide-prev { left: var(--u2); }
+    .slide-next { right: var(--u2); }
+    .slide-prev:hover, .slide-next:hover { background: var(--rojo); }
+    .slide-dots {
+      position: absolute; bottom: var(--u3); left: 50%; transform: translateX(-50%);
+      z-index: 4; display: flex; gap: 7px;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.4); cursor: pointer;
+      border: none; transition: background .3s, transform .3s;
+    }
+    .dot.active { background: var(--oro); transform: scale(1.3); }
+ 
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .hero-imagen { min-height: 320px; }
       #nosotros { grid-template-columns: 1fr; }
       .cat-panel { grid-template-columns: 1fr; gap: var(--u4); }
       .cortes-grid { grid-template-columns: 1fr; }
-      #wa-flotante { bottom: var(--u2); right: var(--u2); }
     }
     @media (max-width: 560px) {
       .tab-btn { padding: var(--u) var(--u2); font-size: .82rem; }
@@ -386,18 +428,23 @@
   </style>
 </head>
 <body>
-
+ 
 <div id="tel-bar">
   📞&nbsp;
   <a href="tel:+525512345678" onclick="trackWA('tel_bar_mobile','llamada')">
     55 1234 5678 &nbsp;·&nbsp; Llámanos
   </a>
 </div>
-
+ 
 <nav>
-  <a href="#inicio">
-    <img src="Logo.png" alt="Carnicería La Chiquita" class="nav-logo" />
-  </a>
+  <div class="nav-izq">
+    <a href="#inicio">
+      <img src="Logo.png" alt="Carnicería La Chiquita" class="nav-logo" />
+    </a>
+    <div class="nav-badge-wrap">
+      <img src="badge-confiable.png" alt="100% Confiable – Libre de Clembuterol" class="nav-badge" />
+    </div>
+  </div>
   <button class="nav-hamburger" onclick="toggleNav()" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
@@ -417,10 +464,9 @@
     </li>
   </ul>
 </nav>
-
+ 
 <section class="hero" id="inicio">
   <div class="hero-texto">
-    <img src="Logo.png" alt="Carnicería La Chiquita" class="hero-logo" />
     <p class="hero-eyebrow">Carnicería La Chiquita · CDMX</p>
     <h1 class="hero-titulo">Carne <em>fresca</em><br />con el sabor<br />de siempre</h1>
     <p class="hero-sub">Cortes seleccionados a mano, atención personalizada y la confianza de años cuidando la mesa de tu familia.</p>
@@ -434,14 +480,55 @@
       <a href="#productos" class="btn-primario">Ver Productos</a>
     </div>
   </div>
-  <div class="hero-imagen">
-    <img src="Heroe_3.jpeg" alt="Raúl Ayala Jr. – Carnicería La Chiquita" class="hero-foto" loading="eager" />
-    <!-- Badge: 100% Confiable Libre de Clembuterol -->
-    <img src="badge-confiable.png" alt="100% Confiable – Libre de Clembuterol" class="badge-confiable" />
+  <div class="hero-imagen" id="heroSlider">
+    <!-- Slide 1: Raúl -->
+    <div class="slide active">
+      <img src="Heroe_3.jpeg" alt="Raúl Ayala Jr. – Carnicería La Chiquita" loading="eager" />
+      <div class="slide-caption">
+        <span class="slide-tag">// El Carnicero</span>
+        <p>Raúl Ayala Jr.<br/>20+ años de trayectoria</p>
+      </div>
+    </div>
+    <!-- Slide 2: Vitrina -->
+    <div class="slide">
+      <img src="vitrina.jpg" alt="Vitrina Carnicería La Chiquita" loading="lazy" />
+      <div class="slide-caption">
+        <span class="slide-tag">// Nuestro Local</span>
+        <p>Cortes frescos<br/>cada día</p>
+      </div>
+    </div>
+    <!-- Slide 3: Arrachera -->
+    <div class="slide">
+      <img src="Arrachera.jpg" alt="Cortes de res" loading="lazy" />
+      <div class="slide-caption">
+        <span class="slide-tag">// Carne de Res</span>
+        <p>Caña de filete, bistec,<br/>costilla y más</p>
+      </div>
+    </div>
+    <!-- Slide 4: Pechuga -->
+    <div class="slide">
+      <img src="Pechuga.jpg" alt="Pollo fresco" loading="lazy" />
+      <div class="slide-caption">
+        <span class="slide-tag">// Pollo Fresco</span>
+        <p>7 presentaciones<br/>seleccionadas</p>
+      </div>
+    </div>
+    <!-- Slide 5: Especialidades -->
+    <div class="slide">
+      <img src="Especialidades_4_Chimichurri.jpeg" alt="Especialidades" loading="lazy" />
+      <div class="slide-caption">
+        <span class="slide-tag">// Especialidades</span>
+        <p>Chimichurri artesanal<br/>y productos únicos</p>
+      </div>
+    </div>
+    <!-- Controles -->
+    <button class="slide-prev" onclick="moverSlide(-1)" aria-label="Anterior">&#8249;</button>
+    <button class="slide-next" onclick="moverSlide(1)" aria-label="Siguiente">&#8250;</button>
+    <div class="slide-dots" id="slideDots"></div>
     <div class="hero-badge-anos"><strong>20+</strong> años sirviendo<br />a tu familia</div>
   </div>
 </section>
-
+ 
 <section id="productos">
   <p class="sec-label fade-in">// Nuestros Cortes</p>
   <h2 class="sec-titulo fade-in">Calidad en cada<br />categoría</h2>
@@ -553,7 +640,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section id="nosotros">
   <div class="nosotros-img-wrap fade-in">
     <img src="Proceso.jpg" alt="Proceso de corte en Carnicería La Chiquita" loading="lazy" style="object-position:center;" />
@@ -571,7 +658,7 @@
     </ul>
   </div>
 </section>
-
+ 
 <section id="galeria">
   <p class="sec-label fade-in">// Nuestro Local</p>
   <h2 class="sec-titulo fade-in">La vitrina que<br />lo dice todo</h2>
@@ -580,7 +667,7 @@
     <img src="vitrina.jpg" alt="Vitrina de Carnicería La Chiquita" loading="lazy" />
   </div>
 </section>
-
+ 
 <section id="contacto">
   <p class="sec-label" style="color:rgba(255,255,255,.7);">Contáctanos</p>
   <h2 class="sec-titulo">¿Listo para tu pedido?</h2>
@@ -615,7 +702,7 @@
     <a href="tel:+525512345678" class="btn-llamar" onclick="trackWA('cta_llamar','llamada_directa')">📞 Llamar</a>
   </div>
 </section>
-
+ 
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
@@ -640,17 +727,26 @@
     <span>Sitio desarrollado por <strong>SARD TECH</strong></span>
   </div>
 </footer>
-
-<!-- CHIKI FLOTANTE — reemplaza el botón WA genérico -->
-<a id="wa-flotante"
-   href="https://wa.me/525663973037?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
-   target="_blank" rel="noopener noreferrer"
-   onclick="trackWA('flotante_chiki','pedido_general')"
-   title="¡Chiki está aquí para ayudarte!">
-  <div class="chiki-burbuja">💬 ¡Pide con Chiki!</div>
-  <img src="chiki-whatsapp.png" alt="Chiki – Asistente La Chiquita" class="chiki-img" />
-</a>
-
+ 
+<!-- CHIKI BANNER FLOTANTE -->
+<div id="chiki-banner">
+  <button class="chiki-cerrar" onclick="cerrarChiki()" aria-label="Cerrar">✕</button>
+  <a class="chiki-card"
+     href="https://wa.me/525663973037?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
+     target="_blank" rel="noopener noreferrer"
+     onclick="trackWA('chiki_banner','pedido_general')">
+    <img src="chiki-whatsapp.png" alt="Chiki – ¿Necesitas ayuda?" />
+  </a>
+</div>
+      <div class="chiki-pill-btn">Chiki está aquí<br>para ayudarte</div>
+    </div>
+    <!-- Chiki derecha -->
+    <div class="chiki-mascota-wrap">
+      <img src="chiki-solo.png" alt="Chiki" />
+    </div>
+  </a>
+</div>
+ 
 <script>
   function toggleNav() { document.getElementById('navLinks').classList.toggle('abierto'); }
   document.querySelectorAll('#navLinks a').forEach(a =>
@@ -661,6 +757,35 @@
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activo'));
     document.getElementById('tab-' + id).classList.add('activo');
     btn.classList.add('activo');
+  }
+ 
+  /* ── HERO SLIDER ── */
+  const slides = document.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('slideDots');
+  let current = 0, autoPlay;
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => irASlide(i);
+    dotsWrap.appendChild(dot);
+  });
+  function irASlide(n) {
+    slides[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+  }
+  function moverSlide(dir) { clearInterval(autoPlay); irASlide(current + dir); iniciarAuto(); }
+  function iniciarAuto() { autoPlay = setInterval(() => irASlide(current + 1), 4500); }
+  iniciarAuto();
+ 
+  function cerrarChiki() {
+    document.getElementById('chiki-banner').classList.add('oculto');
+    sessionStorage.setItem('chiki_cerrado', '1');
+  }
+  if (sessionStorage.getItem('chiki_cerrado')) {
+    document.getElementById('chiki-banner').classList.add('oculto');
   }
   const obs = new IntersectionObserver(entries =>
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
