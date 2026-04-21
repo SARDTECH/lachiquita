@@ -78,19 +78,15 @@
     }
     .nav-logo { height: 100px; width: auto; }
     .nav-izq { display: flex; align-items: center; }
-    .nav-badge-wrap { display: none; } /* Frost: badge → hero, no nav */
+    .nav-badge-wrap { display: none; }
     .nav-badge {
       height: 75px; width: auto;
       display: block;
       transition: transform .25s;
       flex-shrink: 0;
-      /* Bringhurst/Krug: texto negro baked-in → forzar lectura con hue+brightness
-         Mantiene el dorado del medallón pero sube el contraste del texto oscuro */
       filter: drop-shadow(0 2px 6px rgba(0,0,0,.5));
     }
     .nav-badge:hover { transform: scale(1.08) rotate(-3deg); }
-
-    /* ── Frost/Duckett: modifier semántico — caption ancha para slides de proceso ── */
     .slide-caption--wide {
       max-width: 400px;
       padding: var(--u3) var(--u4);
@@ -112,7 +108,7 @@
     .nav-links a:hover::after { width: 100%; }
     .nav-tel { color: var(--oro) !important; font-weight: 700 !important; white-space: nowrap; }
     .nav-tel::after { display: none !important; }
-    .nav-cta { display: none; } /* Krug: solo 1 CTA verde visible → FAB */
+    .nav-cta { display: none; }
     .nav-hamburger {
       display: none; flex-direction: column; gap: 5px;
       background: none; border: none; cursor: pointer; padding: 6px;
@@ -173,19 +169,7 @@
       max-width: 420px; margin-bottom: var(--u5);
     }
     .hero-botones { display: flex; gap: var(--u2); flex-wrap: wrap; }
-    .btn-wa-hero { display: none; } /* Krug: solo FAB verde */ .btn-wa-hero-DISABLED {
-      display: inline-flex; align-items: center; gap: var(--u);
-      background: var(--wa); color: var(--blanco);
-      padding: var(--u2) var(--u5); border-radius: var(--r-pill);
-      font-weight: 700; font-size: 1rem;
-      box-shadow: 0 0 0 4px rgba(37,211,102,.25), var(--s-md);
-      transition: transform var(--t), box-shadow var(--t);
-    }
-    .btn-wa-hero:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 0 7px rgba(37,211,102,.2), var(--s-lg);
-    }
-    .btn-wa-hero svg { width: 20px; height: 20px; fill: white; flex-shrink: 0; }
+    .btn-wa-hero { display: none; }
     .btn-primario {
       display: inline-flex; align-items: center; gap: var(--u);
       background: var(--rojo); color: var(--blanco);
@@ -216,8 +200,6 @@
       transition: opacity .6s ease;
     }
     .hero-badge-anos strong { display: block; font-size: 1.4rem; font-family: var(--ff-titulo); }
-
-    /* ── BADGE 100% CONFIABLE ── */
     .badge-confiable {
       position: absolute;
       top: var(--u3);
@@ -234,7 +216,6 @@
       to   { opacity:1; transform: scale(1) rotate(0deg); }
     }
     @media (max-width: 900px) { .badge-confiable { display: none; } }
-
     @media (max-width: 900px) { .hero-badge-anos { display: none; } }
     section { padding: var(--u10) 5vw; }
     .sec-label {
@@ -313,81 +294,28 @@
     footer strong { color: var(--oro); }
 
     /* ══════════════════════════════════════════════════════
-       FAB — Único punto de contacto (Krug + Maeda: un CTA, cero ruido)
+       FAB — Botón directo WhatsApp (sin menú expandible)
     ══════════════════════════════════════════════════════ */
     #fab-container {
       position: fixed;
       bottom: 28px;
       right: 24px;
       z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 10px;
     }
-    /* ── Opciones del menú ── */
-    .fab-menu {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-      transition: opacity .3s ease, transform .3s ease;
-    }
-    .fab-menu.oculto {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(16px);
-    }
-    .fab-option {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 20px;
-      border-radius: 50px;
-      font-family: var(--ff-cuerpo);
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
-      box-shadow: 0 4px 20px rgba(0,0,0,.2);
-      transition: transform .2s, box-shadow .2s;
-      letter-spacing: .02em;
-    }
-    .fab-option:hover {
-      transform: translateX(-5px);
-      box-shadow: 0 6px 24px rgba(0,0,0,.3);
-    }
-    /* Opción 1 — WhatsApp: verde oscuro secundario */
-    .fab-option--wa {
-      background: #145c30;
-      color: #ffffff;
-    }
-    .fab-option--wa:hover { background: #1c7a3f; }
-    /* Opción 2 — Pedido: carbón secundario */
-    .fab-option--pedido {
-      background: #2a2a2a;
-      color: #ffffff;
-    }
-    .fab-option--pedido:hover { background: #3a3a3a; }
-    .fab-option svg {
-      width: 18px; height: 18px;
-      fill: currentColor;
-      flex-shrink: 0;
-    }
-    /* ── Trigger circular ── */
+    /* ── Trigger circular directo a WA ── */
     .fab-trigger {
       width: 64px;
       height: 64px;
       border-radius: 50%;
       border: 3px solid var(--oro);
       background: var(--rojo);
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 6px 28px rgba(155,28,28,.45);
       transition: background .25s, transform .25s, box-shadow .25s;
       animation: fabPulso 3s ease-in-out infinite;
+      text-decoration: none;
     }
     .fab-trigger:hover {
       background: var(--rojo-claro);
@@ -395,55 +323,14 @@
       animation: none;
       box-shadow: 0 8px 32px rgba(155,28,28,.55);
     }
-    .fab-trigger.activo {
-      background: var(--carbon);
-      border-color: rgba(255,255,255,.3);
-      animation: none;
-    }
     .fab-trigger svg { width: 28px; height: 28px; fill: #fff; flex-shrink: 0; }
-    /* Icono X cuando está abierto */
-    .fab-trigger .icon-open  { display: flex; }
-    .fab-trigger .icon-close { display: none; }
-    .fab-trigger.activo .icon-open  { display: none; }
-    .fab-trigger.activo .icon-close { display: flex; }
     @keyframes fabPulso {
       0%,100% { box-shadow: 0 6px 28px rgba(155,28,28,.45), 0 0 0 0 rgba(155,28,28,.35); }
       60%      { box-shadow: 0 6px 28px rgba(155,28,28,.45), 0 0 0 14px rgba(155,28,28,0); }
     }
-    /* ── Chiki Banner — anuncios/promos (Frost: componente distinto al FAB) ── */
-    #chiki-banner {
-      position: fixed;
-      bottom: 100px;
-      right: 24px;
-      z-index: 8999;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      transition: opacity .4s, transform .4s;
-    }
-    #chiki-banner.oculto { opacity: 0; pointer-events: none; transform: translateY(16px); }
-    .chiki-cerrar {
-      width: 26px; height: 26px; background: rgba(0,0,0,.6);
-      color: #fff; border: none; border-radius: 50%;
-      font-size: 12px; font-weight: 700; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .2s; align-self: flex-end;
-    }
-    .chiki-cerrar:hover { background: var(--rojo); }
-    .chiki-card {
-      display: block; text-decoration: none;
-      width: clamp(200px, 22vw, 280px);
-      background-color: transparent; box-shadow: none;
-      transition: transform .25s;
-    }
-    .chiki-card:hover { transform: translateY(-3px); }
-    .chiki-card img { width: 100%; display: block; }
-    @media (max-width: 768px) { .chiki-card { width: clamp(180px, 65vw, 240px); } }
     @media (max-width: 480px) {
       #fab-container  { bottom: 20px; right: 16px; }
       .fab-trigger    { width: 56px; height: 56px; }
-      .fab-option     { font-size: 13px; padding: 10px 16px; }
     }
 
     /* ── HERO SLIDER ── */
@@ -538,19 +425,6 @@
     }
     .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
-    /* ── Link discreto — Krug: no grita, invita ── */
-    .link-discreto {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .85rem; font-weight: 600;
-      color: var(--oro); text-decoration: none;
-      border-bottom: 1px solid rgba(200,146,42,.35);
-      padding-bottom: 2px;
-      transition: color .2s, border-color .2s;
-      letter-spacing: .03em;
-    }
-    .link-discreto:hover { color: var(--dorado-light,#e0b040); border-color: var(--oro); }
-    .link-discreto::after { content: '→'; font-size: .8em; }
-    /* ── Badge en Hero — Frost: prueba social en context correcto ── */
     .hero-badge-social {
       display: flex; align-items: center; gap: 12px;
       margin-top: var(--u3); padding-top: var(--u3);
@@ -565,6 +439,37 @@
       line-height: 1.5; max-width: 180px;
     }
     .hero-badge-social strong { color: var(--oro); display: block; font-size: .88rem; }
+
+    /* ── Chiki Banner ── */
+    #chiki-banner {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      z-index: 8999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      transition: opacity .4s, transform .4s;
+    }
+    #chiki-banner.oculto { opacity: 0; pointer-events: none; transform: translateY(16px); }
+    .chiki-cerrar {
+      width: 26px; height: 26px; background: rgba(0,0,0,.6);
+      color: #fff; border: none; border-radius: 50%;
+      font-size: 12px; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s; align-self: flex-end;
+    }
+    .chiki-cerrar:hover { background: var(--rojo); }
+    .chiki-card {
+      display: block; text-decoration: none;
+      width: clamp(200px, 22vw, 280px);
+      background-color: transparent; box-shadow: none;
+      transition: transform .25s;
+    }
+    .chiki-card:hover { transform: translateY(-3px); }
+    .chiki-card img { width: 100%; display: block; }
+    @media (max-width: 768px) { .chiki-card { width: clamp(180px, 65vw, 240px); } }
   </style>
 </head>
 <body>
@@ -603,7 +508,6 @@
     <div class="hero-botones">
       <a href="#productos" class="btn-primario">Explorar Catálogo</a>
     </div>
-    <!-- Prueba social en contexto (Frost: badge fuera del nav) -->
     <div class="hero-badge-social">
       <img src="badge-confiable.png" alt="100% Libre de Clembuterol" />
       <span><strong>Carne certificada</strong>100% Libre de Clembuterol · Calidad garantizada</span>
@@ -611,12 +515,10 @@
   </div>
   <div class="hero-imagen" id="heroSlider">
 
-    <!-- Slide 0: Raúl — solo badge, sin caption (Krug: un mensaje, cero ruido) -->
     <div class="slide active">
       <img src="Heroe_3.jpeg" alt="Raúl Ayala Jr. – Carnicería La Chiquita" loading="eager" />
     </div>
 
-    <!-- Slide 1: Provolone — Exclusividad como diferenciador (Wathan: color + peso) -->
     <div class="slide">
       <img src="Especialidades_2_Queso_Provolone.jpeg" alt="Queso Provolone Ahumado" loading="lazy" />
       <div class="slide-caption">
@@ -625,7 +527,6 @@
       </div>
     </div>
 
-    <!-- Slide 2: Maciza de res — Krug: impacto visual directo, Wathan: caption amplia -->
     <div class="slide">
       <img src="slide-maciza-res.jpeg" alt="Maciza de res premium – La Chiquita" loading="lazy" />
       <div class="slide-caption slide-caption--wide">
@@ -634,7 +535,6 @@
       </div>
     </div>
 
-    <!-- Slide 3: Lomo de cerdo — Frescura como prueba social (Marketing: beneficio directo) -->
     <div class="slide">
       <img src="slide-cerdo-lomo.jpeg" alt="Lomo de cerdo premium" loading="lazy" />
       <div class="slide-caption">
@@ -643,7 +543,6 @@
       </div>
     </div>
 
-    <!-- Slide 4: Variedad cerdo — Abundancia y variedad (Wathan: número concreto = confianza) -->
     <div class="slide">
       <img src="slide-cerdo-variedad.jpeg" alt="Variedad cortes cerdo" loading="lazy" />
       <div class="slide-caption">
@@ -652,7 +551,6 @@
       </div>
     </div>
 
-    <!-- Controles -->
     <button class="slide-prev" onclick="moverSlide(-1)" aria-label="Anterior">&#8249;</button>
     <button class="slide-next" onclick="moverSlide(1)" aria-label="Siguiente">&#8250;</button>
     <div class="slide-dots" id="slideDots"></div>
@@ -683,7 +581,6 @@
           <div class="corte-item">Maciza</div><div class="corte-item">Molida</div>
           <div class="corte-item">Retazo</div>
         </div>
-        <a href="#fab-container" class="link-discreto" onclick="toggleFAB()">Consultar disponibilidad de este corte</a>
       </div>
     </div>
   </div>
@@ -699,7 +596,6 @@
           <div class="corte-item">Alas</div><div class="corte-item">Huacal con Alas</div>
           <div class="corte-item">Retazo</div>
         </div>
-        <a href="#fab-container" class="link-discreto" onclick="toggleFAB()">Consultar disponibilidad de este corte</a>
       </div>
     </div>
   </div>
@@ -716,7 +612,6 @@
           <div class="corte-item">Espinazo</div><div class="corte-item">Codillo</div>
           <div class="corte-item">Manitas</div><div class="corte-item">Cabeza</div>
         </div>
-        <a href="#fab-container" class="link-discreto" onclick="toggleFAB()">Consultar disponibilidad de este corte</a>
       </div>
     </div>
   </div>
@@ -732,7 +627,6 @@
           <div class="corte-item">Posta de Bagre</div><div class="corte-item">Camarón</div>
           <div class="corte-item">Pulpo</div>
         </div>
-        <a href="#fab-container" class="link-discreto" onclick="toggleFAB()">Consultar disponibilidad de este corte</a>
       </div>
     </div>
   </div>
@@ -751,7 +645,6 @@
         <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">
           Preparaciones artesanales y productos únicos que no encontrarás en otro lado.
         </p>
-        <a href="#fab-container" class="link-discreto" onclick="toggleFAB()">Preguntar por este producto</a>
       </div>
     </div>
   </div>
@@ -845,55 +738,30 @@
 </footer>
 
 <!-- ══════════════════════════════════════════
-     FAB — Único punto de contacto (Krug: un CTA)
-     Colores secundarios para no competir con marca
+     FAB — Botón directo a WhatsApp (un clic, sin menú)
 ════════════════════════════════════════════ -->
 <div id="fab-container">
+  <a class="fab-trigger"
+     href="https://wa.me/525663973037?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Chatear por WhatsApp"
+     onclick="trackWA('fab_wa','pedido_general')">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+</div>
 
-  <!-- Menú expandible -->
-  <div class="fab-menu oculto" id="fabMenu" role="menu" aria-label="Opciones de contacto">
-
-    <!-- Opción 1: WhatsApp -->
-    <a class="fab-option fab-option--wa"
-       href="https://wa.me/525663973037?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
-       target="_blank" rel="noopener noreferrer"
-       role="menuitem"
-       onclick="trackWA('fab_wa','pedido_general'); fabRegistrarClick();">
-      <!-- WA icon SVG -->
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      Chatear por WhatsApp
-    </a>
-
-    <!-- Opción 2: Pedido -->
-    <a class="fab-option fab-option--pedido"
-       href="#bot"
-       role="menuitem"
-       onclick="cerrarFAB();">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7 4V2H5v2H3a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1V5a1 1 0 00-1-1h-2V2h-2v2H7zm-2 2h10v1H5V6zm0 3h10v8H5V9zm2 2v2h2v-2H7zm4 0v2h2v-2h-2z"/>
-      </svg>
-      Hacer mi pedido
-    </a>
-
-  </div>
-
-  <!-- Trigger circular con icono dinámico -->
-  <button class="fab-trigger" id="fabTrigger"
-          onclick="toggleFAB()"
-          aria-label="Abrir menú de contacto"
-          aria-expanded="false">
-    <!-- Ícono WA (estado cerrado) -->
-    <span class="icon-open">
-      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </span>
-    <!-- Ícono X (estado abierto) -->
-    <span class="icon-close">
-      <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
-    </span>
-  </button>
-
+<!-- ── CHIKI BANNER ── -->
+<div id="chiki-banner" class="oculto">
+  <button class="chiki-cerrar" onclick="cerrarChikiBanner()" aria-label="Cerrar banner">✕</button>
+  <a class="chiki-card"
+     href="https://wa.me/525663973037?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
+     target="_blank" rel="noopener noreferrer"
+     onclick="trackWA('chiki_banner','pedido_general')">
+    <img src="chiki-whatsapp.png" alt="Chiki – ¿Necesitas ayuda?" />
+  </a>
 </div>
 
 <script>
@@ -924,7 +792,6 @@
     current = (n + slides.length) % slides.length;
     slides[current].classList.add('active');
     document.querySelectorAll('.dot')[current].classList.add('active');
-    // Badge "20+ años" solo visible en slide 0 (Raúl)
     const badge = document.querySelector('.hero-badge-anos');
     if (badge) badge.style.opacity = current === 0 ? '1' : '0';
   }
@@ -932,67 +799,14 @@
   function iniciarAuto() { autoPlay = setInterval(() => irASlide(current + 1), 4500); }
   iniciarAuto();
 
-  /* ══════════════════════════════════════════════════════
-     FAB — Único punto de contacto flotante
-     Gothelf: medir conversión | Merodio: 24h cooldown
-  ══════════════════════════════════════════════════════ */
-  const CAMPANA_ID = 'lachiquita_v1'; // ← cambiar para nueva campaña
-
-  function toggleFAB() {
-    const menu    = document.getElementById('fabMenu');
-    const trigger = document.getElementById('fabTrigger');
-    const estaAbierto = !menu.classList.contains('oculto');
-    menu.classList.toggle('oculto', estaAbierto);
-    trigger.classList.toggle('activo', !estaAbierto);
-    trigger.setAttribute('aria-expanded', String(!estaAbierto));
-  }
-
-  function cerrarFAB() {
-    const menu    = document.getElementById('fabMenu');
-    const trigger = document.getElementById('fabTrigger');
-    if (!menu || !trigger) return;
-    menu.classList.add('oculto');
-    trigger.classList.remove('activo');
-    trigger.setAttribute('aria-expanded', 'false');
-  }
-
-  // Registrar clic real en acción WA — no volver a auto-abrir hasta nueva campaña
-  function fabRegistrarClick() {
-    localStorage.setItem('fab_clic_campana', CAMPANA_ID);
-    cerrarFAB();
-  }
-
-  // Cerrar al hacer clic fuera del FAB
-  document.addEventListener('click', function(e) {
-    const fab = document.getElementById('fab-container');
-    if (fab && !fab.contains(e.target)) cerrarFAB();
-  });
-
-  // Auto-open inicial (solo si no hizo clic en campaña actual)
-  // El FAB trigger SIEMPRE es visible — solo el menú se auto-abre una vez
-  (function() {
-    const clicCampana = localStorage.getItem('fab_clic_campana');
-    if (clicCampana === CAMPANA_ID) return; // ya interactuó → no auto-abrir
-    // Abrir el menú 3s después de cargar para llamar la atención
-    setTimeout(() => {
-      const menu    = document.getElementById('fabMenu');
-      const trigger = document.getElementById('fabTrigger');
-      if (menu && trigger) {
-        menu.classList.remove('oculto');
-        trigger.classList.add('activo');
-        trigger.setAttribute('aria-expanded', 'true');
-        // Auto-cerrar después de 6s si el usuario no interactúa
-        setTimeout(() => cerrarFAB(), 6000);
-      }
-    }, 3000);
-  })();
+  /* ── Fade-in observer ── */
   const obs = new IntersectionObserver(entries =>
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
     { threshold: 0.12 }
   );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  /* ── Chiki Banner — sessionStorage (reaparece cada sesión) ── */
+  /* ── Chiki Banner ── */
   function cerrarChikiBanner() {
     const banner = document.getElementById('chiki-banner');
     if (banner) {
@@ -1000,28 +814,16 @@
       sessionStorage.setItem('chiki_banner_cerrado', '1');
     }
   }
-  // Mostrar solo si no fue cerrado en esta sesión
   (function() {
     const banner = document.getElementById('chiki-banner');
     if (!banner) return;
     if (sessionStorage.getItem('chiki_banner_cerrado')) {
       banner.classList.add('oculto');
     } else {
-      // Mostrar con delay de 5s para no competir con el FAB
       setTimeout(() => banner.classList.remove('oculto'), 5000);
     }
   })();
 </script>
-<!-- ── CHIKI BANNER — Anuncios/Promos (sessionStorage) ── -->
-<div id="chiki-banner" class="oculto">
-  <button class="chiki-cerrar" onclick="cerrarChikiBanner()" aria-label="Cerrar banner">✕</button>
-  <a class="chiki-card"
-     href="https://wa.me/525663973037?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
-     target="_blank" rel="noopener noreferrer"
-     onclick="trackWA('chiki_banner','pedido_general')">
-    <img src="chiki-whatsapp.png" alt="Chiki – ¿Necesitas ayuda?" />
-  </a>
-</div>
 
 </body>
 </html>
