@@ -754,22 +754,15 @@
   );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  /* ── Chiki Banner — aparece a los 2s, sessionStorage para no repetir ── */
+  /* ── Chiki Banner — aparece a los 3s siempre ── */
   function cerrarChikiBanner() {
     const banner = document.getElementById('chiki-banner');
-    if (banner) {
-      banner.classList.add('oculto');
-      sessionStorage.setItem('chiki_banner_cerrado', '1');
-    }
+    if (banner) banner.classList.add('oculto');
   }
   (function() {
     const banner = document.getElementById('chiki-banner');
     if (!banner) return;
-    if (sessionStorage.getItem('chiki_banner_cerrado')) {
-      banner.classList.add('oculto');
-    } else {
-      setTimeout(() => banner.classList.remove('oculto'), 2000);
-    }
+    setTimeout(() => banner.classList.remove('oculto'), 3000);
   })();
 </script>
 
