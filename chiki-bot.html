@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chiki Beta – Carnicería La Chiquita</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --rojo:#9B1C1C; --rojo-osc:#6B0F0F; --rojo-claro:#C42B2B;
+  --oro:#C9973C; --crema:#FDF6EE; --crema-osc:#F0E4D2;
+  --carbon:#1A0A00; --gris:#5A4A42; --gris-s:#8A7A72;
+  --blanco:#FFFFFF; --wa:#25D366;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--crema);min-height:100vh;display:flex;flex-direction:column;max-width:480px;margin:0 auto;box-shadow:0 0 40px rgba(0,0,0,.12)}
+.header{background:var(--carbon);border-bottom:2px solid var(--oro);padding:12px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100}
+.h-avatar{width:42px;height:42px;border-radius:50%;border:2px solid var(--oro);background:transparent;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.h-info h1{font-family:'Playfair Display',serif;font-size:15px;color:var(--blanco)}
+.h-info p{font-size:10px;color:var(--oro);letter-spacing:.06em;margin-top:1px}
+.h-badge{margin-left:auto;background:rgba(201,151,60,.15);border:1px solid rgba(201,151,60,.35);color:var(--oro);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:20px}
+.fb-bar{background:#FFFBF0;border-bottom:1px solid #EDD990;padding:6px 16px;display:flex;align-items:center;gap:8px;font-size:11px;color:#7A5A00}
+.fb-bar strong{font-weight:600}
+.fb-btn{margin-left:auto;background:var(--oro);color:#fff;border:none;border-radius:10px;padding:3px 10px;font-size:10px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.chat{flex:1;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:10px}
+.msg{display:flex;gap:8px;animation:up .25s ease}
+@keyframes up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg-bot{align-items:flex-start}
+.msg-user{flex-direction:row-reverse}
+.m-av{width:30px;height:30px;border-radius:50%;background:transparent;border:1.5px solid var(--oro);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:2px;overflow:hidden}
+.bubble{max-width:80%;padding:9px 13px;border-radius:16px;font-size:13.5px;line-height:1.6}
+.msg-bot .bubble{background:var(--blanco);color:var(--carbon);border:1px solid var(--crema-osc);border-top-left-radius:4px;box-shadow:0 1px 3px rgba(26,10,0,.07)}
+.msg-user .bubble{background:var(--rojo);color:#fff;border-top-right-radius:4px}
+.bubble b{font-weight:600}
+.bubble ul{padding-left:15px;margin:5px 0}
+.bubble li{margin:2px 0}
+.typing{display:flex;gap:4px;align-items:center;padding:10px 13px}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--gris-s);animation:b .85s infinite}
+.typing span:nth-child(2){animation-delay:.14s}
+.typing span:nth-child(3){animation-delay:.28s}
+@keyframes b{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.qr-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:4px 12px 8px}
+.qr{background:var(--blanco);border:1.5px solid var(--rojo);color:var(--rojo);border-radius:18px;padding:5px 13px;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif}
+.qr:hover{background:var(--rojo);color:#fff}
+.wa-link{display:flex;align-items:center;gap:9px;background:#E8F9EF;border:1px solid #A8DFC0;border-radius:10px;padding:9px 13px;margin-top:6px;text-decoration:none}
+.wa-link span{font-size:12px;color:#1A5C35;font-weight:500}
+.wa-ico{width:20px;height:20px;fill:var(--wa);flex-shrink:0}
+.inp-area{background:var(--blanco);border-top:1.5px solid var(--crema-osc);padding:10px 12px;display:flex;gap:8px;align-items:flex-end;position:sticky;bottom:0}
+.inp-wrap{flex:1;background:var(--crema);border:1.5px solid var(--crema-osc);border-radius:18px;padding:7px 13px;display:flex;align-items:center}
+.inp-wrap:focus-within{border-color:var(--rojo)}
+textarea{flex:1;background:transparent;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--carbon);resize:none;max-height:80px;line-height:1.5}
+textarea::placeholder{color:#C0ADA6}
+.send{width:38px;height:38px;border-radius:50%;background:var(--rojo);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,transform .15s}
+.send:hover{background:var(--rojo-claro)}
+.send:active{transform:scale(.92)}
+.send:disabled{background:#D0B8B0;cursor:not-allowed}
+.send svg{width:17px;height:17px;fill:#fff}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:16px;padding:22px;max-width:360px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal h3{font-family:'Playfair Display',serif;font-size:17px;color:var(--carbon);margin-bottom:5px}
+.modal p{font-size:12px;color:var(--gris);margin-bottom:14px;line-height:1.6}
+.modal textarea{width:100%;border:1.5px solid var(--crema-osc);border-radius:10px;padding:9px 13px;font-size:13px;height:90px;color:var(--carbon);background:var(--crema);margin-bottom:10px;resize:none;font-family:'DM Sans',sans-serif}
+.modal textarea:focus{border-color:var(--rojo);outline:none}
+.m-btns{display:flex;gap:8px;justify-content:flex-end}
+.m-cancel{background:none;border:1.5px solid var(--crema-osc);color:var(--gris);padding:7px 16px;border-radius:18px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px}
+.m-send{background:var(--rojo);border:none;color:#fff;padding:7px 18px;border-radius:18px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600}
+.ok-wrap{text-align:center;padding:8px 0}
+.ok-wrap .icon{font-size:32px;margin-bottom:8px}
+.ok-wrap h4{color:var(--rojo);font-family:'Playfair Display',serif;font-size:15px;margin-bottom:5px}
+.ok-wrap p{font-size:12px;color:var(--gris)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="h-avatar"><img src="Chiki_bot.png" alt="Chiki" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div>
+  <div class="h-info">
+    <h1>Chiki · La Chiquita</h1>
+    <p>Asistente virtual · Beta v1.0</p>
+  </div>
+  <span class="h-badge">BETA</span>
+</div>
+
+<div class="fb-bar">
+  <strong>Raúl:</strong> ¿Falta algo o está mal?
+  <button class="fb-btn" onclick="abrirFB()">Dar retroalimentación</button>
+</div>
+
+<div class="chat" id="chat"></div>
+<div class="qr-wrap" id="qrs"></div>
+
+<div class="inp-area">
+  <div class="inp-wrap">
+    <textarea id="inp" placeholder="Escribe aquí..." rows="1"
+      onkeydown="onKey(event)" oninput="resize(this)"></textarea>
+  </div>
+  <button class="send" id="sendBtn" onclick="send()">
+    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+  </button>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal" id="modal">
+    <h3>Retroalimentación para Abraham</h3>
+    <p>Raúl, cuéntale qué le falta, qué está mal o qué le agregarías a Chiki.</p>
+    <textarea id="fbText" placeholder="Ej: Falta el precio de... / El bot no sabe sobre... / Me gustaría que..."></textarea>
+    <div class="m-btns">
+      <button class="m-cancel" onclick="cerrarFB()">Cancelar</button>
+      <button class="m-send" onclick="enviarFB()">Enviar a Abraham</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const WA = "525558849504";
+const history = [];
+let busy = false;
+
+const SYSTEM = `Eres Chiki, asistente de Carnicería La Chiquita (Acamapichtli 66, Col. La Preciosa, Azcapotzalco, CDMX). Hablas español mexicano natural y directo.
+
+TOLERANCIA A ERRORES ORTOGRÁFICOS: Los clientes escriben como hablan. Debes reconocer variaciones, errores tipográficos y formas coloquiales. Ejemplos:
+- "aumada" / "ahumda" / "umada" → Chuleta Ahumada o Tocino Ahumado
+- "arrachera" / "arrachera" / "arracha" → Arrachera Marinada
+- "bisteck" / "bistek" / "bistec" / "bisteak" → Bistec
+- "chambarete" / "chanbarete" / "chamberete" → Chambarete
+- "espinazo" / "espinaso" / "espinaso" → Espinazo
+- "chicharron" / "chicharrón" / "chicharón" → Chicharrón
+- "longanisa" / "longanisa" / "longaniza" → Longaniza
+- "chistorra" / "chistora" / "xistorra" → Chistorra
+- "arrachera" / "arracha" → Arrachera
+- "cecina" / "cesina" / "sezina" → Cecina
+- "maciza" / "masiza" / "macisa" → Maciza
+- "molida" / "moida" / "molda" → Molida
+- "pechuga" / "pexuga" / "pachuga" → Pechuga
+- "salmon" / "salmón" / "salmons" → Salmón
+- "tilapia" / "tilapea" / "tilaipa" → Tilapia
+Si el cliente escribe algo que suena parecido a un producto, asume que es ese producto y confirma: "¿Te refieres a [PRODUCTO]?"
+
+PRINCIPIOS DE DISEÑO QUE DEBES SEGUIR:
+- Ve al grano. Sin introducción, sin "¡Con gusto te ayudo!". Responde directo.
+- Máximo 3-4 opciones a la vez. Nunca abrumes con listas largas.
+- Guía al cliente paso a paso: primero el producto, luego el corte, luego el uso, luego la cantidad.
+- Categoriza al usuario: si pide mucho → puede ser restaurante/evento, pregunta.
+- Si no está en el catálogo → di exactamente: "Eso no lo manejo todavía, pregúntale a Raúl directo por WhatsApp."
+- NUNCA inventes precios, productos o información. Solo usa lo del catálogo.
+- Cuando tengas todo el pedido, resúmelo claramente y di que le avisarán por WhatsApp para confirmarlo.
+
+HORARIOS: Lun-Sáb 7am-6pm · Dom 8am-6pm
+TEL: 55 5884 9504
+
+═══ CATÁLOGO ═══
+
+RES (precio/kg):
+• Bistec $250 — delgado/grueso/aplanado/picado — asar/empanizar/encebollado/tacos/guisado — de bola, aguayón o magro
+• Puntas de Filete $250 — trozos/fajitas/enteras — guisado/mexicana/albañil/brochetas — limpias sin nervio
+• Costilla para Asar $260 — gruesa/tablita/tira/rack — asar/parrilla — con grasa o magra
+• Falda para Deshebrar $250 — trozos/entera — deshebrar/salpicón/ropa vieja/barbacoa
+• Maciza $250 — cubos/trozos/entera — caldo/guisado/estofado — cero grasa
+• Molida $210 — normal/doble molienda — hamburguesas/albóndigas/picadillo — comercial, magra o mixta c/cerdo
+• Retazo $185 — trozos pequeños/medianos — caldo/puchero — con hueso cargado
+• Chambarete c/Hueso $190 — grueso/rodajas/trozos — caldo/cocido/mole de olla — con tuétano
+• Chambarete Macizo $250 — cubos/trozos/entero — guisado/entomatado/estofado
+• Aguja Norteña $195 — grueso tipo steak/delgado/mariposa — asar/parrilla — con o sin hueso, marmoleada
+• Arrachera Marinada $250 — entera/picada/fajitas — asar/parrillada/tacos — ya marinada y tenderizada
+
+CERDO (precio/kg):
+• Espaldilla $130 — trozos/entera/rebanadas — carnitas/guisado/adobo/asado de boda — jugosa con grasita
+• Bistec cerdo $130 — aplanado/grueso/tiritas/picado — empanizar/freír/tacos/encebollado
+• Maciza cerdo $130 — cubos/trozos/entera — pozole/carnitas/cochinita/deshebrar — sin hueso ni grasa
+• Molida cerdo $130 — normal/doble — picadillo/albóndigas/relleno — sola o mixta c/res
+• Pulpa $130 — trozos/entera/picada — salsa verde/adobo/tamales — magra
+• Cabeza de Lomo $140 — bistec/entera/fileteada/trozos — asador/hornear/carnitas — marmoleada
+• Espinazo $120 — trozos regulares/pequeños — pozole/mole de olla/verdolagas — carnudo
+• Manitas $65 — mitades/cuartos/enteras — encurtir/tostadas/pozole — bien limpias, crudas o cocidas
+• Codillo $75 — rodajas/entero — frijoles charros/hornear/chamorro
+• Cabeza cerdo $65 — media/entera/deshuesada/trozos — pozole/tacos de cabeza/carnitas
+• Costilla con Falda $140 — en tira/trozos — salsa verde/freír/carbón — cargada con carne
+• Lomo c/Hueso $140 — chuletas gruesas o delgadas/rack/trozo — freír/asador/hornear
+• Caña de Lomo $150 — entera/abierta/medallones/mechada — rellenar/hornear/jerez — totalmente limpia
+• Longaniza $130/kg — por kilo o metro — freír/tacos/huevo — oreada
+• Chorizo $140/kg — bolitas o a granel — freír/fundido/frijoles
+• Chorizo Argentino $185/kg — pieza o kilo — asador/choripán — fresco
+• Chistorra $140/kg — espiral/trocitos — parrilla/botana/queso fundido
+• Tocino $168/kg — rebanado delgado o grueso/trozo — desayuno/envolver — ahumado
+• Chuleta Ahumada $130/kg — normal o gruesa — freír/desayuno/hawaiana
+• Chicharrón Prensado $130/kg — trozo o desmenuzado — gorditas/quesadillas/guisado
+• Chicharrón Esponjado $240/kg — pedazos grandes o molido — botana/tacos/salsa verde
+• Chicharrón Carnudo $260/kg — tiras o trozos — botana/gorditas — piel crujiente, carne suave
+• Manteca $60/kg — kilo o a granel — tamales/freír/frijoles
+• Cecina Enchilada $150/kg — rebanada delgada o picada — asar/freír/tacos — estilo Yecapixtla
+
+POLLO (precio/kg):
+• Pechuga $120 — aplanada milanesa/fajitas/cubos/entera/mitades — empanizar/deshebrar/asar/caldo/alambre — sin piel, con piel, muy delgadita, molida
+• Pierna y Muslo $55 — unidos cuarto/separados/deshuesado muslo/aplanado — mole/freír/caldo/mixiote/carbón — sin piel, con piel, con cortaditas para adobo
+
+PESCADO:
+• Tilapia $85/kg
+• Salmón $160 por paquete de 400g
+
+ESPECIALIDADES (precios próximamente):
+Chimichurri artesanal, Queso Provolone, Arrachera Marinada, Chorizo Argentino, Cecina, Chistorra, Hamburguesas, Jamón
+→ Para precios: pregúntale a Raúl por WhatsApp
+
+FLUJO DE PEDIDO:
+1. Saluda y pregunta qué busca (máx 4 opciones de categoría)
+2. Identifica el producto
+3. Pregunta el corte/presentación (máx 4 opciones)
+4. Pregunta el uso/platillo si aplica
+5. Pregunta la cantidad en kg
+6. Pregunta: ¿Recoges en tienda o necesitas entrega a domicilio?
+   - RECOGER EN TIENDA: Confirma dirección: Acamapichtli 66, Col. La Preciosa, Azcapotzalco. Pregunta a qué hora pasa.
+   - ENTREGA A DOMICILIO: Pregunta su colonia. 
+     * Si es en Azcapotzalco → confirmar pedido y decir que Raúl le contacta para coordinar entrega y pago.
+     * Si NO es en Azcapotzalco → responde exactamente: "Por el momento solo hacemos entregas dentro de Azcapotzalco. ¿Puedes pasar a recoger a nuestra tienda en Acamapichtli 66, Col. La Preciosa?"
+7. Resumen final del pedido completo (producto, corte, cantidad, modalidad, hora o colonia)
+8. Indica que confirmarán por WhatsApp al 55 5884 9504`;
+
+function addMsg(role, html, showWA = false) {
+  const chat = document.getElementById('chat');
+  const d = document.createElement('div');
+  d.className = `msg msg-${role}`;
+  if (role === 'bot') {
+    d.innerHTML = `<div class="m-av"><img src="Chiki_bot.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div><div class="bubble">${html}${showWA ? waBtn() : ''}</div>`;
+  } else {
+    d.innerHTML = `<div class="bubble">${html}</div>`;
+  }
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function waBtn(msg = "Hola, quiero confirmar mi pedido en La Chiquita") {
+  return `<a class="wa-link" href="https://wa.me/${WA}?text=${encodeURIComponent(msg)}" target="_blank">
+    <svg class="wa-ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>Confirmar con Raúl por WhatsApp →</span>
+  </a>`;
+}
+
+function setQRs(opts) {
+  const wrap = document.getElementById('qrs');
+  wrap.innerHTML = '';
+  opts.forEach(o => {
+    const b = document.createElement('button');
+    b.className = 'qr';
+    b.textContent = o;
+    b.onclick = () => { sendText(o); };
+    wrap.appendChild(b);
+  });
+}
+
+function showTyping() {
+  const chat = document.getElementById('chat');
+  const d = document.createElement('div');
+  d.className = 'msg msg-bot'; d.id = 'typing';
+  d.innerHTML = `<div class="m-av"><img src="Chiki_bot.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div><div class="bubble typing"><span></span><span></span><span></span></div>`;
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+function parseReply(text) {
+  return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+             .replace(/\*(.*?)\*/g, '<b>$1</b>')
+             .replace(/\n/g, '<br>');
+}
+
+async function callChiki(userMsg) {
+  history.push({ role: "user", content: userMsg });
+  showTyping();
+  document.getElementById('sendBtn').disabled = true;
+  busy = true;
+
+  try {
+    const res = await fetch("https://sardtech-bot.onrender.com/chiki", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: history })
+    });
+    const data = await res.json();
+    const reply = data.reply || "Algo salió mal. Intenta de nuevo.";
+    history.push({ role: "assistant", content: reply });
+
+    removeTyping();
+
+    const needsWA = reply.toLowerCase().includes('whatsapp') ||
+                    reply.toLowerCase().includes('confirmar') ||
+                    reply.toLowerCase().includes('55 5884');
+
+    addMsg('bot', parseReply(reply), false);
+
+    if (needsWA) {
+      const lastBubble = document.querySelector('#chat .msg-bot:last-child .bubble');
+      if (lastBubble) lastBubble.insertAdjacentHTML('beforeend', waBtn());
+    }
+
+    suggestQRs(reply);
+  } catch(e) {
+    removeTyping();
+    addMsg('bot', 'Hubo un error de conexión. Intenta de nuevo. 🔌');
+  }
+
+  document.getElementById('sendBtn').disabled = false;
+  busy = false;
+}
+
+function suggestQRs(reply) {
+  const r = reply.toLowerCase();
+  if (r.includes('recoges') || r.includes('entrega') || r.includes('domicilio') || r.includes('tienda')) {
+    setQRs(['🏪 Recoger en tienda', '🛵 Entrega a domicilio']);
+  } else if (r.includes('colonia') || r.includes('azcapotzalco') || r.includes('dónde') || r.includes('donde vives')) {
+    setQRs(['Col. La Preciosa', 'Col. Coltongo', 'Col. San Álvaro', 'Otra colonia']);
+  } else if (r.includes('hora') || r.includes('qué hora') || r.includes('cuando')) {
+    setQRs(['En la mañana', 'Al mediodía', 'En la tarde', 'Lo confirmo después']);
+  } else if (r.includes('res') || r.includes('cerdo') || r.includes('pollo') || r.includes('pescado')) {
+    setQRs(['🥩 Res', '🐷 Cerdo', '🐔 Pollo', '🐟 Pescado']);
+  } else if (r.includes('bistec') || r.includes('corte') || r.includes('cómo') || r.includes('como')) {
+    setQRs(['Delgado', 'Grueso', 'Aplanado', 'Picado']);
+  } else if (r.includes('cuánto') || r.includes('cantidad') || r.includes('kg')) {
+    setQRs(['½ kg', '1 kg', '2 kg', '3 kg o más']);
+  } else if (r.includes('asar') || r.includes('uso') || r.includes('platillo') || r.includes('prepara')) {
+    setQRs(['Para asar', 'Para guisado', 'Para caldo', 'Para tacos']);
+  } else {
+    setQRs(['🥩 Res', '🐷 Cerdo', '🐔 Pollo', '🐟 Pescado']);
+  }
+}
+
+async function sendText(text) {
+  if (busy) return;
+  document.getElementById('qrs').innerHTML = '';
+  addMsg('user', text);
+  await callChiki(text);
+}
+
+async function send() {
+  const inp = document.getElementById('inp');
+  const text = inp.value.trim();
+  if (!text || busy) return;
+  inp.value = '';
+  inp.style.height = 'auto';
+  await sendText(text);
+}
+
+function onKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+}
+
+function resize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 80) + 'px';
+}
+
+function abrirFB() {
+  document.getElementById('overlay').classList.add('open');
+}
+
+function cerrarFB() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('fbText').value = '';
+  document.getElementById('modal').innerHTML = `
+    <h3>Retroalimentación para Abraham</h3>
+    <p>Raúl, cuéntale qué le falta, qué está mal o qué le agregarías a Chiki.</p>
+    <textarea id="fbText" placeholder="Ej: Falta el precio de... / El bot no sabe sobre... / Me gustaría que..."></textarea>
+    <div class="m-btns">
+      <button class="m-cancel" onclick="cerrarFB()">Cancelar</button>
+      <button class="m-send" onclick="enviarFB()">Enviar a Abraham</button>
+    </div>`;
+}
+
+function enviarFB() {
+  const txt = document.getElementById('fbText').value.trim();
+  if (!txt) return;
+  const msg = `Hola Abraham, retroalimentación de Chiki Bot:\n\n${txt}`;
+  const url = `https://wa.me/525663973037?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+  document.getElementById('modal').innerHTML = `
+    <div class="ok-wrap">
+      <div class="icon">✅</div>
+      <h4>¡Listo, Raúl!</h4>
+      <p>Tu mensaje va directo a Abraham por WhatsApp. Gracias por mejorar a Chiki.</p>
+      <button class="m-send" style="margin-top:14px" onclick="cerrarFB()">Cerrar</button>
+    </div>`;
+}
+
+window.onload = () => {
+  const chat = document.getElementById('chat');
+  const d = document.createElement('div');
+  d.className = 'msg msg-bot';
+  d.style.animation = 'up .25s ease';
+  d.innerHTML = `<div class="m-av"><img src="Chiki_bot.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div>
+    <div class="bubble">
+      <b>¡Hola! Soy Chiki, tu asistente de Carnicería La Chiquita.</b> 🤖<br><br>
+      Estoy aquí para ayudarte a <b>hacer tu pedido</b>. 🥩<br><br>
+      ¿Qué carne necesitas hoy?
+    </div>`;
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+  setQRs(['🥩 Res', '🐷 Cerdo', '🐔 Pollo', '🐟 Pescado']);
+};
+</script>
+</body>
+</html>
