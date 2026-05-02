@@ -5,422 +5,145 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carnicería La Chiquita | Carne Fresca de Calidad – CDMX</title>
   <meta name="description" content="Carnicería La Chiquita: res, cerdo, aves y especialidades. Carne fresca, cortes premium y atención de confianza en cada pedido." />
-
-  <!-- HTTPS redirect GitHub Pages -->
   <script>
     if (location.protocol === 'http:' && location.hostname !== 'localhost')
       location.replace('https:' + location.href.substring(5));
   </script>
-
-  <!-- ══════════════════════════════════════════
-       GOTHELF #2 — Google Analytics 4
-       ⚠️ Reemplaza G-39BNLY89VD con tu Measurement ID real
-       Obtenerlo: analytics.google.com → Admin → Data Streams
-  ══════════════════════════════════════════ -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-39BNLY89VD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-39BNLY89VD');
-
-    /* Función global: trackea cada click de WhatsApp por origen */
     function trackWA(medio, campana) {
-      gtag('event', 'whatsapp_click', {
-        event_category: 'conversion',
-        event_label: medio,
-        value: 1,
-        campaign: campana
-      });
+      gtag('event', 'whatsapp_click', { event_category: 'conversion', event_label: medio, value: 1, campaign: campana });
     }
   </script>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
   <style>
-    /* ══════════════════════════════════════════
-       FROST #3 + BRINGHURST #5 — SISTEMA DE TOKENS
-       Un solo lugar para cambiar todo el sistema visual.
-       Espaciados en múltiplos de --u (8px base).
-    ══════════════════════════════════════════ */
     :root {
-      /* Colores */
-      --rojo:       #9B1C1C;
-      --rojo-osc:   #6B0F0F;
-      --rojo-claro: #C42B2B;
-      --crema:      #FDF6EE;
-      --crema-osc:  #F0E4D2;
-      --oro:        #C9973C;
-      --carbon:     #1A0A00;
-      --gris:       #5A4A42;
-      --gris-suave: #8A7A72;
-      --blanco:     #FFFFFF;
-      --wa:         #25D366;
-
-      /* Tipografía */
-      --ff-titulo: 'Playfair Display', serif;
-      --ff-cuerpo: 'DM Sans', sans-serif;
-
-      /* BRINGHURST: Retícula base 8px — TODOS los espacios son múltiplos */
-      --u:   8px;
-      --u2:  16px;
-      --u3:  24px;
-      --u4:  32px;
-      --u5:  40px;
-      --u6:  48px;
-      --u8:  64px;
-      --u10: 80px;
-
-      /* Sombras */
+      --rojo: #9B1C1C; --rojo-osc: #6B0F0F; --rojo-claro: #C42B2B;
+      --crema: #FDF6EE; --crema-osc: #F0E4D2; --oro: #C9973C;
+      --carbon: #1A0A00; --gris: #5A4A42; --gris-suave: #8A7A72;
+      --blanco: #FFFFFF; --wa: #25D366;
+      --ff-titulo: 'Playfair Display', serif; --ff-cuerpo: 'DM Sans', sans-serif;
+      --u: 8px; --u2: 16px; --u3: 24px; --u4: 32px; --u5: 40px; --u6: 48px; --u8: 64px; --u10: 80px;
       --s-sm: 0 2px 8px rgba(107,15,15,.12);
       --s-md: 0 6px 24px rgba(107,15,15,.16);
       --s-lg: 0 16px 48px rgba(107,15,15,.22);
-
-      /* Radios */
-      --r-sm:   var(--u);    /* 8px */
-      --r-md:   var(--u2);   /* 16px */
-      --r-pill: 50px;
-
-      /* Transición */
+      --r-sm: var(--u); --r-md: var(--u2); --r-pill: 50px;
       --t: .3s cubic-bezier(.4,0,.2,1);
     }
-
-    /* Reset */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--ff-cuerpo); background: var(--crema); color: var(--carbon); overflow-x: hidden; }
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
-
-    /* ══════════════════════════════════════════
-       KRUG #1 — BARRA TEL FIJA EN MOBILE (top)
-       Solo aparece en pantallas ≤900px
-    ══════════════════════════════════════════ */
     #tel-bar { display: none; }
     @media (max-width: 900px) {
-      #tel-bar {
-        display: flex; align-items: center; justify-content: center; gap: var(--u);
-        position: fixed; top: 0; left: 0; right: 0; z-index: 1100;
-        background: var(--rojo-osc);
-        padding: var(--u) var(--u3);
-        font-size: .82rem; font-weight: 700; color: var(--blanco);
-        letter-spacing: .04em; border-bottom: 1px solid rgba(255,255,255,.12);
-      }
+      #tel-bar { display: flex; align-items: center; justify-content: center; gap: var(--u); position: fixed; top: 0; left: 0; right: 0; z-index: 1100; background: var(--rojo-osc); padding: var(--u) var(--u3); font-size: .82rem; font-weight: 700; color: var(--blanco); letter-spacing: .04em; border-bottom: 1px solid rgba(255,255,255,.12); }
       #tel-bar a { color: var(--blanco); }
     }
-
-    /* ══════════════════════════════════════════
-       NAV
-    ══════════════════════════════════════════ */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: var(--u2) 5vw;
-      background: rgba(26,10,0,.93);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--oro);
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: var(--u2) 5vw; background: rgba(26,10,0,.93); backdrop-filter: blur(10px); border-bottom: 2px solid var(--oro); }
     .nav-logo { height: 68px; width: auto; filter: brightness(1.1); }
-
     .nav-links { display: flex; gap: var(--u4); align-items: center; }
-    .nav-links a {
-      font-size: .85rem; font-weight: 600; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--crema);
-      position: relative; padding-bottom: 3px;
-      transition: color var(--t);
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 2px; background: var(--oro);
-      transition: width var(--t);
-    }
+    .nav-links a { font-size: .85rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--crema); position: relative; padding-bottom: 3px; transition: color var(--t); }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--oro); transition: width var(--t); }
     .nav-links a:hover { color: var(--oro); }
     .nav-links a:hover::after { width: 100%; }
-
     .nav-tel { color: var(--oro) !important; font-weight: 700 !important; }
     .nav-tel::after { display: none !important; }
-
-    .nav-cta {
-      background: var(--rojo); color: var(--blanco) !important;
-      padding: var(--u) var(--u3); border-radius: var(--r-pill);
-      transition: background var(--t) !important;
-    }
+    .nav-cta { background: var(--rojo); color: var(--blanco) !important; padding: var(--u) var(--u3); border-radius: var(--r-pill); transition: background var(--t) !important; }
     .nav-cta:hover { background: var(--rojo-claro) !important; }
     .nav-cta::after { display: none !important; }
-
-    .nav-hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 6px;
-    }
-    .nav-hamburger span {
-      display: block; width: 26px; height: 2px;
-      background: var(--crema); border-radius: 2px; transition: var(--t);
-    }
-
-    /* KRUG #1: Mobile nav = solo Logo + Productos + Pedir Ahora */
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--crema); border-radius: 2px; transition: var(--t); }
     @media (max-width: 900px) {
-      nav { top: 36px; } /* baja por la tel-bar */
+      nav { top: 36px; }
       .nav-hamburger { display: flex; }
-      .nav-links {
-        display: none; flex-direction: column; gap: var(--u3);
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: var(--carbon);
-        padding: var(--u3) 5vw;
-        border-bottom: 2px solid var(--oro);
-      }
+      .nav-links { display: none; flex-direction: column; gap: var(--u3); position: absolute; top: 100%; left: 0; right: 0; background: var(--carbon); padding: var(--u3) 5vw; border-bottom: 2px solid var(--oro); }
       .nav-links.abierto { display: flex; }
-      .nav-hide-mobile { display: none; } /* oculta Nosotros, Galería, Tel desktop */
+      .nav-hide-mobile { display: none; }
     }
-
-    /* ══════════════════════════════════════════
-       HERO
-    ══════════════════════════════════════════ */
-    .hero {
-      min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
-      padding-top: var(--u10);
-    }
-    .hero-texto {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: var(--u8) 5vw var(--u8) 6vw;
-      background: var(--carbon);
-      position: relative; overflow: hidden;
-    }
-    .hero-texto::before {
-      content: '';
-      position: absolute; top: -80px; right: -80px;
-      width: 360px; height: 360px;
-      background: radial-gradient(circle, rgba(155,28,28,.35) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    /* WATHAN #4: Jerarquía por contraste+peso, no solo tamaño */
-    .hero-eyebrow {
-      font-size: .75rem; font-weight: 700; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--oro);
-      margin-bottom: var(--u2);
-    }
-    .hero-titulo {
-      font-family: var(--ff-titulo);
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
-      line-height: 1.08; color: var(--blanco);
-      margin-bottom: var(--u3);
-    }
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: var(--u10); }
+    .hero-texto { display: flex; flex-direction: column; justify-content: center; padding: var(--u8) 5vw var(--u8) 6vw; background: var(--carbon); position: relative; overflow: hidden; }
+    .hero-texto::before { content: ''; position: absolute; top: -80px; right: -80px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(155,28,28,.35) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--oro); margin-bottom: var(--u2); }
+    .hero-titulo { font-family: var(--ff-titulo); font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.08; color: var(--blanco); margin-bottom: var(--u3); }
     .hero-titulo em { font-style: normal; color: var(--oro); }
-    .hero-sub {
-      font-size: 1rem; line-height: 1.6;
-      color: rgba(255,255,255,.65);
-      max-width: 420px; margin-bottom: var(--u5);
-    }
+    .hero-sub { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,.65); max-width: 420px; margin-bottom: var(--u5); }
     .hero-botones { display: flex; gap: var(--u2); flex-wrap: wrap; }
-
-    /* KLEON #7: btn-wa-hero = ÚNICO protagonista verde */
-    .btn-wa-hero {
-      display: inline-flex; align-items: center; gap: var(--u);
-      background: var(--wa); color: var(--blanco);
-      padding: var(--u2) var(--u5);
-      border-radius: var(--r-pill);
-      font-weight: 700; font-size: 1rem;
-      box-shadow: 0 0 0 4px rgba(37,211,102,.25), var(--s-md);
-      transition: transform var(--t), box-shadow var(--t);
-    }
-    .btn-wa-hero:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 0 7px rgba(37,211,102,.2), var(--s-lg);
-    }
+    .btn-wa-hero { display: inline-flex; align-items: center; gap: var(--u); background: var(--wa); color: var(--blanco); padding: var(--u2) var(--u5); border-radius: var(--r-pill); font-weight: 700; font-size: 1rem; box-shadow: 0 0 0 4px rgba(37,211,102,.25), var(--s-md); transition: transform var(--t), box-shadow var(--t); }
+    .btn-wa-hero:hover { transform: translateY(-3px); box-shadow: 0 0 0 7px rgba(37,211,102,.2), var(--s-lg); }
     .btn-wa-hero svg { width: 20px; height: 20px; fill: white; flex-shrink: 0; }
-
-    /* Botón rojo (tabs) */
-    .btn-primario {
-      display: inline-flex; align-items: center; gap: var(--u);
-      background: var(--rojo); color: var(--blanco);
-      padding: var(--u2) var(--u4); border-radius: var(--r-pill);
-      font-weight: 600; font-size: .95rem;
-      box-shadow: var(--s-sm);
-      transition: background var(--t), transform var(--t);
-    }
+    .btn-primario { display: inline-flex; align-items: center; gap: var(--u); background: var(--rojo); color: var(--blanco); padding: var(--u2) var(--u4); border-radius: var(--r-pill); font-weight: 600; font-size: .95rem; box-shadow: var(--s-sm); transition: background var(--t), transform var(--t); }
     .btn-primario:hover { background: var(--rojo-claro); transform: translateY(-2px); }
-
-    /* Botón outline */
-    .btn-llamar {
-      display: inline-flex; align-items: center; gap: var(--u);
-      border: 2px solid rgba(255,255,255,.7); color: var(--blanco);
-      padding: var(--u2) var(--u4); border-radius: var(--r-pill);
-      font-weight: 600; font-size: 1rem;
-      transition: background var(--t);
-    }
+    .btn-llamar { display: inline-flex; align-items: center; gap: var(--u); border: 2px solid rgba(255,255,255,.7); color: var(--blanco); padding: var(--u2) var(--u4); border-radius: var(--r-pill); font-weight: 600; font-size: 1rem; transition: background var(--t); }
     .btn-llamar:hover { background: rgba(255,255,255,.15); }
-
     .hero-imagen { position: relative; overflow: hidden; }
     .hero-imagen img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .hero-imagen::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(26,10,0,.4) 0%, transparent 50%);
-    }
-    .hero-badge {
-      position: absolute; bottom: var(--u4); left: var(--u4); z-index: 2;
-      background: var(--rojo); color: var(--blanco);
-      padding: var(--u2) var(--u3); border-radius: var(--r-sm);
-      font-size: .82rem; font-weight: 600; line-height: 1.4;
-      box-shadow: var(--s-md);
-    }
+    .hero-imagen::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26,10,0,.4) 0%, transparent 50%); }
+    .hero-badge { position: absolute; bottom: var(--u4); left: var(--u4); z-index: 2; background: var(--rojo); color: var(--blanco); padding: var(--u2) var(--u3); border-radius: var(--r-sm); font-size: .82rem; font-weight: 600; line-height: 1.4; box-shadow: var(--s-md); }
     .hero-badge strong { display: block; font-size: 1.4rem; font-family: var(--ff-titulo); }
-
-    /* ══════════════════════════════════════════
-       SECCIONES GENERALES — Múltiplos de 8px
-    ══════════════════════════════════════════ */
     section { padding: var(--u10) 5vw; }
-    .sec-label {
-      font-size: .72rem; font-weight: 700; letter-spacing: .22em;
-      text-transform: uppercase; color: var(--oro);
-      margin-bottom: var(--u2);
-    }
-    .sec-titulo {
-      font-family: var(--ff-titulo);
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      line-height: 1.15; margin-bottom: var(--u2);
-    }
-    .sec-sub {
-      font-size: 1rem; color: var(--gris); line-height: 1.6;
-      max-width: 560px; margin-bottom: var(--u6);
-    }
-
-    /* ══════════════════════════════════════════
-       TABS
-    ══════════════════════════════════════════ */
+    .sec-label { font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--oro); margin-bottom: var(--u2); }
+    .sec-titulo { font-family: var(--ff-titulo); font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.15; margin-bottom: var(--u2); }
+    .sec-sub { font-size: 1rem; color: var(--gris); line-height: 1.6; max-width: 560px; margin-bottom: var(--u6); }
     #productos { background: var(--crema-osc); }
     .tabs-header { display: flex; gap: var(--u); flex-wrap: wrap; margin-bottom: var(--u5); }
-    .tab-btn {
-      display: flex; align-items: center; gap: var(--u);
-      padding: var(--u2) var(--u3); border-radius: var(--r-pill);
-      border: 2px solid rgba(155,28,28,.3);
-      background: transparent;
-      font-family: var(--ff-cuerpo); font-size: .9rem; font-weight: 600;
-      color: var(--gris); cursor: pointer; transition: all var(--t);
-      letter-spacing: .02em;
-    }
+    .tab-btn { display: flex; align-items: center; gap: var(--u); padding: var(--u2) var(--u3); border-radius: var(--r-pill); border: 2px solid rgba(155,28,28,.3); background: transparent; font-family: var(--ff-cuerpo); font-size: .9rem; font-weight: 600; color: var(--gris); cursor: pointer; transition: all var(--t); letter-spacing: .02em; }
     .tab-btn:hover { border-color: var(--rojo); color: var(--rojo); background: rgba(155,28,28,.06); }
     .tab-btn.activo { background: var(--rojo); color: var(--blanco); border-color: var(--rojo); box-shadow: var(--s-md); }
     .tab-panel { display: none; }
     .tab-panel.activo { display: block; }
-
-    /* Layout lista de cortes */
     .cat-panel { display: grid; grid-template-columns: 1fr 1fr; gap: var(--u6); align-items: center; }
     .cat-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--r-md); box-shadow: var(--s-md); }
-    .cat-icon-wrap {
-      aspect-ratio: 4/3; border-radius: var(--r-md);
-      background: var(--carbon);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: var(--u2); box-shadow: var(--s-md);
-    }
+    .cat-icon-wrap { aspect-ratio: 4/3; border-radius: var(--r-md); background: var(--carbon); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--u2); box-shadow: var(--s-md); }
     .cat-icon-wrap .cat-emoji { font-size: 5rem; }
     .cat-icon-wrap .cat-label { font-size: .78rem; color: rgba(255,255,255,.5); letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
     .cat-info h3 { font-family: var(--ff-titulo); font-size: 1.6rem; margin-bottom: var(--u); }
-
-    /* WATHAN #4: Badge rojo con número en bold = jerarquía por color + peso */
-    .cat-badge {
-      display: inline-block;
-      background: var(--rojo); color: var(--blanco);
-      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; padding: 4px var(--u2); border-radius: var(--r-pill);
-      margin-bottom: var(--u3);
-    }
+    .cat-badge { display: inline-block; background: var(--rojo); color: var(--blanco); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px var(--u2); border-radius: var(--r-pill); margin-bottom: var(--u3); }
     .cat-badge strong { font-size: .88rem; }
-
     .cortes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px var(--u3); margin-bottom: var(--u4); }
     .corte-item { display: flex; align-items: center; gap: var(--u); font-size: .9rem; padding: var(--u) 0; border-bottom: 1px solid var(--crema-osc); }
-    /* WATHAN #4: Punto en anillo — contraste sin relleno sólido */
     .corte-item::before { content: ''; width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--rojo); background: transparent; flex-shrink: 0; }
-
-    /* ══════════════════════════════════════════
-       NOSOTROS
-    ══════════════════════════════════════════ */
     #nosotros { display: grid; grid-template-columns: 1fr 1fr; gap: var(--u8); align-items: center; }
     .nosotros-img-wrap { position: relative; border-radius: var(--r-md); overflow: hidden; box-shadow: var(--s-lg); }
     .nosotros-img-wrap img { width: 100%; height: 480px; object-fit: cover; }
-    .nosotros-badge {
-      position: absolute; bottom: var(--u3); right: var(--u3);
-      background: var(--rojo); color: var(--blanco);
-      padding: var(--u2) var(--u3); border-radius: var(--r-sm);
-      font-size: .82rem; font-weight: 600; text-align: center; box-shadow: var(--s-md);
-    }
+    .nosotros-badge { position: absolute; bottom: var(--u3); right: var(--u3); background: var(--rojo); color: var(--blanco); padding: var(--u2) var(--u3); border-radius: var(--r-sm); font-size: .82rem; font-weight: 600; text-align: center; box-shadow: var(--s-md); }
     .nosotros-badge strong { display: block; font-family: var(--ff-titulo); font-size: 1.8rem; }
     .puntos-lista { display: flex; flex-direction: column; gap: var(--u3); margin-top: var(--u4); }
     .punto { display: flex; gap: var(--u3); align-items: flex-start; }
     .punto-icono { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--rojo); display: flex; align-items: center; justify-content: center; font-family: var(--ff-titulo); font-size: 1rem; font-weight: 700; color: var(--blanco); }
-    /* WATHAN #4: Peso 700 en h4, color suave en p — jerarquía sin cambiar tamaño */
     .punto h4 { font-weight: 700; margin-bottom: 4px; font-size: .95rem; }
-    .punto p  { font-size: .85rem; color: var(--gris-suave); line-height: 1.6; }
-
-    /* ══════════════════════════════════════════
-       GALERÍA
-    ══════════════════════════════════════════ */
+    .punto p { font-size: .85rem; color: var(--gris-suave); line-height: 1.6; }
     #galeria { background: var(--carbon); }
     #galeria .sec-titulo { color: var(--blanco); }
-    #galeria .sec-label  { color: var(--oro); }
-    #galeria .sec-sub    { color: rgba(255,255,255,.6); }
+    #galeria .sec-label { color: var(--oro); }
+    #galeria .sec-sub { color: rgba(255,255,255,.6); }
     .vitrina-wrap { border-radius: var(--r-md); overflow: hidden; box-shadow: var(--s-lg); aspect-ratio: 16/7; }
     .vitrina-wrap img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* ══════════════════════════════════════════
-       CONTACTO CTA FINAL
-    ══════════════════════════════════════════ */
     #contacto { background: linear-gradient(135deg, var(--rojo-osc) 0%, var(--rojo) 100%); text-align: center; padding: var(--u10) 5vw; }
-    #contacto .sec-label  { color: rgba(255,255,255,.7); }
+    #contacto .sec-label { color: rgba(255,255,255,.7); }
     #contacto .sec-titulo { color: var(--blanco); margin: 0 auto var(--u2); }
-    #contacto .sec-sub    { color: rgba(255,255,255,.8); margin: 0 auto var(--u5); }
+    #contacto .sec-sub { color: rgba(255,255,255,.8); margin: 0 auto var(--u5); }
     .contacto-btns { display: flex; gap: var(--u2); justify-content: center; flex-wrap: wrap; }
-
-    /* FOOTER */
     footer { background: var(--carbon); color: rgba(255,255,255,.5); text-align: center; padding: var(--u4) 5vw; font-size: .8rem; border-top: 1px solid rgba(255,255,255,.08); }
     footer strong { color: var(--oro); }
-
-    /* ══════════════════════════════════════════
-       KLEON #7 — ÚNICO CTA FLOTANTE: WhatsApp
-       Chiqui eliminado. Solo WA, con pulso.
-    ══════════════════════════════════════════ */
-    /* ══ CHIQUI BANNER flotante ══ */
-    #chiki-banner {
-      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-      display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
-      transition: opacity .4s, transform .4s;
-    }
+    /* ══ CHIQUI BANNER — CTA flotante con mascota
+       Aparece a los 3s · localStorage 24h · abre WA ══ */
+    #chiki-banner { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; transition: opacity .4s, transform .4s; }
     #chiki-banner.oculto { opacity: 0; pointer-events: none; transform: translateY(16px); }
-    .chiki-cerrar {
-      width: 28px; height: 28px; background: rgba(0,0,0,.55);
-      color: #fff; border: none; border-radius: 50%;
-      font-size: 13px; font-weight: 700; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .2s; align-self: flex-end;
-    }
+    .chiki-cerrar { width: 28px; height: 28px; background: rgba(0,0,0,.55); color: #fff; border: none; border-radius: 50%; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; align-self: flex-end; }
     .chiki-cerrar:hover { background: var(--rojo); }
-    .chiki-card {
-      display: block; text-decoration: none;
-      width: clamp(260px, 30vw, 380px);
-      transition: transform .25s;
-      border-radius: 60px;
-      overflow: hidden;
-      /* Recortar el negro de los bordes del PNG */
-      padding: 0 4px;
-      background: transparent;
-    }
+    .chiki-card { display: block; text-decoration: none; width: clamp(260px, 30vw, 380px); transition: transform .25s; border-radius: 60px; overflow: hidden; padding: 0 4px; background: transparent; }
     .chiki-card:hover { transform: translateY(-4px); }
-    .chiki-card img {
-      width: 100%; display: block;
-      border-radius: 60px;
-      /* Recorte visual del negro exterior del PNG */
-      clip-path: inset(6px 6px 6px 6px round 52px);
-      box-shadow: 0 8px 28px rgba(0,0,0,.3);
-    }
+    .chiki-card img { width: 100%; display: block; border-radius: 60px; clip-path: inset(6px 6px 6px 6px round 52px); box-shadow: 0 8px 28px rgba(0,0,0,.3); }
     @media (max-width: 768px) { .chiki-card { width: clamp(220px, 72vw, 300px); } }
     @media (max-width: 480px) { #chiki-banner { bottom: 16px; right: 12px; } }
-
-    /* ══════════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════════ */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .hero-imagen { min-height: 320px; }
@@ -429,98 +152,40 @@
       .cortes-grid { grid-template-columns: 1fr; }
       #chiki-banner { bottom: var(--u2); right: 12px; }
     }
-    @media (max-width: 560px) {
-      .tab-btn { padding: var(--u) var(--u2); font-size: .82rem; }
-    }
-
-    /* ══ HERO SLIDER ══ */
-    .hero-imagen { position: relative; overflow: hidden; }
+    @media (max-width: 560px) { .tab-btn { padding: var(--u) var(--u2); font-size: .82rem; } }
     .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
     .slide.active { opacity: 1; position: relative; pointer-events: auto; }
     .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-    .slide-caption {
-      position: absolute; bottom: 80px; left: var(--u3); z-index: 3;
-      background: rgba(26,10,0,.65); backdrop-filter: blur(6px);
-      padding: var(--u2) var(--u3); border-radius: var(--r-sm);
-      border-left: 3px solid var(--oro); max-width: 240px;
-    }
-    .slide-tag {
-      display: block; font-size: .68rem; font-weight: 700;
-      letter-spacing: .18em; text-transform: uppercase;
-      color: var(--oro); margin-bottom: 4px;
-    }
+    .slide-caption { position: absolute; bottom: 80px; left: var(--u3); z-index: 3; background: rgba(26,10,0,.65); backdrop-filter: blur(6px); padding: var(--u2) var(--u3); border-radius: var(--r-sm); border-left: 3px solid var(--oro); max-width: 240px; }
+    .slide-tag { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--oro); margin-bottom: 4px; }
     .slide-caption p { font-size: .9rem; color: rgba(255,255,255,.95); line-height: 1.5; margin: 0; }
     .slide-caption p strong { display: block; font-size: 1rem; color: #fff; font-weight: 700; }
-    .slide-prev, .slide-next {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      z-index: 4; background: rgba(26,10,0,.5); color: var(--blanco);
-      border: none; width: 40px; height: 40px; border-radius: 50%;
-      font-size: 22px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .2s; backdrop-filter: blur(4px);
-    }
+    .slide-prev, .slide-next { position: absolute; top: 50%; transform: translateY(-50%); z-index: 4; background: rgba(26,10,0,.5); color: var(--blanco); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; backdrop-filter: blur(4px); }
     .slide-prev { left: var(--u2); }
     .slide-next { right: var(--u2); }
     .slide-prev:hover, .slide-next:hover { background: var(--rojo); }
-    .slide-dots {
-      position: absolute; bottom: var(--u3); left: 50%; transform: translateX(-50%);
-      z-index: 4; display: flex; gap: 7px;
-    }
-    .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,.4); cursor: pointer;
-      border: none; transition: background .3s, transform .3s;
-    }
+    .slide-dots { position: absolute; bottom: var(--u3); left: 50%; transform: translateX(-50%); z-index: 4; display: flex; gap: 7px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.4); cursor: pointer; border: none; transition: background .3s, transform .3s; }
     .dot.active { background: var(--oro); transform: scale(1.3); }
-
-    /* ══ BADGE CLEMBUTEROL ══ */
-    .hero-badge-social {
-      display: flex; align-items: center; gap: 12px;
-      margin-top: var(--u3); padding-top: var(--u3);
-      border-top: 1px solid rgba(255,255,255,.1);
-    }
-    .hero-badge-social img {
-      height: 72px; width: auto;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,.4));
-    }
-    .hero-badge-social span {
-      font-size: .82rem; color: rgba(255,255,255,.65);
-      line-height: 1.5; max-width: 180px;
-    }
+    .hero-badge-social { display: flex; align-items: center; gap: 12px; margin-top: var(--u3); padding-top: var(--u3); border-top: 1px solid rgba(255,255,255,.1); }
+    .hero-badge-social img { height: 72px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,.4)); }
+    .hero-badge-social span { font-size: .82rem; color: rgba(255,255,255,.65); line-height: 1.5; max-width: 180px; }
     .hero-badge-social strong { color: var(--oro); display: block; font-size: .88rem; }
-
-    /* ══ BADGE AÑOS — oculto en mobile ══ */
-    .hero-badge-anos {
-      position: absolute; bottom: var(--u4); left: var(--u4); z-index: 2;
-      background: var(--rojo); color: var(--blanco);
-      padding: var(--u2) var(--u3); border-radius: var(--r-sm);
-      font-size: .82rem; font-weight: 600; line-height: 1.4; box-shadow: var(--s-md);
-      transition: opacity .6s ease;
-    }
+    .hero-badge-anos { position: absolute; bottom: var(--u4); left: var(--u4); z-index: 2; background: var(--rojo); color: var(--blanco); padding: var(--u2) var(--u3); border-radius: var(--r-sm); font-size: .82rem; font-weight: 600; line-height: 1.4; box-shadow: var(--s-md); transition: opacity .6s ease; }
     .hero-badge-anos strong { display: block; font-size: 1.4rem; font-family: var(--ff-titulo); }
     @media (max-width: 900px) { .hero-badge-anos { display: none; } }
-
-    /* Fade in scroll */
     .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
-
 <body>
 
-<!-- KRUG #1: Barra tel solo en mobile -->
 <div id="tel-bar">
-  📞&nbsp;
-  <a href="tel:+525558849504" onclick="trackWA('tel_bar_mobile','llamada')">
-    55 5884 9504 &nbsp;·&nbsp; Llámanos
-  </a>
+  📞&nbsp;<a href="tel:+525558849504" onclick="trackWA('tel_bar_mobile','llamada')">55 5884 9504 &nbsp;·&nbsp; Llámanos</a>
 </div>
 
-<!-- NAV -->
 <nav>
-  <a href="#inicio">
-    <img src="Logo.png" alt="Carnicería La Chiquita" class="nav-logo" />
-  </a>
+  <a href="#inicio"><img src="Logo.png" alt="Carnicería La Chiquita" class="nav-logo" /></a>
   <button class="nav-hamburger" onclick="toggleNav()" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
@@ -528,28 +193,17 @@
     <li><a href="#productos">Productos</a></li>
     <li class="nav-hide-mobile"><a href="#nosotros">Nosotros</a></li>
     <li class="nav-hide-mobile"><a href="#galeria">Galería</a></li>
-    <li class="nav-hide-mobile">
-      <a href="tel:+525558849504" class="nav-tel">📞 55 5884 9504</a>
-    </li>
-    <li>
-      <a href="https://wa.me/525643950782?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
-         target="_blank" class="nav-cta"
-         onclick="trackWA('nav','pedido_general')">
-        Pedir Ahora
-      </a>
-    </li>
+    <li class="nav-hide-mobile"><a href="tel:+525558849504" class="nav-tel">📞 55 5884 9504</a></li>
+    <li><a href="https://wa.me/525643950782?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita" target="_blank" class="nav-cta" onclick="trackWA('nav','pedido_general')">Pedir Ahora</a></li>
   </ul>
 </nav>
 
-
-<!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-texto">
     <img src="Logo.png" alt="Carnicería La Chiquita" style="width:160px;height:auto;object-fit:contain;margin-bottom:var(--u3);filter:drop-shadow(0 4px 20px rgba(0,0,0,.5));" />
     <p class="hero-eyebrow">Carnicería La Chiquita · CDMX</p>
     <h1 class="hero-titulo">Carne <em>fresca</em><br />con el sabor<br />de siempre</h1>
     <p class="hero-sub">Cortes seleccionados a mano, atención personalizada y la confianza de años cuidando la mesa de tu familia.</p>
-    <!-- BADGE CLEMBUTEROL — antes de los botones para generar confianza primero -->
     <div class="hero-badge-social">
       <img src="badge-confiable.png" alt="100% Libre de Clembuterol" />
       <span><strong>Carne certificada</strong>100% Libre de Clembuterol · Calidad garantizada</span>
@@ -558,60 +212,30 @@
       <a href="#productos" class="btn-primario">Ver Productos</a>
     </div>
   </div>
-
-  <!-- SLIDER -->
   <div class="hero-imagen" id="heroSlider">
-
-    <!-- SLIDE 1: Apertura — impacto sin texto -->
     <div class="slide active">
       <img src="slide-proceso-vitrina.jpeg" alt="Carnicería La Chiquita – Cortes frescos cada día" loading="eager" />
     </div>
-
-    <!-- SLIDE 2: Espinazo de Res -->
     <div class="slide">
       <img src="Espinazo_Res.jpeg" alt="Espinazo de Res – La Chiquita" loading="lazy" />
-      <div class="slide-caption">
-        <span class="slide-tag">// Res de calidad</span>
-        <p><strong>El sabor está en el hueso.</strong>Espinazo fresco cada día.</p>
-      </div>
+      <div class="slide-caption"><span class="slide-tag">// Res de calidad</span><p><strong>El sabor está en el hueso.</strong>Espinazo fresco cada día.</p></div>
     </div>
-
-    <!-- SLIDE 3: Chuleta de Cerdo -->
     <div class="slide">
       <img src="Chuleta_de_Cerdo.jpeg" alt="Chuleta de Cerdo premium – La Chiquita" loading="lazy" />
-      <div class="slide-caption">
-        <span class="slide-tag">// Cerdo premium</span>
-        <p><strong>Fresco esta mañana.</strong>En tu mesa esta noche.</p>
-      </div>
+      <div class="slide-caption"><span class="slide-tag">// Cerdo premium</span><p><strong>Fresco esta mañana.</strong>En tu mesa esta noche.</p></div>
     </div>
-
-    <!-- SLIDE 4: Queso Provolone -->
     <div class="slide">
       <img src="Queso_Provolone.jpeg" alt="Queso Provolone Ahumado – La Chiquita" loading="lazy" />
-      <div class="slide-caption">
-        <span class="slide-tag">// Solo aquí</span>
-        <p><strong>Lo que no encuentras</strong>en otro lado.</p>
-      </div>
+      <div class="slide-caption"><span class="slide-tag">// Solo aquí</span><p><strong>Lo que no encuentras</strong>en otro lado.</p></div>
     </div>
-
-    <!-- SLIDE 5: Tocino -->
     <div class="slide">
       <img src="Tocino.jpeg" alt="Tocino artesanal – La Chiquita" loading="lazy" />
-      <div class="slide-caption">
-        <span class="slide-tag">// Cortes especiales</span>
-        <p><strong>Cuatro capas de sabor.</strong>Cero compromiso.</p>
-      </div>
+      <div class="slide-caption"><span class="slide-tag">// Cortes especiales</span><p><strong>Cuatro capas de sabor.</strong>Cero compromiso.</p></div>
     </div>
-
-    <!-- SLIDE 6: Cecina Enchilada -->
     <div class="slide">
       <img src="Cecina_Enchilada.jpeg" alt="Cecina Enchilada – La Chiquita" loading="lazy" />
-      <div class="slide-caption">
-        <span class="slide-tag">// Tradición</span>
-        <p><strong>Enchilada a mano.</strong>Sellada con sabor.</p>
-      </div>
+      <div class="slide-caption"><span class="slide-tag">// Tradición</span><p><strong>Enchilada a mano.</strong>Sellada con sabor.</p></div>
     </div>
-
     <button class="slide-prev" onclick="moverSlide(-1)" aria-label="Anterior">&#8249;</button>
     <button class="slide-next" onclick="moverSlide(1)" aria-label="Siguiente">&#8250;</button>
     <div class="slide-dots" id="slideDots"></div>
@@ -619,13 +243,10 @@
   </div>
 </section>
 
-
-<!-- PRODUCTOS -->
 <section id="productos">
   <p class="sec-label fade-in">Nuestros Cortes</p>
   <h2 class="sec-titulo fade-in">Calidad en cada<br />categoría</h2>
   <p class="sec-sub fade-in">Seleccionamos y cortamos con cuidado para que lleves lo mejor a tu cocina.</p>
-
   <div class="tabs-header fade-in">
     <button class="tab-btn activo" onclick="cambiarTab('res',this)">Res</button>
     <button class="tab-btn" onclick="cambiarTab('cerdo',this)">Cerdo</button>
@@ -633,8 +254,6 @@
     <button class="tab-btn" onclick="cambiarTab('pescado',this)">Pescado</button>
     <button class="tab-btn" onclick="cambiarTab('especialidades',this)">Especialidades</button>
   </div>
-
-  <!-- RES — MERODIO #6: onclick trackWA con medio específico -->
   <div class="tab-panel activo" id="tab-res">
     <div class="cat-panel">
       <img src="Arrachera.jpg" alt="Cortes de res – La Chiquita" class="cat-img" loading="lazy" />
@@ -649,34 +268,10 @@
           <div class="corte-item">Chambarete Macizo</div><div class="corte-item">Aguja Norteña</div>
           <div class="corte-item">Arrachera Marinada</div>
         </div>
-        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20la%20carne%20de%20res"
-           target="_blank" class="btn-primario" onclick="trackWA('tab_res','pedido_res')">
-          💬 Pedir Carne de Res
-        </a>
+        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20la%20carne%20de%20res" target="_blank" class="btn-primario" onclick="trackWA('tab_res','pedido_res')">💬 Pedir Carne de Res</a>
       </div>
     </div>
   </div>
-
-  <!-- POLLO -->
-  <div class="tab-panel" id="tab-pollo">
-    <div class="cat-panel">
-      <img src="Pechuga.jpg" alt="Pollo fresco – La Chiquita" class="cat-img" loading="lazy" />
-      <div class="cat-info">
-        <h3>Pollo Fresco</h3>
-        <span class="cat-badge"><strong>2</strong> presentaciones</span>
-        <div class="cortes-grid">
-          <div class="corte-item">Pechuga</div>
-          <div class="corte-item">Pierna con Muslo</div>
-        </div>
-        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20el%20pollo"
-           target="_blank" class="btn-primario" onclick="trackWA('tab_pollo','pedido_pollo')">
-          💬 Pedir Pollo
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- CERDO -->
   <div class="tab-panel" id="tab-cerdo">
     <div class="cat-panel">
       <img src="Chuleta.jpg" alt="Carne de cerdo – La Chiquita" class="cat-img" loading="lazy" />
@@ -697,37 +292,24 @@
           <div class="corte-item">Chicharrón Esponjado</div><div class="corte-item">Chicharrón Carnudo</div>
           <div class="corte-item">Manteca</div><div class="corte-item">Cecina Enchilada</div>
         </div>
-        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20la%20carne%20de%20cerdo"
-           target="_blank" class="btn-primario" onclick="trackWA('tab_cerdo','pedido_cerdo')">
-          💬 Pedir Carne de Cerdo
-        </a>
+        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20la%20carne%20de%20cerdo" target="_blank" class="btn-primario" onclick="trackWA('tab_cerdo','pedido_cerdo')">💬 Pedir Carne de Cerdo</a>
       </div>
     </div>
   </div>
-
-  <!-- ESPECIALIDADES -->
-  <div class="tab-panel" id="tab-especialidades">
+  <div class="tab-panel" id="tab-pollo">
     <div class="cat-panel">
-      <img src="Especialidades_4_Chimichurri.jpeg" alt="Chimichurri Artesanal – La Chiquita" class="cat-img" loading="lazy" />
+      <img src="Pechuga.jpg" alt="Pollo fresco – La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
-        <h3>Especialidades</h3>
-        <span class="cat-badge">Solo en La Chiquita</span>
+        <h3>Pollo Fresco</h3>
+        <span class="cat-badge"><strong>2</strong> presentaciones</span>
         <div class="cortes-grid">
-          <div class="corte-item">Chimichurri Artesanal</div>
-          <div class="corte-item">Queso Provolone</div>
+          <div class="corte-item">Pechuga</div>
+          <div class="corte-item">Pierna con Muslo</div>
         </div>
-        <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">
-          Preparaciones artesanales que no encontrarás en otro lado.
-        </p>
-        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesan%20las%20especialidades"
-           target="_blank" class="btn-primario" onclick="trackWA('tab_especialidades','pedido_especialidades')">
-          💬 Preguntar por Especialidades
-        </a>
+        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20el%20pollo" target="_blank" class="btn-primario" onclick="trackWA('tab_pollo','pedido_pollo')">💬 Pedir Pollo</a>
       </div>
     </div>
   </div>
-
-  <!-- PESCADO -->
   <div class="tab-panel" id="tab-pescado">
     <div class="cat-panel">
       <img src="Pescado.webp" alt="Pescado fresco – Tilapia y Salmón · La Chiquita" class="cat-img" loading="lazy" />
@@ -738,20 +320,28 @@
           <div class="corte-item">Tilapia</div>
           <div class="corte-item">Salmón</div>
         </div>
-        <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">
-          Congelado y empaquetado. Dieta balanceada sin salir de tu carnicería de confianza.
-        </p>
-        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20el%20pescado"
-           target="_blank" class="btn-primario" onclick="trackWA('tab_pescado','pedido_pescado')">
-          💬 Preguntar Disponibilidad
-        </a>
+        <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">Congelado y empaquetado. Dieta balanceada sin salir de tu carnicería de confianza.</p>
+        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20el%20pescado" target="_blank" class="btn-primario" onclick="trackWA('tab_pescado','pedido_pescado')">💬 Preguntar Disponibilidad</a>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-especialidades">
+    <div class="cat-panel">
+      <img src="Especialidades_4_Chimichurri.jpeg" alt="Chimichurri Artesanal – La Chiquita" class="cat-img" loading="lazy" />
+      <div class="cat-info">
+        <h3>Especialidades</h3>
+        <span class="cat-badge">Solo en La Chiquita</span>
+        <div class="cortes-grid">
+          <div class="corte-item">Chimichurri Artesanal</div>
+          <div class="corte-item">Queso Provolone</div>
+        </div>
+        <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">Preparaciones artesanales que no encontrarás en otro lado.</p>
+        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesan%20las%20especialidades" target="_blank" class="btn-primario" onclick="trackWA('tab_especialidades','pedido_especialidades')">💬 Preguntar por Especialidades</a>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- NOSOTROS -->
 <section id="nosotros">
   <div class="nosotros-img-wrap fade-in">
     <img src="Proceso.jpg" alt="Proceso de corte en La Chiquita" loading="lazy" />
@@ -770,8 +360,6 @@
   </div>
 </section>
 
-
-<!-- GALERÍA -->
 <section id="galeria">
   <p class="sec-label fade-in">Nuestro Local</p>
   <h2 class="sec-titulo fade-in">La vitrina que<br />lo dice todo</h2>
@@ -781,27 +369,19 @@
   </div>
 </section>
 
-
-<!-- CONTACTO -->
 <section id="contacto">
   <p class="sec-label">Contáctanos</p>
   <h2 class="sec-titulo">¿Listo para tu pedido?</h2>
   <p class="sec-sub">Escríbenos por WhatsApp y con gusto te atendemos. También puedes llamarnos.</p>
   <div class="contacto-btns">
-    <a href="https://wa.me/525643950782?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
-       target="_blank" class="btn-wa-hero"
-       onclick="trackWA('cta_contacto','pedido_general')">
+    <a href="https://wa.me/525643950782?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita" target="_blank" class="btn-wa-hero" onclick="trackWA('cta_contacto','pedido_general')">
       <svg viewBox="0 0 448 512" style="width:20px;height:20px;fill:white;flex-shrink:0"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.7c-32 0-64-8.6-92-25.1l-6.6-3.9-68.4 18 18.3-66.7-4.3-6.9c-18.1-29-27.6-62.2-27.6-96.2 0-103.6 84.4-188 188.1-188 50.3 0 97.6 19.6 133.2 55.2 35.6 35.6 55.2 82.9 55.2 133.2 0 103.7-84.5 188.1-188.2 188.1zm103.3-141.5c-5.7-2.8-33.5-16.5-38.7-18.4-5.2-1.9-9-2.8-12.8 2.8-3.8 5.7-14.7 18.4-18 22.2-3.3 3.8-6.6 4.3-12.3 1.4-5.7-2.8-24-8.8-45.7-28.2-16.9-15.1-28.3-33.8-31.6-39.5-3.3-5.7-.4-8.8 2.5-11.6 2.6-2.6 5.7-6.6 8.5-9.9 2.8-3.3 3.8-5.7 5.7-9.5 1.9-3.8.9-7.1-.5-9.9-1.4-2.8-12.8-30.8-17.5-42.2-4.6-11.1-9.3-9.6-12.8-9.8-3.3-.2-7.1-.2-10.9-.2-3.8 0-9.9 1.4-15.2 7.1-5.2 5.7-20.4 19.9-20.4 48.3 0 28.4 20.9 55.9 23.7 59.7 2.8 3.8 40.8 62.3 98.9 87.4 13.8 6 24.6 9.6 33 12.3 13.9 4.4 26.5 3.8 36.5 2.3 11.2-1.7 33.5-13.7 38.2-27 4.7-13.3 4.7-24.6 3.3-27-1.4-2.5-5.2-3.9-10.9-6.7z"/></svg>
       Pedir por WhatsApp
     </a>
-    <a href="tel:+525558849504" class="btn-llamar" onclick="trackWA('cta_llamar','llamada_directa')">
-      📞 Llamar
-    </a>
+    <a href="tel:+525558849504" class="btn-llamar" onclick="trackWA('cta_llamar','llamada_directa')">📞 Llamar</a>
   </div>
 </section>
 
-
-<!-- FOOTER -->
 <footer style="background:var(--carbon);padding:var(--u5) 5vw;border-top:1px solid rgba(255,255,255,.08);">
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--u4);margin-bottom:var(--u4);padding-bottom:var(--u4);border-bottom:1px solid rgba(255,255,255,.08);">
     <div>
@@ -826,12 +406,10 @@
       </p>
     </div>
   </div>
-  <!-- DIRECCIÓN AL FINAL — pedido de Raúl -->
   <div style="text-align:center;padding:var(--u3) 0 var(--u2);border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:var(--u3);">
     <p style="font-size:.85rem;color:rgba(255,255,255,.5);letter-spacing:.04em;">
       📍 <strong style="color:var(--oro);">Acamapichtli 66</strong>, Col. La Preciosa, Azcapotzalco, CDMX 02460 &nbsp;·&nbsp;
-      <a href="https://maps.google.com/?q=Acamapichtli+66,+La+Preciosa,+Azcapotzalco,+02460+Ciudad+de+Mexico"
-         target="_blank" style="color:var(--oro);font-weight:600;">Ver en Google Maps</a>
+      <a href="https://maps.google.com/?q=Acamapichtli+66,+La+Preciosa,+Azcapotzalco,+02460+Ciudad+de+Mexico" target="_blank" style="color:var(--oro);font-weight:600;">Ver en Google Maps</a>
     </p>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--u2);font-size:.78rem;color:rgba(255,255,255,.4);">
@@ -851,23 +429,17 @@
   </a>
 </div>
 
-
 <script>
-  /* ── NAV ── */
   function toggleNav() { document.getElementById('navLinks').classList.toggle('abierto'); }
   document.querySelectorAll('#navLinks a').forEach(a =>
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('abierto'))
   );
-
-  /* ── TABS ── */
   function cambiarTab(id, btn) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('activo'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activo'));
     document.getElementById('tab-' + id).classList.add('activo');
     btn.classList.add('activo');
   }
-
-  /* ── HERO SLIDER ── */
   const slides = document.querySelectorAll('.slide');
   const dotsWrap = document.getElementById('slideDots');
   let current = 0, autoPlay;
@@ -889,15 +461,12 @@
   function moverSlide(dir) { clearInterval(autoPlay); irASlide(current + dir); iniciarAuto(); }
   function iniciarAuto() { autoPlay = setInterval(() => irASlide(current + 1), 4500); }
   iniciarAuto();
-
-  /* ── FADE IN SCROLL ── */
   const obs = new IntersectionObserver(entries =>
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
     { threshold: 0.12 }
   );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-
-  /* ── CHIQUI BANNER — localStorage 24h ── */
+  /* CHIQUI BANNER — localStorage 24h */
   function cerrarChikiBanner() {
     const b = document.getElementById('chiki-banner');
     if (b) b.classList.add('oculto');
@@ -912,25 +481,6 @@
       setTimeout(() => b.classList.remove('oculto'), 3000);
     }
   })();
-
-  /*
-   * GOTHELF #2 — HIPÓTESIS Y OUTCOME DE LA SEMANA
-   * ════════════════════════════════════════════════
-   * HIPÓTESIS: "Si el botón de WhatsApp es el único CTA
-   * flotante y está presente en cada categoría de producto,
-   * entonces el 20% de los pedidos de Raúl llegarán por
-   * WhatsApp en los próximos 7 días."
-   *
-   * CÓMO MEDIR EN GA4 (analytics.google.com):
-   * 1. Informes → Eventos → busca "whatsapp_click"
-   * 2. Filtra por event_label para ver qué sección convierte:
-   *    hero / nav / tab_res / tab_pollo / tab_cerdo /
-   *    tab_especialidades / tab_pescado / cta_final / flotante
-   * 3. Raúl cuenta mensajes WA recibidos vs. pedidos en persona
-   * 4. Compara al día 7. Si no llega a 20% → iterar copy del CTA.
-   *    Si supera 20% → siguiente outcome: tiempo de respuesta WA.
-   * ════════════════════════════════════════════════
-   */
 </script>
 
 </body>
