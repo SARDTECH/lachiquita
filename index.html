@@ -401,9 +401,18 @@
       display: block; text-decoration: none;
       width: clamp(260px, 30vw, 380px);
       transition: transform .25s;
+      /* Elimina el fondo negro de la imagen */
+      background: transparent;
+      border-radius: 50px;
+      overflow: hidden;
     }
     .chiki-card:hover { transform: translateY(-4px); }
-    .chiki-card img { width: 100%; display: block; border-radius: 12px; }
+    .chiki-card img {
+      width: 100%; display: block;
+      /* Recorte para eliminar bordes negros */
+      border-radius: 50px;
+      mix-blend-mode: normal;
+    }
     @media (max-width: 768px) { .chiki-card { width: clamp(220px, 72vw, 300px); } }
     @media (max-width: 480px) { #chiki-banner { bottom: 16px; right: 12px; } }
 
@@ -654,7 +663,7 @@
         <h3>Pollo Fresco</h3>
         <span class="cat-badge"><strong>2</strong> presentaciones</span>
         <div class="cortes-grid">
-          <div class="corte-item">Muslo</div>
+          <div class="corte-item">Pechuga</div>
           <div class="corte-item">Pierna con Muslo</div>
         </div>
         <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20el%20pollo"
@@ -750,7 +759,7 @@
       <li class="punto"><div class="punto-icono">🔪</div><div><h4>Corte a tu gusto</h4><p>Cortamos al momento según cómo necesites la carne. Sin tiempos de espera.</p></div></li>
       <li class="punto"><div class="punto-icono">❄️</div><div><h4>Cadena de frío garantizada</h4><p>Recibimos producto fresco cada día para que siempre lleves lo mejor.</p></div></li>
       <li class="punto"><div class="punto-icono">🤝</div><div><h4>Trato de confianza</h4><p>Más de 20 años construyendo relación con nuestros clientes y proveedores.</p></div></li>
-      <li class="punto"><div class="punto-icono">📦</div><div><h4>Pedidos por WhatsApp</h4><p>Pide con anticipación y ten tu carne lista para cuando llegues.</p></div></li>
+      <li class="punto"><div class="punto-icono">📦</div><div><h4>Pedidos por WhatsApp</h4><p>Pide con anticipación y ten tu carne lista para cuando llegues. También hacemos envíos a domicilio con compra mínima de $150 MXN.</p></div></li>
     </ul>
   </div>
 </section>
@@ -876,22 +885,15 @@
   );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  /* ── CHIQUI BANNER — localStorage 24h ── */
+  /* ── CHIQUI BANNER — aparece a los 3s en cada visita ── */
   function cerrarChikiBanner() {
     const b = document.getElementById('chiki-banner');
     if (b) b.classList.add('oculto');
-    // Guarda timestamp de cierre — Chiqui no reaparece por 24h
-    localStorage.setItem('chiki_cerrado', Date.now());
   }
   (function() {
     const b = document.getElementById('chiki-banner');
     if (!b) return;
-    const cerrado = localStorage.getItem('chiki_cerrado');
-    const horas24 = 24 * 60 * 60 * 1000;
-    // Si no fue cerrado, o si ya pasaron 24h, mostrar a los 3s
-    if (!cerrado || (Date.now() - parseInt(cerrado)) > horas24) {
-      setTimeout(() => b.classList.remove('oculto'), 3000);
-    }
+    setTimeout(() => b.classList.remove('oculto'), 3000);
   })();
 
   /*
