@@ -401,17 +401,19 @@
       display: block; text-decoration: none;
       width: clamp(260px, 30vw, 380px);
       transition: transform .25s;
-      /* Elimina el fondo negro de la imagen */
-      background: transparent;
-      border-radius: 50px;
+      border-radius: 60px;
       overflow: hidden;
+      /* Recortar el negro de los bordes del PNG */
+      padding: 0 4px;
+      background: transparent;
     }
     .chiki-card:hover { transform: translateY(-4px); }
     .chiki-card img {
       width: 100%; display: block;
-      /* Recorte para eliminar bordes negros */
-      border-radius: 50px;
-      mix-blend-mode: normal;
+      border-radius: 60px;
+      /* Recorte visual del negro exterior del PNG */
+      clip-path: inset(6px 6px 6px 6px round 52px);
+      box-shadow: 0 8px 28px rgba(0,0,0,.3);
     }
     @media (max-width: 768px) { .chiki-card { width: clamp(220px, 72vw, 300px); } }
     @media (max-width: 480px) { #chiki-banner { bottom: 16px; right: 12px; } }
