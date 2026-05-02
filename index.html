@@ -124,7 +124,7 @@
       backdrop-filter: blur(10px);
       border-bottom: 2px solid var(--oro);
     }
-    .nav-logo { height: 52px; width: auto; filter: brightness(1.1); }
+    .nav-logo { height: 68px; width: auto; filter: brightness(1.1); }
 
     .nav-links { display: flex; gap: var(--u4); align-items: center; }
     .nav-links a {
@@ -296,12 +296,13 @@
     .tab-btn {
       display: flex; align-items: center; gap: var(--u);
       padding: var(--u2) var(--u3); border-radius: var(--r-pill);
-      border: 2px solid transparent; background: var(--blanco);
+      border: 2px solid rgba(155,28,28,.3);
+      background: transparent;
       font-family: var(--ff-cuerpo); font-size: .9rem; font-weight: 600;
-      cursor: pointer; transition: all var(--t); box-shadow: var(--s-sm);
+      color: var(--gris); cursor: pointer; transition: all var(--t);
+      letter-spacing: .02em;
     }
-    .tab-btn .tab-emoji { font-size: 1.1rem; }
-    .tab-btn:hover { border-color: var(--rojo); color: var(--rojo); }
+    .tab-btn:hover { border-color: var(--rojo); color: var(--rojo); background: rgba(155,28,28,.06); }
     .tab-btn.activo { background: var(--rojo); color: var(--blanco); border-color: var(--rojo); box-shadow: var(--s-md); }
     .tab-panel { display: none; }
     .tab-panel.activo { display: block; }
@@ -381,34 +382,30 @@
        KLEON #7 — ÚNICO CTA FLOTANTE: WhatsApp
        Chiqui eliminado. Solo WA, con pulso.
     ══════════════════════════════════════════ */
-    #wa-flotante {
-      position: fixed; bottom: var(--u3); right: var(--u3); z-index: 9000;
-      width: 64px; height: 64px; border-radius: 50%;
-      background: var(--wa);
+    /* ══ CHIQUI BANNER flotante ══ */
+    #chiki-banner {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+      transition: opacity .4s, transform .4s;
+    }
+    #chiki-banner.oculto { opacity: 0; pointer-events: none; transform: translateY(16px); }
+    .chiki-cerrar {
+      width: 28px; height: 28px; background: rgba(0,0,0,.55);
+      color: #fff; border: none; border-radius: 50%;
+      font-size: 13px; font-weight: 700; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: var(--s-lg);
-      animation: wa-pulso 2.8s infinite;
-      transition: transform var(--t);
+      transition: background .2s; align-self: flex-end;
     }
-    #wa-flotante:hover { transform: scale(1.12); animation: none; }
-    #wa-flotante svg { width: 32px; height: 32px; fill: white; }
-
-    /* Tooltip */
-    #wa-flotante::before {
-      content: 'Pedir ahora';
-      position: absolute; right: 72px; top: 50%; transform: translateY(-50%);
-      background: var(--carbon); color: var(--blanco);
-      font-family: var(--ff-cuerpo); font-size: .78rem; font-weight: 600;
-      white-space: nowrap; padding: 6px 12px; border-radius: 6px;
-      opacity: 0; pointer-events: none; transition: opacity var(--t);
+    .chiki-cerrar:hover { background: var(--rojo); }
+    .chiki-card {
+      display: block; text-decoration: none;
+      width: clamp(260px, 30vw, 380px);
+      transition: transform .25s;
     }
-    #wa-flotante:hover::before { opacity: 1; }
-
-    @keyframes wa-pulso {
-      0%   { box-shadow: 0 0 0 0 rgba(37,211,102,.55), var(--s-lg); }
-      70%  { box-shadow: 0 0 0 16px rgba(37,211,102,0), var(--s-lg); }
-      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0), var(--s-lg); }
-    }
+    .chiki-card:hover { transform: translateY(-4px); }
+    .chiki-card img { width: 100%; display: block; border-radius: 12px; }
+    @media (max-width: 768px) { .chiki-card { width: clamp(220px, 72vw, 300px); } }
+    @media (max-width: 480px) { #chiki-banner { bottom: 16px; right: 12px; } }
 
     /* ══════════════════════════════════════════
        RESPONSIVE
@@ -419,7 +416,7 @@
       #nosotros { grid-template-columns: 1fr; }
       .cat-panel { grid-template-columns: 1fr; gap: var(--u4); }
       .cortes-grid { grid-template-columns: 1fr; }
-      #wa-flotante { bottom: var(--u2); right: var(--u2); }
+      #chiki-banner { bottom: var(--u2); right: 12px; }
     }
     @media (max-width: 560px) {
       .tab-btn { padding: var(--u) var(--u2); font-size: .82rem; }
@@ -537,16 +534,11 @@
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-texto">
+    <img src="Logo.png" alt="Carnicería La Chiquita" style="width:160px;height:auto;object-fit:contain;margin-bottom:var(--u3);filter:drop-shadow(0 4px 20px rgba(0,0,0,.5));" />
     <p class="hero-eyebrow">Carnicería La Chiquita · CDMX</p>
     <h1 class="hero-titulo">Carne <em>fresca</em><br />con el sabor<br />de siempre</h1>
     <p class="hero-sub">Cortes seleccionados a mano, atención personalizada y la confianza de años cuidando la mesa de tu familia.</p>
     <div class="hero-botones">
-      <a href="https://wa.me/525643950782?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
-         target="_blank" class="btn-wa-hero"
-         onclick="trackWA('hero','pedido_general')">
-        <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.7c-32 0-64-8.6-92-25.1l-6.6-3.9-68.4 18 18.3-66.7-4.3-6.9c-18.1-29-27.6-62.2-27.6-96.2 0-103.6 84.4-188 188.1-188 50.3 0 97.6 19.6 133.2 55.2 35.6 35.6 55.2 82.9 55.2 133.2 0 103.7-84.5 188.1-188.2 188.1zm103.3-141.5c-5.7-2.8-33.5-16.5-38.7-18.4-5.2-1.9-9-2.8-12.8 2.8-3.8 5.7-14.7 18.4-18 22.2-3.3 3.8-6.6 4.3-12.3 1.4-5.7-2.8-24-8.8-45.7-28.2-16.9-15.1-28.3-33.8-31.6-39.5-3.3-5.7-.4-8.8 2.5-11.6 2.6-2.6 5.7-6.6 8.5-9.9 2.8-3.3 3.8-5.7 5.7-9.5 1.9-3.8.9-7.1-.5-9.9-1.4-2.8-12.8-30.8-17.5-42.2-4.6-11.1-9.3-9.6-12.8-9.8-3.3-.2-7.1-.2-10.9-.2-3.8 0-9.9 1.4-15.2 7.1-5.2 5.7-20.4 19.9-20.4 48.3 0 28.4 20.9 55.9 23.7 59.7 2.8 3.8 40.8 62.3 98.9 87.4 13.8 6 24.6 9.6 33 12.3 13.9 4.4 26.5 3.8 36.5 2.3 11.2-1.7 33.5-13.7 38.2-27 4.7-13.3 4.7-24.6 3.3-27-1.4-2.5-5.2-3.9-10.9-6.7z"/></svg>
-        Pedir por WhatsApp
-      </a>
       <a href="#productos" class="btn-primario">Ver Productos</a>
     </div>
     <!-- BADGE CLEMBUTEROL -->
@@ -559,39 +551,53 @@
   <!-- SLIDER -->
   <div class="hero-imagen" id="heroSlider">
 
+    <!-- SLIDE 1: Apertura — impacto sin texto -->
     <div class="slide active">
       <img src="slide-proceso-vitrina.jpeg" alt="Carnicería La Chiquita – Cortes frescos cada día" loading="eager" />
     </div>
 
+    <!-- SLIDE 2: Espinazo de Res -->
     <div class="slide">
-      <img src="Especialidades_2_Queso_Provolone.jpeg" alt="Queso Provolone Ahumado – La Chiquita" loading="lazy" />
+      <img src="Espinazo_Res.jpeg" alt="Espinazo de Res – La Chiquita" loading="lazy" />
       <div class="slide-caption">
-        <span class="slide-tag">// Solo en La Chiquita</span>
-        <p><strong>Lo que nadie<br/>más tiene.</strong></p>
+        <span class="slide-tag">// Res de calidad</span>
+        <p><strong>El sabor está en el hueso.</strong>Espinazo fresco cada día.</p>
       </div>
     </div>
 
+    <!-- SLIDE 3: Chuleta de Cerdo -->
     <div class="slide">
-      <img src="Especialidades_4_Chimichurri.jpeg" alt="Chimichurri Artesanal Argentino" loading="lazy" />
+      <img src="Chuleta_de_Cerdo.jpeg" alt="Chuleta de Cerdo premium – La Chiquita" loading="lazy" />
       <div class="slide-caption">
-        <span class="slide-tag">// Especialidades</span>
-        <p><strong>Chimichurri artesanal.<br/>Hecho en casa.</strong></p>
+        <span class="slide-tag">// Cerdo premium</span>
+        <p><strong>Fresco esta mañana.</strong>En tu mesa esta noche.</p>
       </div>
     </div>
 
+    <!-- SLIDE 4: Queso Provolone -->
     <div class="slide">
-      <img src="heroe_2.jpeg" alt="Carnicería La Chiquita – Marca y calidad" loading="lazy" />
+      <img src="Queso_Provolone.jpeg" alt="Queso Provolone Ahumado – La Chiquita" loading="lazy" />
       <div class="slide-caption">
-        <span class="slide-tag">// Nuestra marca</span>
-        <p><strong>20+ años<br/>de confianza.</strong></p>
+        <span class="slide-tag">// Solo aquí</span>
+        <p><strong>Lo que no encuentras</strong>en otro lado.</p>
       </div>
     </div>
 
+    <!-- SLIDE 5: Tocino -->
     <div class="slide">
-      <img src="Especialidades_para_el_asador.jpeg" alt="Para el asador – Chorizo, Chistorra, Arrachera" loading="lazy" />
+      <img src="Tocino.jpeg" alt="Tocino artesanal – La Chiquita" loading="lazy" />
       <div class="slide-caption">
-        <span class="slide-tag">// Para el asador</span>
-        <p><strong>Chorizo argentino,<br/>chistorra y arrachera.</strong></p>
+        <span class="slide-tag">// Cortes especiales</span>
+        <p><strong>Cuatro capas de sabor.</strong>Cero compromiso.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Cecina Enchilada -->
+    <div class="slide">
+      <img src="Cecina_Enchilada.jpeg" alt="Cecina Enchilada – La Chiquita" loading="lazy" />
+      <div class="slide-caption">
+        <span class="slide-tag">// Tradición</span>
+        <p><strong>Enchilada a mano.</strong>Sellada con sabor.</p>
       </div>
     </div>
 
@@ -610,11 +616,11 @@
   <p class="sec-sub fade-in">Seleccionamos y cortamos con cuidado para que lleves lo mejor a tu cocina.</p>
 
   <div class="tabs-header fade-in">
-    <button class="tab-btn activo" onclick="cambiarTab('res',this)"><span class="tab-emoji">🐄</span> Res</button>
-    <button class="tab-btn" onclick="cambiarTab('pollo',this)"><span class="tab-emoji">🐔</span> Pollo</button>
-    <button class="tab-btn" onclick="cambiarTab('cerdo',this)"><span class="tab-emoji">🐷</span> Cerdo</button>
-    <button class="tab-btn" onclick="cambiarTab('especialidades',this)"><span class="tab-emoji">⭐</span> Especialidades</button>
-    <button class="tab-btn" onclick="cambiarTab('pescado',this)"><span class="tab-emoji">🐟</span> Pescado</button>
+    <button class="tab-btn activo" onclick="cambiarTab('res',this)">Res</button>
+    <button class="tab-btn" onclick="cambiarTab('cerdo',this)">Cerdo</button>
+    <button class="tab-btn" onclick="cambiarTab('pollo',this)">Pollo</button>
+    <button class="tab-btn" onclick="cambiarTab('pescado',this)">Pescado</button>
+    <button class="tab-btn" onclick="cambiarTab('especialidades',this)">Especialidades</button>
   </div>
 
   <!-- RES — MERODIO #6: onclick trackWA con medio específico -->
@@ -623,12 +629,14 @@
       <img src="Arrachera.jpg" alt="Cortes de res – La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
         <h3>Carne de Res</h3>
-        <span class="cat-badge"><strong>8</strong> cortes disponibles</span>
+        <span class="cat-badge"><strong>11</strong> cortes disponibles</span>
         <div class="cortes-grid">
-          <div class="corte-item">Caña de Filete</div><div class="corte-item">Bistec</div>
-          <div class="corte-item">Costilla</div><div class="corte-item">Retazo</div>
+          <div class="corte-item">Bistec</div><div class="corte-item">Puntas de Filete</div>
+          <div class="corte-item">Costilla para Asar</div><div class="corte-item">Falda para Deshebrar</div>
           <div class="corte-item">Maciza</div><div class="corte-item">Molida</div>
-          <div class="corte-item">Puntas de Filete</div><div class="corte-item">Arrachera</div>
+          <div class="corte-item">Retazo</div><div class="corte-item">Chambarete C/H</div>
+          <div class="corte-item">Chambarete Macizo</div><div class="corte-item">Aguja Norteña</div>
+          <div class="corte-item">Arrachera Marinada</div>
         </div>
         <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20la%20carne%20de%20res"
            target="_blank" class="btn-primario" onclick="trackWA('tab_res','pedido_res')">
@@ -644,12 +652,10 @@
       <img src="Pechuga.jpg" alt="Pollo fresco – La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
         <h3>Pollo Fresco</h3>
-        <span class="cat-badge"><strong>7</strong> presentaciones</span>
+        <span class="cat-badge"><strong>2</strong> presentaciones</span>
         <div class="cortes-grid">
-          <div class="corte-item">Pollo Entero</div><div class="corte-item">Pechuga</div>
-          <div class="corte-item">Pierna con Muslo</div><div class="corte-item">Muslos</div>
-          <div class="corte-item">Retazo de Pollo</div><div class="corte-item">Huacal con Alas</div>
-          <div class="corte-item">Alas</div>
+          <div class="corte-item">Muslo</div>
+          <div class="corte-item">Pierna con Muslo</div>
         </div>
         <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20el%20pollo"
            target="_blank" class="btn-primario" onclick="trackWA('tab_pollo','pedido_pollo')">
@@ -665,13 +671,20 @@
       <img src="Chuleta.jpg" alt="Carne de cerdo – La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
         <h3>Carne de Cerdo</h3>
-        <span class="cat-badge"><strong>10</strong> cortes disponibles</span>
+        <span class="cat-badge"><strong>24</strong> cortes disponibles</span>
         <div class="cortes-grid">
-          <div class="corte-item">Maciza</div><div class="corte-item">Costilla</div>
-          <div class="corte-item">Falda</div><div class="corte-item">Espinazo</div>
+          <div class="corte-item">Espaldilla</div><div class="corte-item">Bistec</div>
+          <div class="corte-item">Maciza</div><div class="corte-item">Molida</div>
+          <div class="corte-item">Pulpa</div><div class="corte-item">Cabeza de Lomo</div>
+          <div class="corte-item">Espinazo</div><div class="corte-item">Manitas</div>
           <div class="corte-item">Codillo</div><div class="corte-item">Cabeza</div>
-          <div class="corte-item">Cabeza de Lomo</div><div class="corte-item">Filete</div>
-          <div class="corte-item">Lomo</div><div class="corte-item">Manitas</div>
+          <div class="corte-item">Costilla con Falda</div><div class="corte-item">Lomo C/Hueso</div>
+          <div class="corte-item">Caña de Lomo</div><div class="corte-item">Longaniza</div>
+          <div class="corte-item">Chorizo</div><div class="corte-item">Chorizo Argentino</div>
+          <div class="corte-item">Chistorra</div><div class="corte-item">Tocino</div>
+          <div class="corte-item">Chuleta Ahumada</div><div class="corte-item">Chicharrón Prensado</div>
+          <div class="corte-item">Chicharrón Esponjado</div><div class="corte-item">Chicharrón Carnudo</div>
+          <div class="corte-item">Manteca</div><div class="corte-item">Cecina Enchilada</div>
         </div>
         <a href="https://wa.me/525643950782?text=Hola,%20me%20interesa%20la%20carne%20de%20cerdo"
            target="_blank" class="btn-primario" onclick="trackWA('tab_cerdo','pedido_cerdo')">
@@ -684,21 +697,17 @@
   <!-- ESPECIALIDADES -->
   <div class="tab-panel" id="tab-especialidades">
     <div class="cat-panel">
-      <img src="Especialidades.jpg" alt="Especialidades – La Chiquita" class="cat-img" loading="lazy" />
+      <img src="Especialidades_4_Chimichurri.jpeg" alt="Chimichurri Artesanal – La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
         <h3>Especialidades</h3>
         <span class="cat-badge">Solo en La Chiquita</span>
         <div class="cortes-grid">
-          <div class="corte-item">Jamón</div><div class="corte-item">Chorizo</div>
-          <div class="corte-item">Cecina</div><div class="corte-item">Preparaciones de la Casa</div>
+          <div class="corte-item">Chimichurri Artesanal</div>
+          <div class="corte-item">Queso Provolone</div>
         </div>
         <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">
-          Embutidos artesanales y preparaciones únicas que no encontrarás en otro lado.
+          Preparaciones artesanales que no encontrarás en otro lado.
         </p>
-        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesan%20las%20especialidades"
-           target="_blank" class="btn-primario" onclick="trackWA('tab_especialidades','pedido_especialidades')">
-          💬 Preguntar por Especialidades
-        </a>
       </div>
     </div>
   </div>
@@ -706,17 +715,13 @@
   <!-- PESCADO -->
   <div class="tab-panel" id="tab-pescado">
     <div class="cat-panel">
-      <div class="cat-icon-wrap">
-        <span class="cat-emoji">🐟</span>
-        <span class="cat-label">Congelado · Empaquetado</span>
-      </div>
+      <img src="Pescado.webp" alt="Pescado fresco – Tilapia, Salmón, Merluza · La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
         <h3>Pescado</h3>
-        <span class="cat-badge"><strong>3</strong> variedades · empaquetado</span>
+        <span class="cat-badge"><strong>2</strong> variedades · empaquetado</span>
         <div class="cortes-grid">
           <div class="corte-item">Tilapia</div>
           <div class="corte-item">Salmón</div>
-          <div class="corte-item">Merluza</div>
         </div>
         <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">
           Congelado y empaquetado. Dieta balanceada sin salir de tu carnicería de confianza.
@@ -768,12 +773,6 @@
   <h2 class="sec-titulo">¿Listo para tu pedido?</h2>
   <p class="sec-sub">Escríbenos por WhatsApp y con gusto te atendemos. También puedes llamarnos.</p>
   <div class="contacto-btns">
-    <a href="https://wa.me/525643950782?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
-       target="_blank" class="btn-wa-hero"
-       onclick="trackWA('cta_final','pedido_general')">
-      <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.7c-32 0-64-8.6-92-25.1l-6.6-3.9-68.4 18 18.3-66.7-4.3-6.9c-18.1-29-27.6-62.2-27.6-96.2 0-103.6 84.4-188 188.1-188 50.3 0 97.6 19.6 133.2 55.2 35.6 35.6 55.2 82.9 55.2 133.2 0 103.7-84.5 188.1-188.2 188.1zm103.3-141.5c-5.7-2.8-33.5-16.5-38.7-18.4-5.2-1.9-9-2.8-12.8 2.8-3.8 5.7-14.7 18.4-18 22.2-3.3 3.8-6.6 4.3-12.3 1.4-5.7-2.8-24-8.8-45.7-28.2-16.9-15.1-28.3-33.8-31.6-39.5-3.3-5.7-.4-8.8 2.5-11.6 2.6-2.6 5.7-6.6 8.5-9.9 2.8-3.3 3.8-5.7 5.7-9.5 1.9-3.8.9-7.1-.5-9.9-1.4-2.8-12.8-30.8-17.5-42.2-4.6-11.1-9.3-9.6-12.8-9.8-3.3-.2-7.1-.2-10.9-.2-3.8 0-9.9 1.4-15.2 7.1-5.2 5.7-20.4 19.9-20.4 48.3 0 28.4 20.9 55.9 23.7 59.7 2.8 3.8 40.8 62.3 98.9 87.4 13.8 6 24.6 9.6 33 12.3 13.9 4.4 26.5 3.8 36.5 2.3 11.2-1.7 33.5-13.7 38.2-27 4.7-13.3 4.7-24.6 3.3-27-1.4-2.5-5.2-3.9-10.9-6.7z"/></svg>
-      Pedir por WhatsApp
-    </a>
     <a href="tel:+525558849504" class="btn-llamar" onclick="trackWA('cta_llamar','llamada_directa')">
       📞 Llamar
     </a>
@@ -782,22 +781,54 @@
 
 
 <!-- FOOTER -->
-<footer>
-  <p>© 2026 <strong>Carnicería La Chiquita</strong> · Todos los derechos reservados · CDMX</p>
-  <p style="margin-top:6px;">Sitio desarrollado por <strong>SARD TECH</strong></p>
+<footer style="background:var(--carbon);padding:var(--u5) 5vw;border-top:1px solid rgba(255,255,255,.08);">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--u4);margin-bottom:var(--u4);padding-bottom:var(--u4);border-bottom:1px solid rgba(255,255,255,.08);">
+    <div>
+      <img src="Logo.png" alt="Carnicería La Chiquita" style="height:80px;margin-bottom:var(--u2);filter:brightness(1.1);" />
+      <p style="font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.9;">Carne fresca con el sabor<br />de siempre · Azcapotzalco, CDMX</p>
+    </div>
+    <div>
+      <h5 style="font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--oro);margin-bottom:var(--u2);">Contáctanos</h5>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.9;">
+        <a href="tel:+525558849504" style="color:rgba(255,255,255,.55);">55 5884 9504</a><br />
+        <a href="https://wa.me/525643950782" target="_blank" style="color:rgba(255,255,255,.55);" onclick="trackWA('footer','contacto_general')">WhatsApp</a><br />
+        <a href="https://maps.google.com/?q=Acamapichtli+66,+La+Preciosa,+Azcapotzalco,+02460+Ciudad+de+Mexico" target="_blank" style="color:rgba(255,255,255,.55);">Cómo llegar</a>
+      </p>
+    </div>
+    <div>
+      <h5 style="font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--oro);margin-bottom:var(--u2);">Horarios</h5>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.9;">
+        Lunes – Sábado<br />
+        <strong style="color:rgba(255,255,255,.75);">7:00 AM – 6:00 PM</strong><br /><br />
+        Domingo<br />
+        <strong style="color:rgba(255,255,255,.75);">8:00 AM – 6:00 PM</strong>
+      </p>
+    </div>
+  </div>
+  <!-- DIRECCIÓN AL FINAL — pedido de Raúl -->
+  <div style="text-align:center;padding:var(--u3) 0 var(--u2);border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:var(--u3);">
+    <p style="font-size:.85rem;color:rgba(255,255,255,.5);letter-spacing:.04em;">
+      📍 <strong style="color:var(--oro);">Acamapichtli 66</strong>, Col. La Preciosa, Azcapotzalco, CDMX 02460 &nbsp;·&nbsp;
+      <a href="https://maps.google.com/?q=Acamapichtli+66,+La+Preciosa,+Azcapotzalco,+02460+Ciudad+de+Mexico"
+         target="_blank" style="color:var(--oro);font-weight:600;">Ver en Google Maps</a>
+    </p>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--u2);font-size:.78rem;color:rgba(255,255,255,.4);">
+    <span>© 2026 <strong style="color:var(--oro);">Carnicería La Chiquita</strong> · Todos los derechos reservados</span>
+    <span>Sitio desarrollado por <strong style="color:var(--oro);">SARD TECH</strong></span>
+  </div>
 </footer>
 
-
-<!-- KLEON #7: UN SOLO CTA flotante — WhatsApp con pulso -->
-<a id="wa-flotante"
-   href="https://wa.me/525643950782?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
-   target="_blank" rel="noopener noreferrer"
-   onclick="trackWA('flotante','pedido_general')"
-   title="Pedir ahora">
-  <svg viewBox="0 0 448 512">
-    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.7c-32 0-64-8.6-92-25.1l-6.6-3.9-68.4 18 18.3-66.7-4.3-6.9c-18.1-29-27.6-62.2-27.6-96.2 0-103.6 84.4-188 188.1-188 50.3 0 97.6 19.6 133.2 55.2 35.6 35.6 55.2 82.9 55.2 133.2 0 103.7-84.5 188.1-188.2 188.1zm103.3-141.5c-5.7-2.8-33.5-16.5-38.7-18.4-5.2-1.9-9-2.8-12.8 2.8-3.8 5.7-14.7 18.4-18 22.2-3.3 3.8-6.6 4.3-12.3 1.4-5.7-2.8-24-8.8-45.7-28.2-16.9-15.1-28.3-33.8-31.6-39.5-3.3-5.7-.4-8.8 2.5-11.6 2.6-2.6 5.7-6.6 8.5-9.9 2.8-3.3 3.8-5.7 5.7-9.5 1.9-3.8.9-7.1-.5-9.9-1.4-2.8-12.8-30.8-17.5-42.2-4.6-11.1-9.3-9.6-12.8-9.8-3.3-.2-7.1-.2-10.9-.2-3.8 0-9.9 1.4-15.2 7.1-5.2 5.7-20.4 19.9-20.4 48.3 0 28.4 20.9 55.9 23.7 59.7 2.8 3.8 40.8 62.3 98.9 87.4 13.8 6 24.6 9.6 33 12.3 13.9 4.4 26.5 3.8 36.5 2.3 11.2-1.7 33.5-13.7 38.2-27 4.7-13.3 4.7-24.6 3.3-27-1.4-2.5-5.2-3.9-10.9-6.7z"/>
-  </svg>
-</a>
+<!-- CHIQUI BANNER — CTA flotante principal -->
+<div id="chiki-banner" class="oculto">
+  <button class="chiki-cerrar" onclick="cerrarChikiBanner()" aria-label="Cerrar">✕</button>
+  <a class="chiki-card"
+     href="https://wa.me/525643950782?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
+     target="_blank" rel="noopener noreferrer"
+     onclick="trackWA('chiki_banner','pedido_general')">
+    <img src="chiki-whatsapp.png" alt="Chiqui – ¿Necesitas ayuda?" />
+  </a>
+</div>
 
 
 <script>
@@ -844,6 +875,24 @@
     { threshold: 0.12 }
   );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  /* ── CHIQUI BANNER — localStorage 24h ── */
+  function cerrarChikiBanner() {
+    const b = document.getElementById('chiki-banner');
+    if (b) b.classList.add('oculto');
+    // Guarda timestamp de cierre — Chiqui no reaparece por 24h
+    localStorage.setItem('chiki_cerrado', Date.now());
+  }
+  (function() {
+    const b = document.getElementById('chiki-banner');
+    if (!b) return;
+    const cerrado = localStorage.getItem('chiki_cerrado');
+    const horas24 = 24 * 60 * 60 * 1000;
+    // Si no fue cerrado, o si ya pasaron 24h, mostrar a los 3s
+    if (!cerrado || (Date.now() - parseInt(cerrado)) > horas24) {
+      setTimeout(() => b.classList.remove('oculto'), 3000);
+    }
+  })();
 
   /*
    * GOTHELF #2 — HIPÓTESIS Y OUTCOME DE LA SEMANA
