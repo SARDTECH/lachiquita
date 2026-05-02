@@ -350,7 +350,7 @@
     .nosotros-badge strong { display: block; font-family: var(--ff-titulo); font-size: 1.8rem; }
     .puntos-lista { display: flex; flex-direction: column; gap: var(--u3); margin-top: var(--u4); }
     .punto { display: flex; gap: var(--u3); align-items: flex-start; }
-    .punto-icono { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--crema-osc); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .punto-icono { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--rojo); display: flex; align-items: center; justify-content: center; font-family: var(--ff-titulo); font-size: 1rem; font-weight: 700; color: var(--blanco); }
     /* WATHAN #4: Peso 700 en h4, color suave en p — jerarquía sin cambiar tamaño */
     .punto h4 { font-weight: 700; margin-bottom: 4px; font-size: .95rem; }
     .punto p  { font-size: .85rem; color: var(--gris-suave); line-height: 1.6; }
@@ -622,7 +622,7 @@
 
 <!-- PRODUCTOS -->
 <section id="productos">
-  <p class="sec-label fade-in">// Nuestros Cortes</p>
+  <p class="sec-label fade-in">Nuestros Cortes</p>
   <h2 class="sec-titulo fade-in">Calidad en cada<br />categoría</h2>
   <p class="sec-sub fade-in">Seleccionamos y cortamos con cuidado para que lleves lo mejor a tu cocina.</p>
 
@@ -719,6 +719,10 @@
         <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">
           Preparaciones artesanales que no encontrarás en otro lado.
         </p>
+        <a href="https://wa.me/525643950782?text=Hola,%20me%20interesan%20las%20especialidades"
+           target="_blank" class="btn-primario" onclick="trackWA('tab_especialidades','pedido_especialidades')">
+          💬 Preguntar por Especialidades
+        </a>
       </div>
     </div>
   </div>
@@ -726,7 +730,7 @@
   <!-- PESCADO -->
   <div class="tab-panel" id="tab-pescado">
     <div class="cat-panel">
-      <img src="Pescado.webp" alt="Pescado fresco – Tilapia, Salmón, Merluza · La Chiquita" class="cat-img" loading="lazy" />
+      <img src="Pescado.webp" alt="Pescado fresco – Tilapia y Salmón · La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
         <h3>Pescado</h3>
         <span class="cat-badge"><strong>2</strong> variedades · empaquetado</span>
@@ -754,14 +758,14 @@
     <div class="nosotros-badge"><strong>100%</strong> Fresco cada día</div>
   </div>
   <div class="fade-in">
-    <p class="sec-label">// Nuestra Historia</p>
+    <p class="sec-label">Nuestra Historia</p>
     <h2 class="sec-titulo">El sabor que<br />conoces desde siempre</h2>
     <p class="sec-sub">Carnicería La Chiquita nació con una promesa simple: llevar carne fresca, bien cortada y a buen precio a cada familia de la colonia.</p>
     <ul class="puntos-lista">
-      <li class="punto"><div class="punto-icono">🔪</div><div><h4>Corte a tu gusto</h4><p>Cortamos al momento según cómo necesites la carne. Sin tiempos de espera.</p></div></li>
-      <li class="punto"><div class="punto-icono">❄️</div><div><h4>Cadena de frío garantizada</h4><p>Recibimos producto fresco cada día para que siempre lleves lo mejor.</p></div></li>
-      <li class="punto"><div class="punto-icono">🤝</div><div><h4>Trato de confianza</h4><p>Más de 20 años construyendo relación con nuestros clientes y proveedores.</p></div></li>
-      <li class="punto"><div class="punto-icono">📦</div><div><h4>Pedidos por WhatsApp</h4><p>Pide con anticipación y ten tu carne lista para cuando llegues. También hacemos envíos a domicilio con compra mínima de $150 MXN.</p></div></li>
+      <li class="punto"><div class="punto-icono">01</div><div><h4>Corte a tu gusto</h4><p>Cortamos al momento según cómo necesites la carne. Sin tiempos de espera.</p></div></li>
+      <li class="punto"><div class="punto-icono">02</div><div><h4>Cadena de frío garantizada</h4><p>Recibimos producto fresco cada día para que siempre lleves lo mejor.</p></div></li>
+      <li class="punto"><div class="punto-icono">03</div><div><h4>Trato de confianza</h4><p>Más de 20 años construyendo relación con nuestros clientes y proveedores.</p></div></li>
+      <li class="punto"><div class="punto-icono">04</div><div><h4>Pedidos por WhatsApp</h4><p>Pide con anticipación y ten tu carne lista para cuando llegues. También hacemos envíos a domicilio con compra mínima de $150 MXN.</p></div></li>
     </ul>
   </div>
 </section>
@@ -769,7 +773,7 @@
 
 <!-- GALERÍA -->
 <section id="galeria">
-  <p class="sec-label fade-in">// Nuestro Local</p>
+  <p class="sec-label fade-in">Nuestro Local</p>
   <h2 class="sec-titulo fade-in">La vitrina que<br />lo dice todo</h2>
   <p class="sec-sub fade-in">Ven a visitarnos y escoge tú mismo el corte que más te guste.</p>
   <div class="vitrina-wrap fade-in">
@@ -780,10 +784,16 @@
 
 <!-- CONTACTO -->
 <section id="contacto">
-  <p class="sec-label">// Contáctanos</p>
+  <p class="sec-label">Contáctanos</p>
   <h2 class="sec-titulo">¿Listo para tu pedido?</h2>
   <p class="sec-sub">Escríbenos por WhatsApp y con gusto te atendemos. También puedes llamarnos.</p>
   <div class="contacto-btns">
+    <a href="https://wa.me/525643950782?text=Hola,%20quiero%20pedir%20en%20La%20Chiquita"
+       target="_blank" class="btn-wa-hero"
+       onclick="trackWA('cta_contacto','pedido_general')">
+      <svg viewBox="0 0 448 512" style="width:20px;height:20px;fill:white;flex-shrink:0"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.7c-32 0-64-8.6-92-25.1l-6.6-3.9-68.4 18 18.3-66.7-4.3-6.9c-18.1-29-27.6-62.2-27.6-96.2 0-103.6 84.4-188 188.1-188 50.3 0 97.6 19.6 133.2 55.2 35.6 35.6 55.2 82.9 55.2 133.2 0 103.7-84.5 188.1-188.2 188.1zm103.3-141.5c-5.7-2.8-33.5-16.5-38.7-18.4-5.2-1.9-9-2.8-12.8 2.8-3.8 5.7-14.7 18.4-18 22.2-3.3 3.8-6.6 4.3-12.3 1.4-5.7-2.8-24-8.8-45.7-28.2-16.9-15.1-28.3-33.8-31.6-39.5-3.3-5.7-.4-8.8 2.5-11.6 2.6-2.6 5.7-6.6 8.5-9.9 2.8-3.3 3.8-5.7 5.7-9.5 1.9-3.8.9-7.1-.5-9.9-1.4-2.8-12.8-30.8-17.5-42.2-4.6-11.1-9.3-9.6-12.8-9.8-3.3-.2-7.1-.2-10.9-.2-3.8 0-9.9 1.4-15.2 7.1-5.2 5.7-20.4 19.9-20.4 48.3 0 28.4 20.9 55.9 23.7 59.7 2.8 3.8 40.8 62.3 98.9 87.4 13.8 6 24.6 9.6 33 12.3 13.9 4.4 26.5 3.8 36.5 2.3 11.2-1.7 33.5-13.7 38.2-27 4.7-13.3 4.7-24.6 3.3-27-1.4-2.5-5.2-3.9-10.9-6.7z"/></svg>
+      Pedir por WhatsApp
+    </a>
     <a href="tel:+525558849504" class="btn-llamar" onclick="trackWA('cta_llamar','llamada_directa')">
       📞 Llamar
     </a>
@@ -887,15 +897,20 @@
   );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  /* ── CHIQUI BANNER — aparece a los 3s en cada visita ── */
+  /* ── CHIQUI BANNER — localStorage 24h ── */
   function cerrarChikiBanner() {
     const b = document.getElementById('chiki-banner');
     if (b) b.classList.add('oculto');
+    localStorage.setItem('chiki_cerrado', Date.now());
   }
   (function() {
     const b = document.getElementById('chiki-banner');
     if (!b) return;
-    setTimeout(() => b.classList.remove('oculto'), 3000);
+    const cerrado = localStorage.getItem('chiki_cerrado');
+    const horas24 = 24 * 60 * 60 * 1000;
+    if (!cerrado || (Date.now() - parseInt(cerrado)) > horas24) {
+      setTimeout(() => b.classList.remove('oculto'), 3000);
+    }
   })();
 
   /*
