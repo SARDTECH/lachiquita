@@ -139,9 +139,9 @@
     #chiki-banner.oculto { opacity: 0; pointer-events: none; transform: translateY(16px); }
     .chiki-cerrar { width: 28px; height: 28px; background: rgba(0,0,0,.55); color: #fff; border: none; border-radius: 50%; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; align-self: flex-end; }
     .chiki-cerrar:hover { background: var(--rojo); }
-    .chiki-card { display: block; text-decoration: none; width: clamp(260px, 30vw, 380px); transition: transform .25s; border-radius: 60px; overflow: hidden; padding: 0 4px; background: transparent; }
+    .chiki-card { display: block; text-decoration: none; width: clamp(260px, 30vw, 380px); transition: transform .25s; }
     .chiki-card:hover { transform: translateY(-4px); }
-    .chiki-card img { width: 100%; display: block; border-radius: 60px; clip-path: inset(6px 6px 6px 6px round 52px); box-shadow: 0 8px 28px rgba(0,0,0,.3); }
+    .chiki-card img { width: 100%; display: block; filter: drop-shadow(0 4px 16px rgba(0,0,0,.3)); }
     @media (max-width: 768px) { .chiki-card { width: clamp(220px, 72vw, 300px); } }
     @media (max-width: 480px) { #chiki-banner { bottom: 16px; right: 12px; } }
     @media (max-width: 900px) {
@@ -156,10 +156,16 @@
     .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
     .slide.active { opacity: 1; position: relative; pointer-events: auto; }
     .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-    .slide-caption { position: absolute; bottom: 80px; left: var(--u3); z-index: 3; background: rgba(26,10,0,.65); backdrop-filter: blur(6px); padding: var(--u2) var(--u3); border-radius: var(--r-sm); border-left: 3px solid var(--oro); max-width: 240px; }
+    .slide-caption { position: absolute; bottom: 40px; left: var(--u3); z-index: 3; background: rgba(26,10,0,.65); backdrop-filter: blur(6px); padding: var(--u2) var(--u3); border-radius: var(--r-sm); border-left: 3px solid var(--oro); max-width: 240px; }
     .slide-tag { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--oro); margin-bottom: 4px; }
     .slide-caption p { font-size: .9rem; color: rgba(255,255,255,.95); line-height: 1.5; margin: 0; }
     .slide-caption p strong { display: block; font-size: 1rem; color: #fff; font-weight: 700; }
+    @media (max-width: 900px) {
+      .slide-caption { bottom: 32px; left: var(--u2); right: var(--u2); max-width: calc(100% - 32px); padding: var(--u) var(--u2); background: rgba(26,10,0,.72); backdrop-filter: none; }
+      .slide-caption p { font-size: .78rem; }
+      .slide-caption p strong { font-size: .85rem; }
+      .slide-tag { font-size: .6rem; letter-spacing: .12em; }
+    }
     .slide-prev, .slide-next { position: absolute; top: 50%; transform: translateY(-50%); z-index: 4; background: rgba(26,10,0,.5); color: var(--blanco); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; backdrop-filter: blur(4px); }
     .slide-prev { left: var(--u2); }
     .slide-next { right: var(--u2); }
