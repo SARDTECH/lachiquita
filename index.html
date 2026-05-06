@@ -30,18 +30,13 @@
       --blanco: #FFFFFF; --wa: #25D366;
       --ff-titulo: 'Playfair Display', serif; --ff-cuerpo: 'DM Sans', sans-serif;
       --u: 8px; --u2: 16px; --u3: 24px; --u4: 32px; --u5: 40px; --u6: 48px; --u8: 64px; --u10: 80px;
-      --s-sm: 0 2px 8px rgba(107,15,15,.12);
-      --s-md: 0 6px 24px rgba(107,15,15,.16);
-      --s-lg: 0 16px 48px rgba(107,15,15,.22);
-      --r-sm: var(--u); --r-md: var(--u2); --r-pill: 50px;
-      --t: .3s cubic-bezier(.4,0,.2,1);
+      --s-sm: 0 2px 8px rgba(107,15,15,.12); --s-md: 0 6px 24px rgba(107,15,15,.16); --s-lg: 0 16px 48px rgba(107,15,15,.22);
+      --r-sm: var(--u); --r-md: var(--u2); --r-pill: 50px; --t: .3s cubic-bezier(.4,0,.2,1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--ff-cuerpo); background: var(--crema); color: var(--carbon); overflow-x: hidden; }
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
+    img { display: block; max-width: 100%; } a { text-decoration: none; color: inherit; } ul { list-style: none; }
     #tel-bar { display: none; }
     @media (max-width: 900px) {
       #tel-bar { display: flex; align-items: center; justify-content: center; gap: var(--u); position: fixed; top: 0; left: 0; right: 0; z-index: 1100; background: var(--rojo-osc); padding: var(--u) var(--u3); font-size: .82rem; font-weight: 700; color: var(--blanco); letter-spacing: .04em; border-bottom: 1px solid rgba(255,255,255,.12); }
@@ -52,21 +47,16 @@
     .nav-links { display: flex; gap: var(--u4); align-items: center; }
     .nav-links a { font-size: .85rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--crema); position: relative; padding-bottom: 3px; transition: color var(--t); }
     .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--oro); transition: width var(--t); }
-    .nav-links a:hover { color: var(--oro); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-tel { color: var(--oro) !important; font-weight: 700 !important; }
-    .nav-tel::after { display: none !important; }
+    .nav-links a:hover { color: var(--oro); } .nav-links a:hover::after { width: 100%; }
+    .nav-tel { color: var(--oro) !important; font-weight: 700 !important; } .nav-tel::after { display: none !important; }
     .nav-cta { background: var(--rojo); color: var(--blanco) !important; padding: var(--u) var(--u3); border-radius: var(--r-pill); transition: background var(--t) !important; }
-    .nav-cta:hover { background: var(--rojo-claro) !important; }
-    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--rojo-claro) !important; } .nav-cta::after { display: none !important; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
     .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--crema); border-radius: 2px; transition: var(--t); }
     @media (max-width: 900px) {
-      nav { top: 36px; }
-      .nav-hamburger { display: flex; }
+      nav { top: 36px; } .nav-hamburger { display: flex; }
       .nav-links { display: none; flex-direction: column; gap: var(--u3); position: absolute; top: 100%; left: 0; right: 0; background: var(--carbon); padding: var(--u3) 5vw; border-bottom: 2px solid var(--oro); }
-      .nav-links.abierto { display: flex; }
-      .nav-hide-mobile { display: none; }
+      .nav-links.abierto { display: flex; } .nav-hide-mobile { display: none; }
     }
     .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: var(--u10); }
     .hero-texto { display: flex; flex-direction: column; justify-content: center; padding: var(--u8) 5vw var(--u8) 6vw; background: var(--carbon); position: relative; overflow: hidden; }
@@ -86,8 +76,6 @@
     .hero-imagen { position: relative; overflow: hidden; }
     .hero-imagen img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
     .hero-imagen::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26,10,0,.4) 0%, transparent 50%); }
-    .hero-badge { position: absolute; bottom: var(--u4); left: var(--u4); z-index: 2; background: var(--rojo); color: var(--blanco); padding: var(--u2) var(--u3); border-radius: var(--r-sm); font-size: .82rem; font-weight: 600; line-height: 1.4; box-shadow: var(--s-md); }
-    .hero-badge strong { display: block; font-size: 1.4rem; font-family: var(--ff-titulo); }
     section { padding: var(--u10) 5vw; }
     .sec-label { font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--oro); margin-bottom: var(--u2); }
     .sec-titulo { font-family: var(--ff-titulo); font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.15; margin-bottom: var(--u2); }
@@ -97,13 +85,9 @@
     .tab-btn { display: flex; align-items: center; gap: var(--u); padding: var(--u2) var(--u3); border-radius: var(--r-pill); border: 2px solid rgba(155,28,28,.3); background: transparent; font-family: var(--ff-cuerpo); font-size: .9rem; font-weight: 600; color: var(--gris); cursor: pointer; transition: all var(--t); letter-spacing: .02em; }
     .tab-btn:hover { border-color: var(--rojo); color: var(--rojo); background: rgba(155,28,28,.06); }
     .tab-btn.activo { background: var(--rojo); color: var(--blanco); border-color: var(--rojo); box-shadow: var(--s-md); }
-    .tab-panel { display: none; }
-    .tab-panel.activo { display: block; }
+    .tab-panel { display: none; } .tab-panel.activo { display: block; }
     .cat-panel { display: grid; grid-template-columns: 1fr 1fr; gap: var(--u6); align-items: center; }
     .cat-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--r-md); box-shadow: var(--s-md); }
-    .cat-icon-wrap { aspect-ratio: 4/3; border-radius: var(--r-md); background: var(--carbon); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--u2); box-shadow: var(--s-md); }
-    .cat-icon-wrap .cat-emoji { font-size: 5rem; }
-    .cat-icon-wrap .cat-label { font-size: .78rem; color: rgba(255,255,255,.5); letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
     .cat-info h3 { font-family: var(--ff-titulo); font-size: 1.6rem; margin-bottom: var(--u); }
     .cat-badge { display: inline-block; background: var(--rojo); color: var(--blanco); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px var(--u2); border-radius: var(--r-pill); margin-bottom: var(--u3); }
     .cat-badge strong { font-size: .88rem; }
@@ -118,39 +102,26 @@
     .puntos-lista { display: flex; flex-direction: column; gap: var(--u3); margin-top: var(--u4); }
     .punto { display: flex; gap: var(--u3); align-items: flex-start; }
     .punto-icono { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--rojo); display: flex; align-items: center; justify-content: center; font-family: var(--ff-titulo); font-size: 1rem; font-weight: 700; color: var(--blanco); }
-    .punto h4 { font-weight: 700; margin-bottom: 4px; font-size: .95rem; }
-    .punto p { font-size: .85rem; color: var(--gris-suave); line-height: 1.6; }
-    #galeria { background: var(--carbon); }
-    #galeria .sec-titulo { color: var(--blanco); }
-    #galeria .sec-label { color: var(--oro); }
-    #galeria .sec-sub { color: rgba(255,255,255,.6); }
+    .punto h4 { font-weight: 700; margin-bottom: 4px; font-size: .95rem; } .punto p { font-size: .85rem; color: var(--gris-suave); line-height: 1.6; }
+    #galeria { background: var(--carbon); } #galeria .sec-titulo { color: var(--blanco); } #galeria .sec-label { color: var(--oro); } #galeria .sec-sub { color: rgba(255,255,255,.6); }
     .vitrina-wrap { border-radius: var(--r-md); overflow: hidden; box-shadow: var(--s-lg); aspect-ratio: 16/7; }
     .vitrina-wrap img { width: 100%; height: 100%; object-fit: cover; }
     #contacto { background: linear-gradient(135deg, var(--rojo-osc) 0%, var(--rojo) 100%); text-align: center; padding: var(--u10) 5vw; }
-    #contacto .sec-label { color: rgba(255,255,255,.7); }
-    #contacto .sec-titulo { color: var(--blanco); margin: 0 auto var(--u2); }
-    #contacto .sec-sub { color: rgba(255,255,255,.8); margin: 0 auto var(--u5); }
+    #contacto .sec-label { color: rgba(255,255,255,.7); } #contacto .sec-titulo { color: var(--blanco); margin: 0 auto var(--u2); } #contacto .sec-sub { color: rgba(255,255,255,.8); margin: 0 auto var(--u5); }
     .contacto-btns { display: flex; gap: var(--u2); justify-content: center; flex-wrap: wrap; }
     footer { background: var(--carbon); color: rgba(255,255,255,.5); text-align: center; padding: var(--u4) 5vw; font-size: .8rem; border-top: 1px solid rgba(255,255,255,.08); }
     footer strong { color: var(--oro); }
-    /* ══ CHIQUI BANNER — CTA flotante con mascota
-       Aparece a los 3s · localStorage 24h · abre WA ══ */
     #chiki-banner { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; transition: opacity .4s, transform .4s; }
     #chiki-banner.oculto { opacity: 0; pointer-events: none; transform: translateY(16px); }
     .chiki-cerrar { width: 28px; height: 28px; background: rgba(0,0,0,.55); color: #fff; border: none; border-radius: 50%; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; align-self: flex-end; }
     .chiki-cerrar:hover { background: var(--rojo); }
     .chiki-card { display: block; text-decoration: none; width: clamp(260px, 30vw, 380px); transition: transform .25s; }
-    .chiki-card:hover { transform: translateY(-4px); }
-    .chiki-card img { width: 100%; display: block; filter: drop-shadow(0 4px 16px rgba(0,0,0,.3)); }
+    .chiki-card:hover { transform: translateY(-4px); } .chiki-card img { width: 100%; display: block; filter: drop-shadow(0 4px 16px rgba(0,0,0,.3)); }
     @media (max-width: 768px) { .chiki-card { width: clamp(220px, 72vw, 300px); } }
     @media (max-width: 480px) { #chiki-banner { bottom: 16px; right: 12px; } }
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-imagen { min-height: 320px; }
-      #nosotros { grid-template-columns: 1fr; }
-      .cat-panel { grid-template-columns: 1fr; gap: var(--u4); }
-      .cortes-grid { grid-template-columns: 1fr; }
-      #chiki-banner { bottom: var(--u2); right: 12px; }
+      .hero { grid-template-columns: 1fr; } .hero-imagen { min-height: 320px; } #nosotros { grid-template-columns: 1fr; }
+      .cat-panel { grid-template-columns: 1fr; gap: var(--u4); } .cortes-grid { grid-template-columns: 1fr; } #chiki-banner { bottom: var(--u2); right: 12px; }
     }
     @media (max-width: 560px) { .tab-btn { padding: var(--u) var(--u2); font-size: .82rem; } }
     .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
@@ -160,16 +131,8 @@
     .slide-tag { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--oro); margin-bottom: 4px; }
     .slide-caption p { font-size: .9rem; color: rgba(255,255,255,.95); line-height: 1.5; margin: 0; }
     .slide-caption p strong { display: block; font-size: 1rem; color: #fff; font-weight: 700; }
-    @media (max-width: 900px) {
-      .slide-caption { bottom: 32px; left: 56px; right: var(--u2); max-width: calc(100% - 72px); padding: var(--u) var(--u2); background: rgba(26,10,0,.72); backdrop-filter: none; }
-      .slide-caption p { font-size: .78rem; }
-      .slide-caption p strong { font-size: .85rem; }
-      .slide-tag { font-size: .6rem; letter-spacing: .12em; }
-    }
     .slide-prev, .slide-next { position: absolute; top: 50%; transform: translateY(-50%); z-index: 4; background: rgba(26,10,0,.5); color: var(--blanco); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; backdrop-filter: blur(4px); }
-    .slide-prev { left: var(--u2); }
-    .slide-next { right: var(--u2); }
-    .slide-prev:hover, .slide-next:hover { background: var(--rojo); }
+    .slide-prev { left: var(--u2); } .slide-next { right: var(--u2); } .slide-prev:hover, .slide-next:hover { background: var(--rojo); }
     .slide-dots { position: absolute; bottom: var(--u3); left: 50%; transform: translateX(-50%); z-index: 4; display: flex; gap: 7px; }
     .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.4); cursor: pointer; border: none; transition: background .3s, transform .3s; }
     .dot.active { background: var(--oro); transform: scale(1.3); }
@@ -185,25 +148,20 @@
   </style>
 </head>
 <body>
-
 <div id="tel-bar">
-  📞&nbsp;<a href="tel:+525558849504" onclick="trackWA('tel_bar_mobile','llamada')">55 5884 9504 &nbsp;·&nbsp; Llámanos</a>
+  📞 <a href="tel:+525558849504" onclick="trackWA('tel_bar_mobile','llamada')">55 5884 9504  ·  Llámenos</a>
 </div>
-
 <nav>
   <a href="#inicio"><img src="Logo.png" alt="Carnicería La Chiquita" class="nav-logo" /></a>
-  <button class="nav-hamburger" onclick="toggleNav()" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav-hamburger" onclick="toggleNav()" aria-label="Menú"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#productos">Productos</a></li>
     <li class="nav-hide-mobile"><a href="#nosotros">Nosotros</a></li>
     <li class="nav-hide-mobile"><a href="#galeria">Galería</a></li>
     <li class="nav-hide-mobile"><a href="tel:+525558849504" class="nav-tel">📞 55 5884 9504</a></li>
-    <li><a href="https://wa.me/525643950782?text=%C2%A1Bienvenido%20a%20Carnicer%C3%ADa%20La%20Chiquita%21%20%F0%9F%A5%A9%0A%0ASoy%20Chiqui%2C%20tu%20asistente%20personal.%0ACon%20gusto%20te%20ayudo%20con%20tu%20pedido.%0A%0AIndica%20el%20n%C3%BAmero%20de%20lo%20que%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Carne%20de%20Res%0A2%EF%B8%8F%E2%83%A3%20Carne%20de%20Cerdo%0A3%EF%B8%8F%E2%83%A3%20Pollo%0A4%EF%B8%8F%E2%83%A3%20Pescado%0A5%EF%B8%8F%E2%83%A3%20Especialidades%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibir%20tu%20pedido%3F%0A%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28compra%20m%C3%ADnima%20%24150%20MXN%29%0A%0A%F0%9F%93%8D%20Acamapichtli%2066%2C%20La%20Preciosa%2C%20Azcapotzalco%0A%F0%9F%95%90%20Lun%E2%80%93S%C3%A1b%207am%E2%80%936pm%20%7C%20Dom%208am%E2%80%936pm" target="_blank" class="nav-cta" onclick="trackWA('nav','pedido_general')">Pedir Ahora</a></li>
+    <li><a href="https://wa.me/5215643950782?text=%C2%A1Bienvenido%20a%20Carnicer%C3%ADa%20La%20Chiquita%21%20%F0%9F%A5%A9%0A%0ASoy%20Chiqui%2C%20tu%20asistente%20personal.%0ACon%20gusto%20te%20ayudo%20con%20tu%20pedido.%0A%0AIndica%20el%20n%C3%BAmero%20de%20lo%20que%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Carne%20de%20Res%0A2%EF%B8%8F%E2%83%A3%20Carne%20de%20Cerdo%0A3%EF%B8%8F%E2%83%A3%20Pollo%0A4%EF%B8%8F%E2%83%A3%20Pescado%0A5%EF%B8%8F%E2%83%A3%20Especialidades%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibir%20tu%20pedido%3F%0A%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28compra%20m%C3%ADnima%20%24150%20MXN%29%0A%0A%F0%9F%93%8D%20Acamapichtli%2066%2C%20La%20Preciosa%2C%20Azcapotzalco%0A%F0%9F%95%90%20Lun%E2%80%93S%C3%A1b%207am%E2%80%936pm%20%7C%20Dom%208am%E2%80%936pm" target="_blank" class="nav-cta" onclick="trackWA('nav','pedido_general')">Pedir Ahora</a></li>
   </ul>
 </nav>
-
 <section class="hero" id="inicio">
   <div class="hero-texto">
     <img src="Logo.png" alt="Carnicería La Chiquita" style="width:160px;height:auto;object-fit:contain;margin-bottom:var(--u3);filter:drop-shadow(0 4px 20px rgba(0,0,0,.5));" />
@@ -214,41 +172,21 @@
       <img src="badge-confiable.png" alt="100% Libre de Clembuterol" />
       <span><strong>Carne certificada</strong>100% Libre de Clembuterol · Calidad garantizada</span>
     </div>
-    <div class="hero-botones">
-      <a href="#productos" class="btn-primario">Ver Productos</a>
-    </div>
+    <div class="hero-botones"><a href="#productos" class="btn-primario">Ver Productos</a></div>
   </div>
   <div class="hero-imagen" id="heroSlider">
-    <div class="slide active">
-      <img src="slide-proceso-vitrina.jpeg" alt="Carnicería La Chiquita – Cortes frescos cada día" loading="eager" />
-    </div>
-    <div class="slide">
-      <img src="Espinazo_Res.jpeg" alt="Espinazo de Res – La Chiquita" loading="lazy" />
-      <div class="slide-caption"><span class="slide-tag">// Res de calidad</span><p><strong>El sabor está en el hueso.</strong>Espinazo fresco cada día.</p></div>
-    </div>
-    <div class="slide">
-      <img src="Chuleta_de_Cerdo.jpeg" alt="Chuleta de Cerdo premium – La Chiquita" loading="lazy" />
-      <div class="slide-caption"><span class="slide-tag">// Cerdo premium</span><p><strong>Fresco esta mañana.</strong>En tu mesa esta noche.</p></div>
-    </div>
-    <div class="slide">
-      <img src="Queso_Provolone.jpeg" alt="Queso Provolone Ahumado – La Chiquita" loading="lazy" />
-      <div class="slide-caption"><span class="slide-tag">// Solo aquí</span><p><strong>Lo que no encuentras</strong>en otro lado.</p></div>
-    </div>
-    <div class="slide">
-      <img src="Tocino.jpeg" alt="Tocino artesanal – La Chiquita" loading="lazy" />
-      <div class="slide-caption"><span class="slide-tag">// Cortes especiales</span><p><strong>Cuatro capas de sabor.</strong>Cero compromiso.</p></div>
-    </div>
-    <div class="slide">
-      <img src="Cecina_Enchilada.jpeg" alt="Cecina Enchilada – La Chiquita" loading="lazy" />
-      <div class="slide-caption"><span class="slide-tag">// Tradición</span><p><strong>Enchilada a mano.</strong>Sellada con sabor.</p></div>
-    </div>
+    <div class="slide active"><img src="slide-proceso-vitrina.jpeg" alt="Carnicería La Chiquita – Cortes frescos cada día" loading="eager" /></div>
+    <div class="slide"><img src="Espinazo_Res.jpeg" alt="Espinazo de Res – La Chiquita" loading="lazy" /><div class="slide-caption"><span class="slide-tag">// Res de calidad</span><p><strong>El sabor está en el hueso.</strong>Espinazo fresco cada día.</p></div></div>
+    <div class="slide"><img src="Chuleta_de_Cerdo.jpeg" alt="Chuleta de Cerdo premium – La Chiquita" loading="lazy" /><div class="slide-caption"><span class="slide-tag">// Cerdo premium</span><p><strong>Fresco esta mañana.</strong>En tu mesa esta noche.</p></div></div>
+    <div class="slide"><img src="Queso_Provolone.jpeg" alt="Queso Provolone Ahumado – La Chiquita" loading="lazy" /><div class="slide-caption"><span class="slide-tag">// Solo aquí</span><p><strong>Lo que no encuentras</strong>en otro lado.</p></div></div>
+    <div class="slide"><img src="Tocino.jpeg" alt="Tocino artesanal – La Chiquita" loading="lazy" /><div class="slide-caption"><span class="slide-tag">// Cortes especiales</span><p><strong>Cuatro capas de sabor.</strong>Cero compromiso.</p></div></div>
+    <div class="slide"><img src="Cecina_Enchilada.jpeg" alt="Cecina Enchilada – La Chiquita" loading="lazy" /><div class="slide-caption"><span class="slide-tag">// Tradición</span><p><strong>Enchilada a mano.</strong>Sellada con sabor.</p></div></div>
     <button class="slide-prev" onclick="moverSlide(-1)" aria-label="Anterior">&#8249;</button>
     <button class="slide-next" onclick="moverSlide(1)" aria-label="Siguiente">&#8250;</button>
     <div class="slide-dots" id="slideDots"></div>
     <div class="hero-badge-anos"><strong>20+</strong> años sirviendo<br />a tu familia</div>
   </div>
 </section>
-
 <section id="productos">
   <p class="sec-label fade-in">Nuestros Cortes</p>
   <h2 class="sec-titulo fade-in">Calidad en cada<br />categoría</h2>
@@ -264,8 +202,7 @@
     <div class="cat-panel">
       <img src="Arrachera.jpg" alt="Cortes de res – La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
-        <h3>Carne de Res</h3>
-        <span class="cat-badge"><strong>11</strong> cortes disponibles</span>
+        <h3>Carne de Res</h3><span class="cat-badge"><strong>11</strong> cortes disponibles</span>
         <div class="cortes-grid">
           <div class="corte-item">Bistec</div><div class="corte-item">Puntas de Filete</div>
           <div class="corte-item">Costilla para Asar</div><div class="corte-item">Falda para Deshebrar</div>
@@ -274,7 +211,7 @@
           <div class="corte-item">Chambarete Macizo</div><div class="corte-item">Aguja Norteña</div>
           <div class="corte-item">Arrachera Marinada</div>
         </div>
-        <a href="https://wa.me/525643950782?text=%C2%A1Hola%21%20Vi%20el%20cat%C3%A1logo%20de%20Res%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20corte%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Bistec%20%E2%80%94%20%24250/kg%0A2%EF%B8%8F%E2%83%A3%20Puntas%20de%20Filete%20%E2%80%94%20%24250/kg%0A3%EF%B8%8F%E2%83%A3%20Costilla%20para%20Asar%20%E2%80%94%20%24260/kg%0A4%EF%B8%8F%E2%83%A3%20Falda%20para%20Deshebrar%20%E2%80%94%20%24250/kg%0A5%EF%B8%8F%E2%83%A3%20Maciza%20%E2%80%94%20%24250/kg%0A6%EF%B8%8F%E2%83%A3%20Molida%20%E2%80%94%20%24210/kg%0A7%EF%B8%8F%E2%83%A3%20Retazo%20%E2%80%94%20%24185/kg%0A8%EF%B8%8F%E2%83%A3%20Chambarete%20C/H%20%E2%80%94%20%24190/kg%0A9%EF%B8%8F%E2%83%A3%20Chambarete%20Macizo%20%E2%80%94%20%24250/kg%0A%F0%9F%94%9F%20Aguja%20Norte%C3%B1a%20%E2%80%94%20%24195/kg%0A%F0%9F%94%9F%20Arrachera%20Marinada%20%E2%80%94%20%24250/kg%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_res','pedido_res')">💬 Pedir Carne de Res</a>
+        <a href="https://wa.me/5215643950782?text=%C2%A1Hola%21%20Vi%20el%20cat%C3%A1logo%20de%20Res%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20corte%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Bistec%20%E2%80%94%20%24250/kg%0A2%EF%B8%8F%E2%83%A3%20Puntas%20de%20Filete%20%E2%80%94%20%24250/kg%0A3%EF%B8%8F%E2%83%A3%20Costilla%20para%20Asar%20%E2%80%94%20%24260/kg%0A4%EF%B8%8F%E2%83%A3%20Falda%20para%20Deshebrar%20%E2%80%94%20%24250/kg%0A5%EF%B8%8F%E2%83%A3%20Maciza%20%E2%80%94%20%24250/kg%0A6%EF%B8%8F%E2%83%A3%20Molida%20%E2%80%94%20%24210/kg%0A7%EF%B8%8F%E2%83%A3%20Retazo%20%E2%80%94%20%24185/kg%0A8%EF%B8%8F%E2%83%A3%20Chambarete%20C/H%20%E2%80%94%20%24190/kg%0A9%EF%B8%8F%E2%83%A3%20Chambarete%20Macizo%20%E2%80%94%20%24250/kg%0A%F0%9F%94%9F%20Aguja%20Norte%C3%B1a%20%E2%80%94%20%24195/kg%0A%F0%9F%94%9F%20Arrachera%20Marinada%20%E2%80%94%20%24250/kg%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_res','pedido_res')">💬 Pedir Carne de Res</a>
       </div>
     </div>
   </div>
@@ -282,8 +219,7 @@
     <div class="cat-panel">
       <img src="Chuleta.jpg" alt="Carne de cerdo – La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
-        <h3>Carne de Cerdo</h3>
-        <span class="cat-badge"><strong>24</strong> cortes disponibles</span>
+        <h3>Carne de Cerdo</h3><span class="cat-badge"><strong>24</strong> cortes disponibles</span>
         <div class="cortes-grid">
           <div class="corte-item">Espaldilla</div><div class="corte-item">Bistec</div>
           <div class="corte-item">Maciza</div><div class="corte-item">Molida</div>
@@ -298,7 +234,7 @@
           <div class="corte-item">Chicharrón Esponjado</div><div class="corte-item">Chicharrón Carnudo</div>
           <div class="corte-item">Manteca</div><div class="corte-item">Cecina Enchilada</div>
         </div>
-        <a href="https://wa.me/525643950782?text=%C2%A1Hola%21%20Vi%20el%20cat%C3%A1logo%20de%20Cerdo%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20corte%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Espaldilla%20%E2%80%94%20%24130/kg%0A2%EF%B8%8F%E2%83%A3%20Bistec%20%E2%80%94%20%24130/kg%0A3%EF%B8%8F%E2%83%A3%20Maciza%20%E2%80%94%20%24130/kg%0A4%EF%B8%8F%E2%83%A3%20Molida%20%E2%80%94%20%24130/kg%0A5%EF%B8%8F%E2%83%A3%20Pulpa%20%E2%80%94%20%24130/kg%0A6%EF%B8%8F%E2%83%A3%20Cabeza%20de%20Lomo%20%E2%80%94%20%24140/kg%0A7%EF%B8%8F%E2%83%A3%20Espinazo%20%E2%80%94%20%24120/kg%0A8%EF%B8%8F%E2%83%A3%20Longaniza%20%E2%80%94%20%24130/kg%0A9%EF%B8%8F%E2%83%A3%20Chorizo%20Argentino%20%E2%80%94%20%24185/kg%0A%F0%9F%94%9F%20Tocino%20%E2%80%94%20%24168/kg%0A%F0%9F%94%9F%20Chicharr%C3%B3n%20Esponjado%20%E2%80%94%20%24240/kg%0A%F0%9F%94%9F%20Chicharr%C3%B3n%20Carnudo%20%E2%80%94%20%24260/kg%0A%F0%9F%94%9F%20Cecina%20Enchilada%20%E2%80%94%20%24150/kg%0A%F0%9F%94%9F%20Otro%20corte%20%E2%80%94%20pregunta%20aqu%C3%AD%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_cerdo','pedido_cerdo')">💬 Pedir Carne de Cerdo</a>
+        <a href="https://wa.me/5215643950782?text=%C2%A1Hola%21%20Vi%20el%20cat%C3%A1logo%20de%20Cerdo%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20corte%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Espaldilla%20%E2%80%94%20%24130/kg%0A2%EF%B8%8F%E2%83%A3%20Bistec%20%E2%80%94%20%24130/kg%0A3%EF%B8%8F%E2%83%A3%20Maciza%20%E2%80%94%20%24130/kg%0A4%EF%B8%8F%E2%83%A3%20Molida%20%E2%80%94%20%24130/kg%0A5%EF%B8%8F%E2%83%A3%20Pulpa%20%E2%80%94%20%24130/kg%0A6%EF%B8%8F%E2%83%A3%20Cabeza%20de%20Lomo%20%E2%80%94%20%24140/kg%0A7%EF%B8%8F%E2%83%A3%20Espinazo%20%E2%80%94%20%24120/kg%0A8%EF%B8%8F%E2%83%A3%20Longaniza%20%E2%80%94%20%24130/kg%0A9%EF%B8%8F%E2%83%A3%20Chorizo%20Argentino%20%E2%80%94%20%24185/kg%0A%F0%9F%94%9F%20Tocino%20%E2%80%94%20%24168/kg%0A%F0%9F%94%9F%20Chicharr%C3%B3n%20Esponjado%20%E2%80%94%20%24240/kg%0A%F0%9F%94%9F%20Chicharr%C3%B3n%20Carnudo%20%E2%80%94%20%24260/kg%0A%F0%9F%94%9F%20Cecina%20Enchilada%20%E2%80%94%20%24150/kg%0A%F0%9F%94%9F%20Otro%20corte%20%E2%80%94%20pregunta%20aqu%C3%AD%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_cerdo','pedido_cerdo')">💬 Pedir Carne de Cerdo</a>
       </div>
     </div>
   </div>
@@ -306,13 +242,9 @@
     <div class="cat-panel">
       <img src="Pechuga.jpg" alt="Pollo fresco – La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
-        <h3>Pollo Fresco</h3>
-        <span class="cat-badge"><strong>2</strong> presentaciones</span>
-        <div class="cortes-grid">
-          <div class="corte-item">Pechuga</div>
-          <div class="corte-item">Pierna con Muslo</div>
-        </div>
-        <a href="https://wa.me/525643950782?text=%C2%A1Hola%21%20Vi%20el%20cat%C3%A1logo%20de%20Pollo%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Pechuga%20%E2%80%94%20%24120/kg%0A2%EF%B8%8F%E2%83%A3%20Pierna%20con%20Muslo%20%E2%80%94%20%2455/kg%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_pollo','pedido_pollo')">💬 Pedir Pollo</a>
+        <h3>Pollo Fresco</h3><span class="cat-badge"><strong>2</strong> presentaciones</span>
+        <div class="cortes-grid"><div class="corte-item">Pechuga</div><div class="corte-item">Pierna con Muslo</div></div>
+        <a href="https://wa.me/5215643950782?text=%C2%A1Hola%21%20Vi%20el%20cat%C3%A1logo%20de%20Pollo%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Pechuga%20%E2%80%94%20%24120/kg%0A2%EF%B8%8F%E2%83%A3%20Pierna%20con%20Muslo%20%E2%80%94%20%2455/kg%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_pollo','pedido_pollo')">💬 Pedir Pollo</a>
       </div>
     </div>
   </div>
@@ -320,14 +252,10 @@
     <div class="cat-panel">
       <img src="Pescado.webp" alt="Pescado fresco – Tilapia y Salmón · La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
-        <h3>Pescado</h3>
-        <span class="cat-badge"><strong>2</strong> variedades · empaquetado</span>
-        <div class="cortes-grid">
-          <div class="corte-item">Tilapia</div>
-          <div class="corte-item">Salmón</div>
-        </div>
+        <h3>Pescado</h3><span class="cat-badge"><strong>2</strong> variedades · empaquetado</span>
+        <div class="cortes-grid"><div class="corte-item">Tilapia</div><div class="corte-item">Salmón</div></div>
         <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">Congelado y empaquetado. Dieta balanceada sin salir de tu carnicería de confianza.</p>
-        <a href="https://wa.me/525643950782?text=%C2%A1Hola%21%20Vi%20el%20cat%C3%A1logo%20de%20Pescado%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Tilapia%20%E2%80%94%20%2485/kg%0A2%EF%B8%8F%E2%83%A3%20Salm%C3%B3n%20%E2%80%94%20%24160/paquete%20400g%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_pescado','pedido_pescado')">💬 Preguntar Disponibilidad</a>
+        <a href="https://wa.me/5215643950782?text=%C2%A1Hola%21%20Vi%20el%20cat%C3%A1logo%20de%20Pescado%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Tilapia%20%E2%80%94%20%2485/kg%0A2%EF%B8%8F%E2%83%A3%20Salm%C3%B3n%20%E2%80%94%20%24160/paquete%20400g%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_pescado','pedido_pescado')">💬 Preguntar Disponibilidad</a>
       </div>
     </div>
   </div>
@@ -335,19 +263,14 @@
     <div class="cat-panel">
       <img src="Especialidades_4_Chimichurri.jpeg" alt="Chimichurri Artesanal – La Chiquita" class="cat-img" loading="lazy" />
       <div class="cat-info">
-        <h3>Especialidades</h3>
-        <span class="cat-badge">Solo en La Chiquita</span>
-        <div class="cortes-grid">
-          <div class="corte-item">Chimichurri Artesanal</div>
-          <div class="corte-item">Queso Provolone</div>
-        </div>
+        <h3>Especialidades</h3><span class="cat-badge">Solo en La Chiquita</span>
+        <div class="cortes-grid"><div class="corte-item">Chimichurri Artesanal</div><div class="corte-item">Queso Provolone</div></div>
         <p style="font-size:.85rem;color:var(--gris);margin-bottom:var(--u3);line-height:1.6;">Preparaciones artesanales que no encontrarás en otro lado.</p>
-        <a href="https://wa.me/525643950782?text=%C2%A1Hola%21%20Vi%20sus%20Especialidades%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Chimichurri%20Artesanal%0A2%EF%B8%8F%E2%83%A3%20Queso%20Provolone%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_especialidades','pedido_especialidades')">💬 Preguntar por Especialidades</a>
+        <a href="https://wa.me/5215643950782?text=%C2%A1Hola%21%20Vi%20sus%20Especialidades%20en%20su%20p%C3%A1gina%20%F0%9F%A5%A9%0A%0AInd%C3%ADcame%20qu%C3%A9%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Chimichurri%20Artesanal%0A2%EF%B8%8F%E2%83%A3%20Queso%20Provolone%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibirlo%3F%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28m%C3%ADnimo%20%24150%20MXN%29" target="_blank" class="btn-primario" onclick="trackWA('tab_especialidades','pedido_especialidades')">💬 Preguntar por Especialidades</a>
       </div>
     </div>
   </div>
 </section>
-
 <section id="nosotros">
   <div class="nosotros-img-wrap fade-in">
     <img src="Proceso.jpg" alt="Proceso de corte en La Chiquita" loading="lazy" />
@@ -365,29 +288,24 @@
     </ul>
   </div>
 </section>
-
 <section id="galeria">
   <p class="sec-label fade-in">Nuestro Local</p>
   <h2 class="sec-titulo fade-in">La vitrina que<br />lo dice todo</h2>
   <p class="sec-sub fade-in">Ven a visitarnos y escoge tú mismo el corte que más te guste.</p>
-  <div class="vitrina-wrap fade-in">
-    <img src="vitrina.jpg" alt="Vitrina de Carnicería La Chiquita" loading="lazy" />
-  </div>
+  <div class="vitrina-wrap fade-in"><img src="vitrina.jpg" alt="Vitrina de Carnicería La Chiquita" loading="lazy" /></div>
 </section>
-
 <section id="contacto">
   <p class="sec-label">Contáctanos</p>
   <h2 class="sec-titulo">¿Listo para tu pedido?</h2>
   <p class="sec-sub">Escríbenos por WhatsApp y con gusto te atendemos. También puedes llamarnos.</p>
   <div class="contacto-btns">
-    <a href="https://wa.me/525643950782?text=%C2%A1Bienvenido%20a%20Carnicer%C3%ADa%20La%20Chiquita%21%20%F0%9F%A5%A9%0A%0ASoy%20Chiqui%2C%20tu%20asistente%20personal.%0ACon%20gusto%20te%20ayudo%20con%20tu%20pedido.%0A%0AIndica%20el%20n%C3%BAmero%20de%20lo%20que%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Carne%20de%20Res%0A2%EF%B8%8F%E2%83%A3%20Carne%20de%20Cerdo%0A3%EF%B8%8F%E2%83%A3%20Pollo%0A4%EF%B8%8F%E2%83%A3%20Pescado%0A5%EF%B8%8F%E2%83%A3%20Especialidades%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibir%20tu%20pedido%3F%0A%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28compra%20m%C3%ADnima%20%24150%20MXN%29%0A%0A%F0%9F%93%8D%20Acamapichtli%2066%2C%20La%20Preciosa%2C%20Azcapotzalco%0A%F0%9F%95%90%20Lun%E2%80%93S%C3%A1b%207am%E2%80%936pm%20%7C%20Dom%208am%E2%80%936pm" target="_blank" class="btn-wa-hero" onclick="trackWA('cta_contacto','pedido_general')">
+    <a href="https://wa.me/5215643950782?text=%C2%A1Bienvenido%20a%20Carnicer%C3%ADa%20La%20Chiquita%21%20%F0%9F%A5%A9%0A%0ASoy%20Chiqui%2C%20tu%20asistente%20personal.%0ACon%20gusto%20te%20ayudo%20con%20tu%20pedido.%0A%0AIndica%20el%20n%C3%BAmero%20de%20lo%20que%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Carne%20de%20Res%0A2%EF%B8%8F%E2%83%A3%20Carne%20de%20Cerdo%0A3%EF%B8%8F%E2%83%A3%20Pollo%0A4%EF%B8%8F%E2%83%A3%20Pescado%0A5%EF%B8%8F%E2%83%A3%20Especialidades%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibir%20tu%20pedido%3F%0A%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28compra%20m%C3%ADnima%20%24150%20MXN%29%0A%0A%F0%9F%93%8D%20Acamapichtli%2066%2C%20La%20Preciosa%2C%20Azcapotzalco%0A%F0%9F%95%90%20Lun%E2%80%93S%C3%A1b%207am%E2%80%936pm%20%7C%20Dom%208am%E2%80%936pm" target="_blank" class="btn-wa-hero" onclick="trackWA('cta_contacto','pedido_general')">
       <svg viewBox="0 0 448 512" style="width:20px;height:20px;fill:white;flex-shrink:0"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.7c-32 0-64-8.6-92-25.1l-6.6-3.9-68.4 18 18.3-66.7-4.3-6.9c-18.1-29-27.6-62.2-27.6-96.2 0-103.6 84.4-188 188.1-188 50.3 0 97.6 19.6 133.2 55.2 35.6 35.6 55.2 82.9 55.2 133.2 0 103.7-84.5 188.1-188.2 188.1zm103.3-141.5c-5.7-2.8-33.5-16.5-38.7-18.4-5.2-1.9-9-2.8-12.8 2.8-3.8 5.7-14.7 18.4-18 22.2-3.3 3.8-6.6 4.3-12.3 1.4-5.7-2.8-24-8.8-45.7-28.2-16.9-15.1-28.3-33.8-31.6-39.5-3.3-5.7-.4-8.8 2.5-11.6 2.6-2.6 5.7-6.6 8.5-9.9 2.8-3.3 3.8-5.7 5.7-9.5 1.9-3.8.9-7.1-.5-9.9-1.4-2.8-12.8-30.8-17.5-42.2-4.6-11.1-9.3-9.6-12.8-9.8-3.3-.2-7.1-.2-10.9-.2-3.8 0-9.9 1.4-15.2 7.1-5.2 5.7-20.4 19.9-20.4 48.3 0 28.4 20.9 55.9 23.7 59.7 2.8 3.8 40.8 62.3 98.9 87.4 13.8 6 24.6 9.6 33 12.3 13.9 4.4 26.5 3.8 36.5 2.3 11.2-1.7 33.5-13.7 38.2-27 4.7-13.3 4.7-24.6 3.3-27-1.4-2.5-5.2-3.9-10.9-6.7z"/></svg>
       Pedir por WhatsApp
     </a>
     <a href="tel:+525558849504" class="btn-llamar" onclick="trackWA('cta_llamar','llamada_directa')">📞 Llamar</a>
   </div>
 </section>
-
 <footer style="background:var(--carbon);padding:var(--u5) 5vw;border-top:1px solid rgba(255,255,255,.08);">
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--u4);margin-bottom:var(--u4);padding-bottom:var(--u4);border-bottom:1px solid rgba(255,255,255,.08);">
     <div>
@@ -398,7 +316,7 @@
       <h5 style="font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--oro);margin-bottom:var(--u2);">Contáctanos</h5>
       <p style="font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.9;">
         <a href="tel:+525558849504" style="color:rgba(255,255,255,.55);">55 5884 9504</a><br />
-        <a href="https://wa.me/525643950782?text=%C2%A1Bienvenido%20a%20Carnicer%C3%ADa%20La%20Chiquita%21%20%F0%9F%A5%A9%0A%0ASoy%20Chiqui%2C%20tu%20asistente%20personal.%0ACon%20gusto%20te%20ayudo%20con%20tu%20pedido.%0A%0AIndica%20el%20n%C3%BAmero%20de%20lo%20que%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Carne%20de%20Res%0A2%EF%B8%8F%E2%83%A3%20Carne%20de%20Cerdo%0A3%EF%B8%8F%E2%83%A3%20Pollo%0A4%EF%B8%8F%E2%83%A3%20Pescado%0A5%EF%B8%8F%E2%83%A3%20Especialidades%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibir%20tu%20pedido%3F%0A%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28compra%20m%C3%ADnima%20%24150%20MXN%29%0A%0A%F0%9F%93%8D%20Acamapichtli%2066%2C%20La%20Preciosa%2C%20Azcapotzalco%0A%F0%9F%95%90%20Lun%E2%80%93S%C3%A1b%207am%E2%80%936pm%20%7C%20Dom%208am%E2%80%936pm" target="_blank" style="color:rgba(255,255,255,.55);" onclick="trackWA('footer','contacto_general')">WhatsApp</a><br />
+        <a href="https://wa.me/5215643950782?text=%C2%A1Bienvenido%20a%20Carnicer%C3%ADa%20La%20Chiquita%21%20%F0%9F%A5%A9%0A%0ASoy%20Chiqui%2C%20tu%20asistente%20personal.%0ACon%20gusto%20te%20ayudo%20con%20tu%20pedido.%0A%0AIndica%20el%20n%C3%BAmero%20de%20lo%20que%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Carne%20de%20Res%0A2%EF%B8%8F%E2%83%A3%20Carne%20de%20Cerdo%0A3%EF%B8%8F%E2%83%A3%20Pollo%0A4%EF%B8%8F%E2%83%A3%20Pescado%0A5%EF%B8%8F%E2%83%A3%20Especialidades%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibir%20tu%20pedido%3F%0A%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28compra%20m%C3%ADnima%20%24150%20MXN%29%0A%0A%F0%9F%93%8D%20Acamapichtli%2066%2C%20La%20Preciosa%2C%20Azcapotzalco%0A%F0%9F%95%90%20Lun%E2%80%93S%C3%A1b%207am%E2%80%936pm%20%7C%20Dom%208am%E2%80%936pm" target="_blank" style="color:rgba(255,255,255,.55);" onclick="trackWA('footer','contacto_general')">WhatsApp</a><br />
         <a href="https://maps.google.com/?q=Acamapichtli+66,+La+Preciosa,+Azcapotzalco,+02460+Ciudad+de+Mexico" target="_blank" style="color:rgba(255,255,255,.55);">Cómo llegar</a>
       </p>
     </div>
@@ -423,18 +341,15 @@
     <span>Sitio desarrollado por <strong style="color:var(--oro);">SARD TECH</strong></span>
   </div>
 </footer>
-
-<!-- CHIQUI BANNER — CTA flotante principal -->
 <div id="chiki-banner" class="oculto">
   <button class="chiki-cerrar" onclick="cerrarChikiBanner()" aria-label="Cerrar">✕</button>
   <a class="chiki-card"
-     href="https://wa.me/525643950782?text=%C2%A1Bienvenido%20a%20Carnicer%C3%ADa%20La%20Chiquita%21%20%F0%9F%A5%A9%0A%0ASoy%20Chiqui%2C%20tu%20asistente%20personal.%0ACon%20gusto%20te%20ayudo%20con%20tu%20pedido.%0A%0AIndica%20el%20n%C3%BAmero%20de%20lo%20que%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Carne%20de%20Res%0A2%EF%B8%8F%E2%83%A3%20Carne%20de%20Cerdo%0A3%EF%B8%8F%E2%83%A3%20Pollo%0A4%EF%B8%8F%E2%83%A3%20Pescado%0A5%EF%B8%8F%E2%83%A3%20Especialidades%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibir%20tu%20pedido%3F%0A%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28compra%20m%C3%ADnima%20%24150%20MXN%29%0A%0A%F0%9F%93%8D%20Acamapichtli%2066%2C%20La%20Preciosa%2C%20Azcapotzalco%0A%F0%9F%95%90%20Lun%E2%80%93S%C3%A1b%207am%E2%80%936pm%20%7C%20Dom%208am%E2%80%936pm"
+     href="https://wa.me/5215643950782?text=%C2%A1Bienvenido%20a%20Carnicer%C3%ADa%20La%20Chiquita%21%20%F0%9F%A5%A9%0A%0ASoy%20Chiqui%2C%20tu%20asistente%20personal.%0ACon%20gusto%20te%20ayudo%20con%20tu%20pedido.%0A%0AIndica%20el%20n%C3%BAmero%20de%20lo%20que%20deseas%3A%0A%0A1%EF%B8%8F%E2%83%A3%20Carne%20de%20Res%0A2%EF%B8%8F%E2%83%A3%20Carne%20de%20Cerdo%0A3%EF%B8%8F%E2%83%A3%20Pollo%0A4%EF%B8%8F%E2%83%A3%20Pescado%0A5%EF%B8%8F%E2%83%A3%20Especialidades%0A%0A%C2%BFC%C3%B3mo%20prefieres%20recibir%20tu%20pedido%3F%0A%0A%F0%9F%8F%AA%20Recoger%20en%20sucursal%0A%F0%9F%9B%B5%20Env%C3%ADo%20a%20domicilio%20%28compra%20m%C3%ADnima%20%24150%20MXN%29%0A%0A%F0%9F%93%8D%20Acamapichtli%2066%2C%20La%20Preciosa%2C%20Azcapotzalco%0A%F0%9F%95%90%20Lun%E2%80%93S%C3%A1b%207am%E2%80%936pm%20%7C%20Dom%208am%E2%80%936pm"
      target="_blank" rel="noopener noreferrer"
      onclick="trackWA('chiki_banner','pedido_general')">
     <img src="chiki-whatsapp.png" alt="Chiqui – ¿Necesitas ayuda?" />
   </a>
 </div>
-
 <script>
   function toggleNav() { document.getElementById('navLinks').classList.toggle('abierto'); }
   document.querySelectorAll('#navLinks a').forEach(a =>
@@ -472,7 +387,6 @@
     { threshold: 0.12 }
   );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-  /* CHIQUI BANNER — localStorage 24h */
   function cerrarChikiBanner() {
     const b = document.getElementById('chiki-banner');
     if (b) b.classList.add('oculto');
@@ -488,6 +402,5 @@
     }
   })();
 </script>
-
 </body>
 </html>
