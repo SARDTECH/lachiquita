@@ -100,9 +100,9 @@ def es_pedido_completo(texto):
     return "tu pedido está registrado" in texto.lower()
 
 def notificar_raul(resumen):
-    token    = os.environ.get("WHATSAPP_TOKEN")
-    phone_id = os.environ.get("RAUL_PHONE_ID")
-    destino  = os.environ.get("RAUL_WA_NUMBER")
+    token    = os.environ.get("WA_TOKEN")
+    phone_id = os.environ.get("PHONE_NUMBER_ID")
+    destino  = os.environ.get("RAUL_PHONE")
 
     if not all([token, phone_id, destino]):
         return {"skipped": "variables de entorno incompletas"}
